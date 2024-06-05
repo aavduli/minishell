@@ -6,66 +6,36 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:27 by aavduli           #+#    #+#             */
-/*   Updated: 2024/06/19 13:06:29 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 13:09:09 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**found_split_path(char **envp)
+void	execute(t_cmd *cmd, char **envp)
 {
-	char	**paths;
-	int		i;
-
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH". 4) == 0)
-		i++;
-	paths = ft_split(envp[i] + 5, ':');
-	return (paths);
-}
-
-char	*find_path(char *cmd, char **envp)
-{
-	char	**paths;
-	char	*path;
-	int		i;
-	char	*part_path;
-
-	paths = found_split_path(envp);
-	i = 0;
-	while (paths[i])
-	{
-		part_path = ft_strjoin(paths[i], "/");
-		path = ft_strjoin(part_path, cmd);
-		free(part_path);
-		if (access(path, F_OK) == 0)
-			break ;
-		free(path);
-		path = NULL;
-		i++;
-	}
-	i = -1;
-	while (paths[++i])
-		free(paths[i]);
-	free(paths);
-	return (path);
-}
-
-void	execute(t_data data)
-{
-	int		i;
+	pid_t	pid;
 	char	*path;
 
-	i = -1;
-	path = find_path(data->cmd.cmd, data->env);
-	if (!path)
+	pid = fork();
+	safe_pid(pid);
+	if (pid == 0)
 	{
-		while (data->cmd.cmd[i++])
-			free(data->cmd.cmd[i++]);
-		free(data->cmd.cmd);
-		error_exit("prob with cmd");
+		if (cmd->pipe)
+			pipe_cmd(cmd, envp);
+		else
+		{
+			if (cmd->redir)
+				redir_cmd(cmd);
+			else
+			{
+				path = find_path(cmd->cmd, envp);
+				if (!path)
+					error_exit("Command not found");
+				execve(path, cmd->args, envp);
+			}
+		}
 	}
-	if (execve(path, data->cmd.cmd, data->env) == -1)
-		error_exit("prob with execve");
-	free(path);
+	else
+		waitpid(pid, &g_data.exit_status, 0);
 }
