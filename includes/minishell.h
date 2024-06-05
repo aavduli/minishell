@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avdylavduli <avdylavduli@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/05/23 16:01:22 by avdylavduli      ###   ########.fr       */
+/*   Updated: 2024/06/05 11:06:09 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,26 @@
 
 typedef struct s_env
 {
-    char	*key;
-    char	*value;
+	char	*key;
+	char	*value;
 }	t_env;
 
 typedef struct s_cmd
 {
-    char	*cmd;
-    char	**args;
-    int		pipe;
-    int		redir;
-    int		redir_type;
-    char	*redir_file;
-    struct s_cmd	*next;
+	char			*cmd;
+	char			**args;
+	int				pipe;
+	int				redir;
+	int				redir_type;
+	char			*redir_file;
+	struct s_cmd	*next;
 }	t_cmd;
 
 typedef struct s_data
 {
-    t_env	*env;
-    t_cmd	*cmd;
-    int		exit_status;
+	t_env	*env;
+	t_cmd	*cmd;
+	int		exit_status;
 }	t_data;
 
 #endif
