@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/05 11:31:31 by aavduli          ###   ########.fr       */
+/*   Created: 2024/06/05 11:30:27 by aavduli           #+#    #+#             */
+/*   Updated: 2024/06/05 11:31:06 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*find_path(char *cmd, char **envp)
+void	execute(t_cmd *cmd, char **envp)
 {
-	char	**path;
+	pid_t	pid;
 	char	*path;
-	int		i;
-	char	*part_path;
 
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
-		i++;
-	paths = ft_split(envp[i] + 5, ':');
-	i = 0;
-	while (paths[i])
+	pid = fork();
+	safe_pid(pid);
+	if (pid == 0)
 	{
-		part_path = ft_strjoin(paths[i], "/");
-		path = ft_strjoin(part_path, cmd);
-		free(part_path);
-		if (access(path, F_OK) == 0)
-			return (path);
-		free(path);
-		i++;
+		if (cmd->pipe)
+			pipe_cmd(cmd, envp);
+		else
+		{
+			if (cmd->redir)
+				redir_cmd(cmd);
+			else
+			{
+				path = find_path(cmd->cmd, envp);
+				if (!path)
+					error_exit("Command not found");
+				execve(path, cmd->args, envp);
+			}
+		}
 	}
-	i = -1;
-	while (paths[++i])
-		free(paths[i]);
-	free(paths);
-	return (NULL);
+	else
+		waitpid(pid, &g_data.exit_status, 0);
 }
