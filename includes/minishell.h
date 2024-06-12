@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/05 11:06:09 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/12 15:58:49 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ typedef struct s_data
 {
 	t_env	*env;
 	t_cmd	*cmd;
+  char  *str;
 	int		exit_status;
 }	t_data;
+
+//Signal
+void	run_signal(int sig);
 
 #endif
