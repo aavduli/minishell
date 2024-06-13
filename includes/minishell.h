@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/13 13:15:46 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:02:02 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	t_env	*env;
 	t_cmd	*cmd;
   char  *str;
+  char  *nprompt;
 	int		exit_status;
 }	t_data;
 
