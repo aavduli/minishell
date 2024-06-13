@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/12 15:57:33 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:39:52 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,38 @@
 
 void	get_input(t_data *data)
 {
-	char	*input;
-	int		n;
+	char	*line;
+	size_t	len;
+	int		nread;
 
-	n = 0;
-	while (n != 1)
+	line = NULL;
+	len = 0;
+	nread = 0;
+	(void)data;
+	while (1)
 	{
-		run_signal(1);
-		input = readline("minishell > ");
-		if (input == NULL)
-			exit(0);
-		if (*input)
-			add_history(input);
-		data->str = ft_strdup(input);
+		printf("minishell> ");
+		nread = getline(&line, &len, stdin);
+		if (nread == -1)
+		{
+			perror("read line failed");
+			break;
+		}
+		free(line);
+		line = NULL;
 	}
+	return ;
 }
 
 int	main(int ac, char **av, char **envp)
 {
-	t_data	*data;
-	int			i;
+	t_data	data;
 
-	i = 0;
+	(void)envp;
 	(void)av;
 	if (ac != 1)
-		return 0;
-  get_input(data);
+		return (0);
+	//init_data(&data);
+	get_input(&data);
 	return (0);
 }
-
-

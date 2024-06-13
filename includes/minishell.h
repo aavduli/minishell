@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/12 15:58:49 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:15:46 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
-# define BUFFER_SIZE 1024
+# include "libft_xl/libft.h"
 
 //TODO : maybe we need to add more struc, or enum or smth else.
 
@@ -57,5 +56,9 @@ typedef struct s_data
 
 //Signal
 void	run_signal(int sig);
+
+//init_data
+void	init_data(t_data *d);
+
 
 #endif
