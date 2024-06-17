@@ -8,6 +8,7 @@
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2024/06/19 11:30:55 by aavduli          ###   ########.fr       */
 =======
 /*   Updated: 2024/06/11 10:23:00 by aavduli          ###   ########.fr       */
@@ -15,6 +16,9 @@
 =======
 /*   Updated: 2024/06/17 13:05:30 by aavduli          ###   ########.fr       */
 >>>>>>> 86d0a32 (updated my branch)
+=======
+/*   Updated: 2024/06/17 16:07:12 by aavduli          ###   ########.fr       */
+>>>>>>> 92d760b (pipe & execute)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +27,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -76,6 +79,17 @@ char	*find_path(char *cmd, char **envp);
 
 //builtins
 void	ft_pwd(t_data data);
+<<<<<<< HEAD
+//exit
+int		is_exit(char *str);
+=======
+//pipe
+void	multi_pipe(int infile, int outfile, char **av, char **envp);
+void	execute(char *av, char **envp);
+
+
+>>>>>>> 92d760b (pipe & execute)
+
 <<<<<<< HEAD
 //parsing
 void	get_input(t_data *data);
