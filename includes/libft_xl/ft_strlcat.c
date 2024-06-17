@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_function.c                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/13 14:22:52 by falberti         ###   ########.fr       */
+/*   Created: 2023/10/16 10:30:28 by falberti          #+#    #+#             */
+/*   Updated: 2023/10/27 13:48:31 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	safe_malloc(size_t bytes)
+size_t	ft_strlcat(char *d, const char *s, size_t n)
 {
-	void	*ptr;
+	unsigned int	i;
+	unsigned int	dlen;
+	unsigned int	slen;
 
-	ptr = malloc(bytes);
-	if (!ptr)
-	{
-		printf("Malloc failed\n");
-		exit(1);
-	}
-}
-
-void	error_exit(const char *msg)
-{
-	printf("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
-void	safe_pid(pid_t pid)
-{
-	if (pid < 0)
-		error_exit("Fork failed");
-}
-
-void	safe_pipe(int *pipefd)
-{
-	if (pipe(pipefd) == -1)
-		error_exit("Pipe failed");
+	dlen = ft_strlen(d);
+	slen = ft_strlen(s);
+	if (n < dlen)
+		return (slen + n);
+	i = 0;
+	while ((dlen + 1) < n && s[i])
+		d[dlen++] = s[i++];
+	d[dlen] = '\0';
+	return (ft_strlen(d) + ft_strlen(&s[i]));
 }

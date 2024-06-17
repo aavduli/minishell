@@ -1,43 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_function.c                                    :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/13 14:22:52 by falberti         ###   ########.fr       */
+/*   Created: 2024/06/13 13:06:58 by falberti          #+#    #+#             */
+/*   Updated: 2024/06/13 15:02:31 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-void	safe_malloc(size_t bytes)
+void	init_data(t_data *d)
 {
-	void	*ptr;
-
-	ptr = malloc(bytes);
-	if (!ptr)
-	{
-		printf("Malloc failed\n");
-		exit(1);
-	}
-}
-
-void	error_exit(const char *msg)
-{
-	printf("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
-void	safe_pid(pid_t pid)
-{
-	if (pid < 0)
-		error_exit("Fork failed");
-}
-
-void	safe_pipe(int *pipefd)
-{
-	if (pipe(pipefd) == -1)
-		error_exit("Pipe failed");
+	d->env = NULL;
+	d->cmd = NULL;
+	d->str = NULL;
+  d->nprompt = "minishell> ";
+	d->exit_status = 0;
 }

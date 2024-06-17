@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/11 10:23:00 by aavduli          ###   ########.fr       */
+=======
+/*   Updated: 2024/06/13 15:02:02 by falberti         ###   ########.fr       */
+>>>>>>> parsing
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +30,7 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
-# define BUFFER_SIZE 1024
+# include "libft_xl/libft.h"
 
 //TODO : maybe we need to add more struc, or enum or smth else.
 
@@ -52,7 +55,16 @@ typedef struct s_data
 {
 	t_env	*env;
 	t_cmd	*cmd;
+  char  *str;
+  char  *nprompt;
 	int		exit_status;
 }	t_data;
+
+//Signal
+void	run_signal(int sig);
+
+//init_data
+void	init_data(t_data *d);
+
 
 #endif
