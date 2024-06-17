@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2024/06/19 11:06:50 by falberti         ###   ########.fr       */
 =======
 /*   Updated: 2024/06/17 13:10:00 by aavduli          ###   ########.fr       */
 >>>>>>> 86d0a32 (updated my branch)
+=======
+/*   Updated: 2024/06/17 13:13:43 by aavduli          ###   ########.fr       */
+>>>>>>> 92d760b (pipe & execute)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +50,7 @@ void	get_input(t_data *data)
 		init_parsing(line, data);
 		free(line);
 		line = NULL;
-		if (line == 'exit')
+		if (ft_strncmp(line, "exit", 4) == 0)
 		{
 			free(line);
 			exit(0);
