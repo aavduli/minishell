@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/17 13:13:43 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 11:50:52 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int	init_parsing(char *str, t_data *data)
 {
+
 	(void)data;
 	if (*str != 0)
 		printf("%s\n", str);
+  is_exit(str);
 	return (0);
 }
+
 
 void	get_input(t_data *data)
 {

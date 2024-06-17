@@ -6,9 +6,10 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/18 16:46:09 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 11:50:42 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -70,5 +71,7 @@ void	ft_cmd(t_data data);
 void	execute(t_data data);
 
 
+//Exit
+int   is_exit(char *str);
 
 #endif
