@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2024/06/19 11:30:55 by aavduli          ###   ########.fr       */
 =======
 /*   Updated: 2024/06/11 10:23:00 by aavduli          ###   ########.fr       */
 >>>>>>> 8fc4d0d (little update)
+=======
+/*   Updated: 2024/06/17 13:05:30 by aavduli          ###   ########.fr       */
+>>>>>>> 86d0a32 (updated my branch)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +77,7 @@ void	init_data(t_data *d);
 //exit
 int		is_exit(char *str);
 
+<<<<<<< HEAD
 //parsing
 void	get_input(t_data *data);
 
@@ -80,4 +85,6 @@ void	get_input(t_data *data);
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
 
+=======
+>>>>>>> 86d0a32 (updated my branch)
 #endif

@@ -3,15 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/19 11:06:50 by falberti         ###   ########.fr       */
+=======
+/*   Updated: 2024/06/17 13:10:00 by aavduli          ###   ########.fr       */
+>>>>>>> 86d0a32 (updated my branch)
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+<<<<<<< HEAD
+=======
+int	init_parsing(char *str, t_data *data)
+{
+	(void)data;
+	if (*str != 0)
+		printf("%s\n", str);
+	return (0);
+}
+
+void	get_input(t_data *data)
+{
+	char	*line;
+
+	(void)data;
+	while (1)
+	{
+		run_signal(1);
+		//printf("%s", data->nprompt);
+		line = readline("minishell> ");
+		if (line == NULL)
+		{
+			perror("read line failed");
+			exit(0);
+		}
+		if (*line)
+			add_history(line);
+		init_parsing(line, data);
+		free(line);
+		line = NULL;
+		if (line == 'exit')
+		{
+			free(line);
+			exit(0);
+		}
+	}
+	return ;
+}
+
+>>>>>>> 86d0a32 (updated my branch)
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
