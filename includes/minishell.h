@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2024/06/19 11:30:55 by aavduli          ###   ########.fr       */
 =======
 /*   Updated: 2024/06/11 10:23:00 by aavduli          ###   ########.fr       */
 >>>>>>> 8fc4d0d (little update)
+=======
+/*   Updated: 2024/06/17 13:05:30 by aavduli          ###   ########.fr       */
+>>>>>>> 86d0a32 (updated my branch)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +76,9 @@ char	*find_path(char *cmd, char **envp);
 
 //builtins
 void	ft_pwd(t_data data);
+<<<<<<< HEAD
+//parsing
+void	get_input(t_data *data);
 
 //execute
 void	ft_cmd(t_data data);
@@ -81,5 +88,7 @@ void	execute(t_data data);
 //Exit
 int   is_exit(char *str);
 
+=======
+>>>>>>> 86d0a32 (updated my branch)
 #endif
 
