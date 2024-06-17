@@ -6,7 +6,7 @@
 #    By: falberti <falberti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/06/13 15:52:12 by falberti         ###   ########.fr        #
+#    Updated: 2024/06/17 13:22:26 by falberti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ lIBRARIES_DIR	=	includes
 HEADER = $(lIBRARIES_DIR)/minishell
 
 FILES = $(SOURCES_DIR)/minishell\
-				$(SOURCES_DIR)/signal\
+				$(SOURCES_DIR)/signals\
 				$(SOURCES_DIR)/init_data\
+				$(SOURCES_DIR)/exit\
 
 ## This is a bit tricky for me but it ask to check the end of the string in FILES than add .c if there is nothing
 ## Also possible to just liste the .c and .o files

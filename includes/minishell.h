@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/13 15:02:02 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:21:43 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void	run_signal(int sig);
 //init_data
 void	init_data(t_data *d);
 
+//Exit
+int   is_exit(char *str);
 
 #endif
