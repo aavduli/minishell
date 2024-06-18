@@ -6,20 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2024/06/19 11:30:55 by aavduli          ###   ########.fr       */
-=======
-/*   Updated: 2024/06/11 10:23:00 by aavduli          ###   ########.fr       */
->>>>>>> 8fc4d0d (little update)
-=======
-/*   Updated: 2024/06/17 13:05:30 by aavduli          ###   ########.fr       */
->>>>>>> 86d0a32 (updated my branch)
-=======
-/*   Updated: 2024/06/17 16:07:12 by aavduli          ###   ########.fr       */
->>>>>>> 92d760b (pipe & execute)
-/*   Updated: 2024/06/18 16:22:20 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 13:14:29 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +47,7 @@ typedef struct s_data
 	char	*str;
 	char	*nprompt;
 	char	**env;
+	char	**env;
 	int		exit_status;
 	char	**env;
 	char	**original;
@@ -86,27 +74,18 @@ int		is_exit(char *str);
 =======
 //pipe
 void	multi_pipe(int infile, int outfile, char **av, char **envp);
-void	execute(char *av, char **envp);
 
-//execute
-void	execute(t_data data);
+//path
+char	*find_path(char *cmd, char **envp);
 
-
->>>>>>> 92d760b (pipe & execute)
-
-<<<<<<< HEAD
-//parsing
-void	get_input(t_data *data);
+//builtins
+void	ft_pwd(t_data data);
 
 //execute
 void	ft_cmd(t_data data);
 void	execute(t_data data);
 
 
-//Exit
-int   is_exit(char *str);
 
-=======
->>>>>>> 86d0a32 (updated my branch)
 #endif
 
