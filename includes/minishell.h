@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/18 16:22:20 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/18 16:46:09 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@
 
 //TODO : maybe we need to add more struc, or enum or smth else.
 
-typedef struct s_env
-{
-	char	*key;
-	char	*value;
-}	t_env;
 
 typedef struct s_cmd
 {
@@ -48,10 +43,10 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	t_env	*env;
 	t_cmd	*cmd;
 	char	*str;
 	char	*nprompt;
+	char	**env;
 	int		exit_status;
 }	t_data;
 
@@ -63,9 +58,15 @@ void	init_data(t_data *d);
 
 //pipe
 void	multi_pipe(int infile, int outfile, char **av, char **envp);
-void	execute(char *av, char **envp);
+
+//path
+char	*find_path(char *cmd, char **envp);
+
+//builtins
+void	ft_pwd(t_data data);
 
 //execute
+void	ft_cmd(t_data data);
 void	execute(t_data data);
 
 

@@ -6,13 +6,13 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:27 by aavduli           #+#    #+#             */
-/*   Updated: 2024/06/18 16:21:27 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/18 16:42:14 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**found_split(char **envp)
+char	**found_split_path(char **envp)
 {
 	char	**paths;
 	int		i;
@@ -31,7 +31,7 @@ char	*find_path(char *cmd, char **envp)
 	int		i;
 	char	*part_path;
 
-	paths = found_split(envp);
+	paths = found_split_path(envp);
 	i = 0;
 	while (paths[i])
 	{

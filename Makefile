@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: falberti <falberti@student.42.fr>          +#+  +:+       +#+         #
+#    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/06/13 15:52:12 by falberti         ###   ########.fr        #
+#    Updated: 2024/06/18 16:46:44 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OFILES = $(addsuffix .o, $(FILES))
 ## Varguments
 CC = gcc
 CFLAGS = -Werror -Wextra -Wall -I $(HEADER)  -g
-NAME = mshell
+NAME = minishell
 
 #####################################################################
 ## Rules
