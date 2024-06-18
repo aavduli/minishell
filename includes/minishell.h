@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/17 16:07:12 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/18 16:22:20 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	init_data(t_data *d);
 //pipe
 void	multi_pipe(int infile, int outfile, char **av, char **envp);
 void	execute(char *av, char **envp);
+
+//execute
+void	execute(t_data data);
 
 
 
