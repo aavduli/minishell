@@ -19,6 +19,7 @@
 =======
 /*   Updated: 2024/06/17 16:07:12 by aavduli          ###   ########.fr       */
 >>>>>>> 92d760b (pipe & execute)
+/*   Updated: 2024/06/18 16:22:20 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +87,9 @@ int		is_exit(char *str);
 //pipe
 void	multi_pipe(int infile, int outfile, char **av, char **envp);
 void	execute(char *av, char **envp);
+
+//execute
+void	execute(t_data data);
 
 
 >>>>>>> 92d760b (pipe & execute)
