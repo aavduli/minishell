@@ -28,7 +28,7 @@ void	safe_malloc(size_t bytes)
 void	error_exit(const char *msg)
 {
 	printf("%s\n", msg);
-	exit(EXIT_FAILURE);
+	break ;
 }
 
 void	safe_pid(pid_t pid)
