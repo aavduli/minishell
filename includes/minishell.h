@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 11:50:42 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 13:07:36 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@
 
 typedef struct s_cmd
 {
-	char			*cmd;
+	char			*str;
+	int				type;
 	char			**args;
-	int				pipe;
-	int				redir;
-	int				redir_type;
-	char			*redir_file;
-	struct s_cmd	*next;
-}	t_cmd;
+	t_cmd			*next;
+	t_cmd			*prev;
+};
 
 typedef struct s_data
 {
@@ -49,12 +47,15 @@ typedef struct s_data
 	char	*nprompt;
 	char	**env;
 	int		exit_status;
+	char	**env;
+	char	**original;
 }	t_data;
 
-//Signal
+//signal
 void	run_signal(int sig);
 
-//init_data
+//init_structs
+void	init_cmd(t_cmd *c);
 void	init_data(t_data *d);
 
 //pipe
