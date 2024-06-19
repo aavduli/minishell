@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 13:56:53 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 14:27:33 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include "libft_xl/libft.h"
 
 //types
+//-1. Init
+// 0. NULL
 // 1. cmd
 // 2. args
 // 3. str
@@ -51,7 +53,7 @@ struct s_cmd
 typedef struct s_data
 {
 	t_cmd	*cmd;
-	char	*str;
+	char	*full_str;
 	char	*nprompt;
 	int		exit_status;
 	char	**env;
@@ -75,8 +77,10 @@ void	get_input(t_data *data);
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
 
-//Builtins
+//builtins
 void	ft_pwd(t_data data);
 void	ft_cmd(t_data data);
 
+//command
+void	ft_split_cmd(t_data *d);
 #endif
