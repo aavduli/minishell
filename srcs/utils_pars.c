@@ -1,47 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   utils_pars.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 10:55:11 by falberti         ###   ########.fr       */
+/*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
+/*   Updated: 2024/06/19 11:05:34 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static	int	init_parsing(char *str, t_data *data)
+int	get_nb_strs(char **strs)
 {
+	int	nb;
 
-	(void)data;
-	if (*str != 0)
-		printf("%s\n", str);
-	is_exit(str);
-	return (0);
+	nb = 0;
+	while (strs[nb])
+		nb++;
+	return (nb);
 }
 
-void	get_input(t_data *data)
+char	**ft_cpy_env(char **strs)
 {
-	char	*line;
+	int		i;
+	char	**env;
 
-	(void)data;
-	while (1)
+	if (strs == NULL)
+		return (NULL);
+	env = malloc(sizeof(char *) * (get_nb_strs(strs) + 1));
+	if (env == NULL)
+		return (NULL);
+	i = 0;
+	while (strs[i])
 	{
-		run_signal(1);
-		//printf("%s", data->nprompt);
-		line = readline("minishell> ");
-		if (line == NULL)
-		{
-			perror("read line failed");
-			exit(0);
-		}
-		if (*line)
-		add_history(line);
-		init_parsing(line, data);
-		free(line);
-		line = NULL;
+		env[i] = ft_strdup(strs[i]);
+		i++;
 	}
-	return ;
+	env[i] = NULL;
+	return (env);
 }
