@@ -6,9 +6,10 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/06/19 13:39:56 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:46:45 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -35,9 +36,6 @@ void	connect_pipe(int infile, int outfile, char *cmd, char **envp)
 		waitpid(pid, &status, 0);
 }
 
-<<<<<<< HEAD
-
-=======
 void	multi_pipe(int infile, int outfile, char **av, char **envp)
 {
 	int	i;
@@ -64,4 +62,3 @@ void	multi_pipe(int infile, int outfile, char **av, char **envp)
 	execute(av[i], envp);
 	close(outfile);
 }
->>>>>>> 92d760b (pipe & execute)

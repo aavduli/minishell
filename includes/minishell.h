@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 13:39:15 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:44:22 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,10 @@
 typedef struct s_cmd	t_cmd;
 
 struct s_cmd
-//types
-// 1. cmd
-// 2. args
-// 3. str
-// 4. str_null
-// 5. pipe
-// 6. redi
-// 7. extra
-
-
-typedef struct s_cmd	t_cmd;
-
-struct s_cmd
 {
 	char			*str;
 	int				type;
-	char			*str;
-	int				type;
 	char			**args;
-	t_cmd			*next;
-	t_cmd			*prev;
-};
 	t_cmd			*next;
 	t_cmd			*prev;
 };
@@ -71,21 +53,14 @@ typedef struct s_data
 	t_cmd	*cmd;
 	char	*str;
 	char	*nprompt;
-	char	*str;
-	char	*nprompt;
 	int		exit_status;
-	char	**env;
-	char	**original;
 	char	**env;
 	char	**original;
 }	t_data;
 
 //signal
-//signal
 void	run_signal(int sig);
 
-//init_structs
-void	init_cmd(t_cmd *c);
 //init_structs
 void	init_cmd(t_cmd *c);
 void	init_data(t_data *d);

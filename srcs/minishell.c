@@ -6,13 +6,12 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 13:39:39 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:42:40 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
->>>>>>> 86d0a32 (updated my branch)
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
@@ -23,11 +22,6 @@ int	main(int ac, char **av, char **envp)
 	if (ac != 1)
 		return (0);
 	init_data(&data);
-	init_cmd(&cmd);
-	data.env = ft_cpy_env(envp);
-	data.original = ft_cpy_env(envp);
-	// while (*data.original)
-	// 	printf("%s\n", *data.original++);
 	init_cmd(&cmd);
 	data.env = ft_cpy_env(envp);
 	data.original = ft_cpy_env(envp);
