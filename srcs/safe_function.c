@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 13:39:31 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:14:22 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	safe_malloc(size_t bytes)
 void	error_exit(const char *msg)
 {
 	printf("%s\n", msg);
-	break ;
+	return ;
 }
 
 void	safe_pid(pid_t pid)
