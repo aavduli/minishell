@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 13:42:40 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:48:41 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
-	t_cmd	cmd;
 	t_cmd	cmd;
 
 	(void)av;
