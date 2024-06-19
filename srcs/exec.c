@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 13:43:21 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:44:28 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	**found_split(char **envp)
 	int		i;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH". 4) == 0)
+	while (ft_strnstr(envp[i], "PATH=". 5) == NULL)
 		i++;
+	if (envp[i] == NULL)
+		return (NULL);
 	paths = ft_split(envp[i] + 5, ':');
 	return (paths);
 }
@@ -51,7 +53,7 @@ char	*find_path(char *cmd, char **envp)
 	return (path);
 }
 
-void	execute(t_data data)
+void	execute(char *str, t_data *data)
 {
 	int		i;
 	char	*path;

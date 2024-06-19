@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 10:55:11 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:39:34 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	get_input(t_data *data)
 			exit(0);
 		}
 		if (*line)
-		add_history(line);
+			add_history(line);
+		ft_cmd(line, data);
 		init_parsing(line, data);
 		free(line);
 		line = NULL;
