@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/06/19 13:57:50 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/19 14:01:03 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_pwd(t_data data)
 	int	i;
 
 	i = 0;
-	while (data.env[i])
+	while (data.env[i]) 
 	{
 		if (ft_strnstr(data.env[i], "PWD", 3) == 0)
 		{
