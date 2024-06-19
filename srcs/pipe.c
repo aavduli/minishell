@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_function.c                                    :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 10:53:56 by falberti         ###   ########.fr       */
+/*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
+/*   Updated: 2024/06/19 10:53:57 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	safe_malloc(size_t bytes)
+void	pipe_cmd(t_cmd *cmd, char **envp)
 {
-	void	*ptr;
+	int		pipefd[2];
+	pid_t	pid;
 
-	ptr = malloc(bytes);
-	if (!ptr)
+	safe_pipe(pipefd);
+	pid = fork();
+	safe_pid(pid);
+	if (pid == 0)
 	{
-		printf("Malloc failed\n");
-		exit(1);
+		close(pipefd[0]);
+		dup2(pipefd[1], STDOUT_FILENO);
+		close(pipefd[1]);
+		execute(cmd->cmd, envp);
+	}
+	else
+	{
+		waitpid(pid, &g_data.exit_status, 0);
+		close(pipefd[1]);
+		dup2(pipefd[0], STDIN_FILENO);
+		close(pipefd[0]);
 	}
 }
 
-void	error_exit(const char *msg)
-{
-	printf("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
-void	safe_pid(pid_t pid)
-{
-	if (pid < 0)
-		error_exit("Fork failed");
-}
-
-void	safe_pipe(int *pipefd)
-{
-	if (pipe(pipefd) == -1)
-		error_exit("Pipe failed");
-}
