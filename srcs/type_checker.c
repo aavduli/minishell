@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   split_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 13:32:44 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/20 14:42:56 by albertini        ###   ########.fr       */
+/*   Created: 2024/06/20 11:45:44 by albertini         #+#    #+#             */
+/*   Updated: 2024/06/20 11:49:47 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_strdup(const char *s1)
+static int	is_forb(char *str)
 {
-	char	*strr;
-	int		size;
-	int		i;
-
-	size = ft_strlen(s1);
-	strr = malloc((size + 1) * sizeof(char));
-	if (!strr)
-		return (strr);
-	i = 0;
-	while (s1[i])
-	{
-		strr[i] = s1[i];
-		i++;
-	}
-	strr[i] = '\0';
-	if (strr == NULL)
-		return (strr);
-	return (strr);
+	return (1);
 }
+
+static int	is_meta(char *str)
+{
+	return (1);
+}
+

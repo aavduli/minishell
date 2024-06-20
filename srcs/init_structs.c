@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:06:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 13:43:09 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:21:53 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_cmd(t_cmd *c)
 {
 	c->str = NULL;
 	c->type = -1;
-	c->args = NULL;
+	//c->args = NULL;
 	c->next = NULL;
 	c->prev = NULL;
 }

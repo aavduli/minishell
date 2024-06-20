@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
+#    By: albertini <albertini@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/06/19 13:56:35 by aavduli          ###   ########.fr        #
+#    Updated: 2024/06/20 13:13:36 by albertini        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ FILES = $(SOURCES_DIR)/minishell\
 CFILES = $(addsuffix .c, $(FILES))
 OFILES = $(addsuffix .o, $(FILES))
 
-####################################################################
+#################################################################### -I /usr/local/Cellar/readline/8.2.10/include
 ## Varguments
 CC = gcc
-CFLAGS = -Werror -Wextra -Wall -I $(HEADER)  -g
+CFLAGS = -Werror -Wextra -Wall -I $(HEADER) -I /usr/local/Cellar/readline/8.2.10/include -g
 NAME = mshell
 
 #####################################################################
@@ -46,9 +46,9 @@ all: $(NAME)
 $(LIBFTXL):
 	$(MAKE) -C includes/libft_xl
 
-## -fsanitize=address
+## -fsanitize=address -L /usr/local/Cellar/readline/8.2.10/lib
 $(NAME): $(OFILES) $(LIBFTXL)
-		$(CC) $(OFILES) $(LIBFTXL) -lreadline -o $(NAME)
+		$(CC) $(OFILES) $(LIBFTXL) -L /usr/local/Cellar/readline/8.2.10/lib  -lreadline -o $(NAME)
 
 ### For each .o file  it needs the .c file | $< is automatic var that takes the param and $@ the target
 $(FILES).o: $(FILES).c
