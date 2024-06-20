@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:49:22 by albertini         #+#    #+#             */
-/*   Updated: 2024/06/20 15:05:36 by albertini        ###   ########.fr       */
+/*   Updated: 2024/06/20 15:57:32 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ static inline int	is_space(char c)
 	return (0);
 }
 
-static	int	count_words(char *s)
+static	int	count_words(char const *s)
 {
 	int	nb;
 
 	nb = 0;
 	while (*s && is_space(*s))
-		*s++;
+		s++;
 	while (*s)
 	{
 		if (*s && !is_space(*s))
 			nb++;
 		while (*s && !is_space(*s))
-			*s++;
+			s++;
 		while (*s && is_space(*s))
-			*s++;
+			s++;
 	}
 	return (nb);
 }
@@ -71,7 +71,7 @@ static char	*create_new(char const *str, int pos)
 	return (nstr);
 }
 
-static char	**split_cmd(char const *s)
+char	**split_cmd(char const *s)
 {
 	int		i;
 	int		y;
@@ -98,12 +98,12 @@ static char	**split_cmd(char const *s)
 	return (liste);
 }
 
-t_cmd	**create_cmd(t_data d)
-{
-	t_cmd	**head;
-	t_cmd	*next;
-	char 	**list;
+// t_cmd	**create_cmd(t_data d)
+// {
+// 	t_cmd	**head;
+// 	t_cmd	*next;
+// 	char 	**list;
 	
-	
-	return (head);
-}
+// 	list =
+// 	return (head);
+// }
