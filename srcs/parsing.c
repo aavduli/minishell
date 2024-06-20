@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/20 14:11:02 by albertini        ###   ########.fr       */
+/*   Updated: 2024/06/20 14:49:51 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	get_input(t_data *data)
 {
 	char	*line;
 
-	(void)data;
 	while (1)
 	{
 		run_signal(1);

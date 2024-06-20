@@ -6,7 +6,7 @@
 #    By: albertini <albertini@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/06/20 13:13:36 by albertini        ###   ########.fr        #
+#    Updated: 2024/06/20 14:48:20 by albertini        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FILES = $(SOURCES_DIR)/minishell\
 				$(SOURCES_DIR)/parsing\
 				$(SOURCES_DIR)/utils_pars\
 				$(SOURCES_DIR)/builtins\
+				$(SOURCES_DIR)/command\
 
 ## This is a bit tricky for me but it ask to check the end of the string in FILES than add .c if there is nothing
 ## Also possible to just liste the .c and .o files
