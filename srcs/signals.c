@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:26:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 10:53:56 by falberti         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:49:52 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 
 // TODO
 static void	restore_prompt(int sig)
@@ -29,9 +30,9 @@ static void	ctrl_c(int sig)
 	(void)sig;
 }
 
-static void heredoc(int sig)
+static void	heredoc(int sig)
 {
-    (void)sig;
+	(void)sig;
 	write(1, "\n", 1);
 	exit(130);
 }
@@ -60,3 +61,5 @@ void	run_signal(int sig)
 	}
 	return ;
 }
+
+

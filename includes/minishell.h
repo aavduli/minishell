@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 14:46:37 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/20 14:59:45 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct s_cmd
 typedef struct s_data
 {
 	t_cmd	*cmd;
-	char	*str;
+	char	**str;
 	char	*nprompt;
 	int		exit_status;
 	char	**env;
@@ -77,9 +77,12 @@ char	**ft_cpy_env(char **strs);
 
 //Builtins
 void	ft_pwd(t_data *data);
-void	ft_cmd(char *str, t_data *data);
+void	ft_cmd(t_data *data);
 
 //Exec
-void	execute(char *str, t_data data);
+void	ft_execute(t_data *data);
+
+//safe_functions
+void	safe_pid(pid_t pid);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 14:44:28 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/20 15:00:16 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	**found_split(char **envp)
 {
@@ -18,7 +18,7 @@ char	**found_split(char **envp)
 	int		i;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH=". 5) == NULL)
+	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
 		i++;
 	if (envp[i] == NULL)
 		return (NULL);
@@ -53,21 +53,31 @@ char	*find_path(char *cmd, char **envp)
 	return (path);
 }
 
-void	execute(char *str, t_data *data)
+void	ft_execute(t_data *data)
 {
 	int		i;
+	int		status;
+	int		pid;
 	char	*path;
 
 	i = -1;
-	path = find_path(data->cmd.cmd, data->env);
+	path = find_path(data->str[0], data->env);
 	if (!path)
 	{
-		while (data->cmd.cmd[i++])
-			free(data->cmd.cmd[i++]);
-		free(data->cmd.cmd);
-		error_exit("prob with cmd");
+		while (data->str[i++])
+			free(data->str[i]);
+		free(data->str);
+		printf("prob with cmd");
 	}
-	if (execve(path, data->cmd.cmd, data->env) == -1)
-		error_exit("prob with execve");
+	pid = fork();
+	if (pid == -1)
+		printf("prob with fork");
+	else if (pid == 0)
+	{
+		if (execve(path, data->str, data->env) == -1)
+			printf("prob with execve");
+	}
+	else
+		waitpid(pid, &status, 0);
 	free(path);
 }
