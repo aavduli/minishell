@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/20 14:49:08 by albertini        ###   ########.fr       */
+/*   Updated: 2024/06/20 15:02:52 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,14 @@ void	execute(char *str, t_data data);
 
 //command
 void	ft_split_cmd(t_data *d);
+
+//type_checker
+int		type_check(t_cmd cmd);
+
+//split_cmd
+t_cmd	**create_cmd(t_data d);
+
+//freerer
+void	free_split(char **list);
+
 #endif

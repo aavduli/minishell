@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/20 14:49:51 by albertini        ###   ########.fr       */
+/*   Updated: 2024/06/20 14:55:19 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	int	init_parsing(char *str, t_data *data)
 	if (*str != 0)
 		printf("%s\n", str);
 	data->str = ft_strdup(str);
-	split_cmd(data);
+	create_cmd(data);
 	is_exit(str);
 	return (0);
 }

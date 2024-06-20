@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:49:22 by albertini         #+#    #+#             */
-/*   Updated: 2024/06/20 14:42:00 by albertini        ###   ########.fr       */
+/*   Updated: 2024/06/20 15:05:36 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*create_new(char const *str, int pos)
 	return (nstr);
 }
 
-char	**split_cmd(char const *s)
+static char	**split_cmd(char const *s)
 {
 	int		i;
 	int		y;
@@ -98,3 +98,12 @@ char	**split_cmd(char const *s)
 	return (liste);
 }
 
+t_cmd	**create_cmd(t_data d)
+{
+	t_cmd	**head;
+	t_cmd	*next;
+	char 	**list;
+	
+	
+	return (head);
+}

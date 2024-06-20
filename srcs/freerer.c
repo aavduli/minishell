@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs.c                                     :+:      :+:    :+:   */
+/*   freerer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:06:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/20 14:53:58 by albertini        ###   ########.fr       */
+/*   Created: 2024/06/20 15:00:26 by albertini         #+#    #+#             */
+/*   Updated: 2024/06/20 15:02:55 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	init_cmd(t_cmd *c)
+void	free_split(char **list)
 {
-	c->str = NULL;
-	c->type = -1;
-	//c->args = NULL;
-	c->next = malloc(sizeof(t_cmd));
-	c->prev = malloc(sizeof(t_cmd));
-}
+	int	i;
 
-void	init_data(t_data *d)
-{
-	d->cmd = malloc(sizeof(t_cmd));
-	d->full_str = NULL;
-	d->nprompt = "minishell> ";
-	d->exit_status = 0;
-	d->env = NULL;
-	d->original = NULL;
+	i = 0;
+	while (list[i])
+	{
+		free(list[i]);
+		i++;
+	}
+	free(list);
 }
-
-// void	init_envp(char **envp)
-// {
-// 	ft_cpy_env(envp);
-// 	return ;
-// }
