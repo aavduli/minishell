@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/25 11:56:39 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 12:04:01 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,12 @@ int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
 
 //Builtins
+void	ft_cd(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_echo(t_data *data);
 void	ft_cmd(t_data *data);
+void	ft_export(t_data *data);
+void	ft_unset(t_data *data);
 
 //Exec
 void	ft_execute(t_data *data);
