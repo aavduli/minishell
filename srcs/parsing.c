@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 16:32:04 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 16:43:01 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	head = NULL;
 	tail = NULL;
 	token = mini_split(input);
+	data->str = mini_split(input);
 	while (token[i] != NULL)
 	{
 		tail = create_and_link_nodes(tail, token[i]);
@@ -64,26 +65,26 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	free_list(token);
 }
 
-// void print_cmd_list(t_cmd *cmd)
-// {
-//     t_cmd *current;
+void print_cmd_list(t_cmd *cmd)
+{
+    t_cmd *current;
 
-//     current = cmd;
-//     while (current != NULL)
-//     {
-//         if (current->str != NULL)
-//         {
-//             printf("%s\n", current->str);
-//         }
-//         current = current->next;
-//     }
-// }
+    current = cmd;
+    while (current != NULL)
+    {
+        if (current->str != NULL)
+        {
+            printf("%s\n", current->str);
+        }
+        current = current->next;
+    }
+}
 
 static	int	init_parsing(char *str, t_data *data)
 {
 	is_exit(str);
 	split_create_cmd_list(data, str);
-	//print_cmd_list(data->cmd);
+	print_cmd_list(data->cmd);
 	if (*str != 0)
 		printf("%s\n", str);
 	return (0);
@@ -106,7 +107,7 @@ void	get_input(t_data *data)
 		if (*line)
 			add_history(line);
 		init_parsing(line, data);
-		//ft_cmd(data);
+		ft_cmd(data);
 		free(line);
 		line = NULL;
 	}

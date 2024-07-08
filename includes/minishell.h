@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/08 16:29:43 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 16:35:10 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	get_input(t_data *data);
 //utils_pars
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
+int		check_str_type(char *str);
 
 //Builtins
 void	ft_env(t_data *data);
