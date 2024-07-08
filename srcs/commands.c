@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/06/20 15:36:11 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:40:38 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,21 @@ void	ft_pwd(t_data *data)
 
 void	ft_cmd(t_data *data)
 {
+	data->str = NULL;
 	// if (ft_strcmp(data.cmd->cmd, "echo") == 0)
 	// 	ft_echo(data); //TODO
 	// else if (ft_strcmp(data.cmd->cmd, "cd") == 0)
 	// 	ft_cd(data); //TODO
-	if (ft_strncmp(data->str[0], "pwd", 3) == 0)
-		ft_pwd(data);
+//	if (ft_strncmp(data->str[0], "pwd", 3) == 0)		
+//		ft_pwd(data);
 	// else if (ft_strcmp(data.cmd->cmd, "export") == 0)
 	// 	ft_export(data); //TODO
 	// else if (ft_strcmp(data.cmd->cmd, "unset") == 0)
 	// 	ft_unset(data); //TODO
 	// else if (ft_strcmp(data.cmd->cmd, "env") == 0)
 	// 	ft_env(data); //TODO
-	else if (ft_strncmp(data->str[0], "grep", 4) == 0)
-		ft_execute(data);
-	else
+//	else if (ft_strncmp(data->str[0], "grep", 4) == 0)
+//		ft_execute(data);
+//	else
 		ft_putstr_fd("minishell: command not found\n", 1);
 }

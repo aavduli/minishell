@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/20 15:03:30 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:38:40 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 static	int	init_parsing(char *str, t_data *data)
 {
-	data->str[0] = "grep";
-	data->str[1] = "apple";
-	data->str[2] = "file.txt";
-	data->str[3] = NULL;
+	data->str = NULL;
 	is_exit(str);
 	return (0);
 }
