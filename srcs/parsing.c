@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 15:40:34 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:57:53 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,26 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	free_list(token);
 }
 
+// void print_cmd_list(t_cmd *cmd)
+// {
+//     t_cmd *current;
+
+//     current = cmd;
+//     while (current != NULL)
+//     {
+//         if (current->str != NULL)
+//         {
+//             printf("%s\n", current->str);
+//         }
+//         current = current->next;
+//     }
+// }
+
 static	int	init_parsing(char *str, t_data *data)
 {
 	is_exit(str);
 	split_create_cmd_list(data, str);
+	//print_cmd_list(data->cmd);
 	if (*str != 0)
 		printf("%s\n", str);
 	return (0);
