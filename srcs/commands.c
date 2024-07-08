@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/06/20 15:36:11 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/06/25 11:56:58 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	ft_pwd(t_data *data)
 
 void	ft_cmd(t_data *data)
 {
-	// if (ft_strcmp(data.cmd->cmd, "echo") == 0)
-	// 	ft_echo(data); //TODO
+	if (ft_strncmp(data->str[0], "echo", 4) == 0)
+		ft_echo(data);
 	// else if (ft_strcmp(data.cmd->cmd, "cd") == 0)
 	// 	ft_cd(data); //TODO
 	if (ft_strncmp(data->str[0], "pwd", 3) == 0)

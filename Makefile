@@ -6,7 +6,7 @@
 #    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/06/20 13:51:19 by aavduli          ###   ########.fr        #
+#    Updated: 2024/06/25 11:57:36 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ FILES = $(SOURCES_DIR)/minishell\
         $(SOURCES_DIR)/utils_pars\
 		$(SOURCES_DIR)/exec\
         $(SOURCES_DIR)/commands\
+		$(SOURCES_DIR)/echo\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))
