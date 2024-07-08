@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/08 12:04:42 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:55:52 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void	ft_cmd(t_data *data)
 {
 	if (ft_strncmp(data->str[0], "echo", 4) == 0)
 		ft_echo(data);
-	else if (ft_strcmp(data.cmd->cmd, "cd") == 0)
+	else if (ft_strncmp(data->str[0], "cd", 2) == 0)
 		ft_cd(data);
 	else if (ft_strncmp(data->str[0], "pwd", 3) == 0)
 		ft_pwd(data);
-	else if (ft_strcmp(data.cmd->cmd, "export") == 0)
+	else if (ft_strncmp(data->str[0], "export", 6) == 0)
 		ft_export(data);
-	else if (ft_strcmp(data.cmd->cmd, "unset") == 0)
+	else if (ft_strncmp(data->str[0], "unset", 5) == 0)
 		ft_unset(data);
-	else if (ft_strcmp(data.cmd->cmd, "env") == 0)
+	else if (ft_strncmp(data->str[0], "env", 3) == 0)
 		ft_env(data);
 	else if (ft_strncmp(data->str[0], "grep", 4) == 0)
 		ft_execute(data);

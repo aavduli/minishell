@@ -6,11 +6,24 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/08 12:04:27 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:57:45 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->env[i])
+	{
+		ft_putstr_fd(data->env[i], 1);
+		ft_putstr_fd("\n", 1);
+		i++;
+	}
+}
 
 void	ft_export(t_data *data)
 {
@@ -49,13 +62,14 @@ void	ft_unset(t_data *data)
 			break ;
 		}
 		j = i;
-		while (env[i])
+		while (data->env[i])
 		{
 			data->env[j] = data->env[j + 1];
 			j++;
 		}
 		i++;
 	}
+	free(data->env[i]);
 }
 
 void	ft_cd(t_data *data)
@@ -65,7 +79,7 @@ void	ft_cd(t_data *data)
 	i = 0;
 	while (data->env[i])
 	{
-		if (ft_strncmp(data->env[i] == "PWD=", 4,) == 0)
+		if (ft_strncmp(data->env[i], "PWD=", 4) == 0)
 		{
 			if (chdir(data->str[1]) == -1)
 				ft_putstr_fd("minishell: cd: no such file or directory\n", 1);
