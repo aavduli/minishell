@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:03:33 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 15:30:01 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:46:02 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 static int	ischar(char c)
 {
-	// Check if character is a space character
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f')
+	if (c == ' ' || c == '\t'
+		|| c == '\n' || c == '\r' || c == '\v' || c == '\f')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/08 15:31:12 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:44:00 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
 int		check_str_type(char *str);
 
-//Builtins
-void	ft_env(t_data *data);
-void	ft_cd(t_data *data);
-void	ft_pwd(t_data *data);
-void	ft_echo(t_data *data);
-void	ft_cmd(t_data *data);
-void	ft_export(t_data *data);
-void	ft_unset(t_data *data);
+// //Builtins
+// void	ft_env(t_data *data);
+// void	ft_cd(t_data *data);
+// void	ft_pwd(t_data *data);
+// void	ft_echo(t_data *data);
+// void	ft_cmd(t_data *data);
+// void	ft_export(t_data *data);
+// void	ft_unset(t_data *data);
 
 //Exec
 void	ft_execute(t_data *data);
@@ -97,10 +97,10 @@ char	**mini_split(char const *s);
 //freerers
 void	free_list(char **list);
 
-//Command
-void	ft_echo(t_data *data);
-void	ft_pwd(t_data *data);
-void	ft_cmd(t_data *data);
+// //Command
+// void	ft_echo(t_data *data);
+// void	ft_pwd(t_data *data);
+// void	ft_cmd(t_data *data);
 
 
 #endif
