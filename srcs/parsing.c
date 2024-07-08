@@ -3,22 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 10:30:48 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 14:09:10 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void  split_create_cmd_list(t_data *data, char *input)
+{
+	int		i;
+	char	*token;
+	t_cmd	*head;
+	t_cmd	*tail;
+
+	i = 0;
+	token = mini_split(input);
+	while (token[i] != NULL)
+	{
+		
+	}
+}
+
 static	int	init_parsing(char *str, t_data *data)
 {
-	data->str[0] = "echo";
-	data->str[1] = "apple";
-	data->str[2] = "file.txt";
-	data->str[3] = NULL;
-	is_exit(str);
+  is_exit(str);
+  split_create_cmd_list(data, str);
+	if (*str != 0)
+		printf("%s\n", str);
 	return (0);
 }
 
