@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/08 12:04:42 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:34:21 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,22 @@ void	ft_pwd(t_data *data)
 	}
 }
 
-void	ft_cmd(t_data *data)
-{
-	if (ft_strncmp(data->str[0], "echo", 4) == 0)
-		ft_echo(data);
-	else if (ft_strcmp(data.cmd->cmd, "cd") == 0)
-		ft_cd(data);
-	else if (ft_strncmp(data->str[0], "pwd", 3) == 0)
-		ft_pwd(data);
-	else if (ft_strcmp(data.cmd->cmd, "export") == 0)
-		ft_export(data);
-	else if (ft_strcmp(data.cmd->cmd, "unset") == 0)
-		ft_unset(data);
-	else if (ft_strcmp(data.cmd->cmd, "env") == 0)
-		ft_env(data);
-	else if (ft_strncmp(data->str[0], "grep", 4) == 0)
-		ft_execute(data);
-	else
-		ft_putstr_fd("minishell: command not found\n", 1);
-}
+// void	ft_cmd(t_data *data)
+// {
+// 	if (ft_strncmp(data->str[0], "echo", 5) == 0)
+// 		ft_echo(data);
+// 	else if (ft_strncmp(data->str[0], "cd", 3) == 0)
+// 		ft_cd(data);
+// 	else if (ft_strncmp(data->str[0], "pwd", 4) == 0)
+// 		ft_pwd(data);
+// 	else if (ft_strncmp(data->str[0], "export", 7) == 0)
+// 		ft_export(data);
+// 	else if (ft_strncmp(data->str[0], "unset", 6) == 0)
+// 		ft_unset(data);
+// 	else if (ft_strncmp(data->str[0], "env", 4) == 0)
+// 		ft_env(data);
+// 	else if (ft_strncmp(data->str[0], "grep", 5) == 0)
+// 		ft_execute(data);
+// 	else
+// 		ft_putstr_fd("minishell: command not found\n", 1);
+// }

@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 14:36:27 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:34:54 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_cmd	*create_new_node(char *str)
 	}
 	nn->str = ft_strdup(str);
 	nn->type = check_str_type(str);
-	nn->args = -1;
+	nn->args = NULL;
 	nn->next = NULL;
 	nn->prev = NULL;
 	return (nn);
@@ -45,7 +45,7 @@ static t_cmd	*create_and_link_nodes(t_cmd *tail, char *token)
 static void	split_create_cmd_list(t_data *data, char *input)
 {
 	int		i;
-	char	*token;
+	char	**token;
 	t_cmd	*head;
 	t_cmd	*tail;
 
@@ -90,7 +90,7 @@ void	get_input(t_data *data)
 		if (*line)
 			add_history(line);
 		init_parsing(line, data);
-		ft_cmd(data);
+		//ft_cmd(data);
 		free(line);
 		line = NULL;
 	}

@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/08 14:27:33 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:31:12 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	get_input(t_data *data);
 //utils_pars
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
+int		check_str_type(char *str);
 
 //Builtins
 void	ft_env(t_data *data);
@@ -96,7 +97,10 @@ char	**mini_split(char const *s);
 //freerers
 void	free_list(char **list);
 
-//utils parsing
-int		check_str_type(char *str);
+//Command
+void	ft_echo(t_data *data);
+void	ft_pwd(t_data *data);
+void	ft_cmd(t_data *data);
+
 
 #endif
