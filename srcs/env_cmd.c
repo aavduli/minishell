@@ -6,11 +6,24 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/08 15:57:45 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 16:30:16 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->env[i])
+	{
+		ft_putstr_fd(data->env[i], 1);
+		ft_putstr_fd("\n", 1);
+		i++;
+	}
+}
 
 void	ft_env(t_data *data)
 {

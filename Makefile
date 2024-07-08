@@ -6,7 +6,7 @@
 #    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/08 15:56:06 by aavduli          ###   ########.fr        #
+#    Updated: 2024/07/08 16:28:59 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,11 @@ FILES = $(SOURCES_DIR)/minishell\
         $(SOURCES_DIR)/exit\
         $(SOURCES_DIR)/parsing\
         $(SOURCES_DIR)/utils_pars\
-		$(SOURCES_DIR)/exec\
+				$(SOURCES_DIR)/exec\
         $(SOURCES_DIR)/commands\
 		$(SOURCES_DIR)/env_cmd\
+				$(SOURCES_DIR)/freerers\
+				$(SOURCES_DIR)/mini_split\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))

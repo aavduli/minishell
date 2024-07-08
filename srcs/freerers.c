@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   freerers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 16:31:45 by aavduli          ###   ########.fr       */
+/*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
+/*   Updated: 2024/07/08 16:32:36 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int ac, char **av, char **envp)
+void	free_list(char **list)
 {
-	t_data	data;
-	t_cmd	cmd;
+	int	i;
 
-	(void)av;
-	if (ac != 1)
-		return (0);
-	init_data(&data);
-	init_cmd(&cmd);
-	data.env = ft_cpy_env(envp);
-	data.original = ft_cpy_env(envp);
-	get_input(&data);
-	return (0);
+	if (list == NULL)
+		return ;
+	i = 0;
+	while (list[i])
+	{
+		free(list[i]);
+		i++;
+	}
+	free (list);
 }

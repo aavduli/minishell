@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/08 15:55:16 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/08 16:29:43 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,17 @@ void	ft_execute(t_data *data);
 
 //safe_functions
 void	safe_pid(pid_t pid);
+
+//Mini Split
+char	**mini_split(char const *s);
+
+//freerers
+void	free_list(char **list);
+
+// //Command
+// void	ft_echo(t_data *data);
+// void	ft_pwd(t_data *data);
+// void	ft_cmd(t_data *data);
+
 
 #endif

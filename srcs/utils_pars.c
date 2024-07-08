@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/06/19 11:05:34 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:02:40 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ char	**ft_cpy_env(char **strs)
 	}
 	env[i] = NULL;
 	return (env);
+}
+
+int	check_str_type(char *str)
+{
+  (void)str;
+  return (-1);
 }
