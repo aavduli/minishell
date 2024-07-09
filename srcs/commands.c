@@ -6,11 +6,21 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/09 14:47:14 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/09 16:14:49 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_print_echo(t_data *data, int i, int j)
+{
+	while (data->str[i][j])
+	{
+		if (data->str[i][j + 1])
+			ft_putchar_fd(data->str[i][j], 1);
+		j++;
+	}
+}
 
 void	ft_echo(t_data *data)
 {
@@ -26,11 +36,14 @@ void	ft_echo(t_data *data)
 		n_flag = 1;
 		i++;
 	}
-	while (data->str[i][j])
+	while (data->str[i])
 	{
-		if (data->str[i][j] != 34)
-			ft_putchar_fd(data->str[i][j], 1);
-		j++;
+		j = 0;
+		if (data->str[i][0] == 34 || data->str[i][0] == 39)
+			j++;
+		ft_print_echo(data, i, j);
+		ft_putchar_fd(' ', 1);
+		i++;
 	}
 	if (!n_flag)
 		ft_putstr_fd("\n", 1);
