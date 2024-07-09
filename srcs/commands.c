@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/09 14:12:37 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/09 14:47:14 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,13 @@ void	ft_echo(t_data *data)
 
 void	ft_pwd(t_data *data)
 {
-	int	i;
+	char	pwd[1024];
 
-	i = 0;
-	while (data->env[i])
+	(void)data;
+	if (getcwd(pwd, sizeof(pwd)) != NULL)
 	{
-		if (ft_strncmp(data->env[i], "PWD=", 4) == 0)
-		{
-			ft_putstr_fd(data->env[i] + 4, 1);
-			ft_putstr_fd("\n", 1);
-			break ;
-		}
-		i++;
+		ft_putstr_fd(pwd, 1);
+		ft_putstr_fd("\n", 1);
 	}
 }
 
@@ -67,8 +62,8 @@ void	ft_cmd(t_data *data)
 		ft_unset(data);
 	else if (ft_strncmp(data->str[0], "env", 3) == 0)
 		ft_env(data);
-	else if (ft_strncmp(data->str[0], "grep", 4) == 0)
-		ft_execute(data);
+	else if (ft_execute(data) == 1)
+		return ;
 	else
 		ft_putstr_fd("minishell: command not found\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/20 15:00:16 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/09 14:27:29 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*find_path(char *cmd, char **envp)
 	return (path);
 }
 
-void	ft_execute(t_data *data)
+int	ft_execute(t_data *data)
 {
 	int		i;
 	int		status;
@@ -68,10 +68,14 @@ void	ft_execute(t_data *data)
 			free(data->str[i]);
 		free(data->str);
 		printf("prob with cmd");
+		return (0);
 	}
 	pid = fork();
 	if (pid == -1)
+	{
 		printf("prob with fork");
+		return (0);
+	}
 	else if (pid == 0)
 	{
 		if (execve(path, data->str, data->env) == -1)
@@ -80,4 +84,5 @@ void	ft_execute(t_data *data)
 	else
 		waitpid(pid, &status, 0);
 	free(path);
+	return (1);
 }
