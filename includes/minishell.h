@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/09 14:47:41 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:35:06 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	safe_pid(pid_t pid);
 
 //Mini Split
 char	**mini_split(char const *s);
+//void	print_split(char **split);
 
 //freerers
 void	free_list(char **list);
