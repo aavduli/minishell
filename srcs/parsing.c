@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 16:07:51 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:48:54 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static t_cmd	*create_new_node(char *str)
 		exit(EXIT_FAILURE);
 	}
 	nn->str = ft_strdup(str);
-	nn->type = check_str_type(str);
-	nn->args = NULL;
+	nn->type = -1;
 	nn->next = NULL;
 	nn->prev = NULL;
 	return (nn);
@@ -64,26 +63,28 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	free_list(token);
 }
 
-// void print_cmd_list(t_cmd *cmd)
-// {
-//     t_cmd *current;
+static void	print_cmd_list(t_cmd *cmd)
+{
+	t_cmd	*current;
 
-//     current = cmd;
-//     while (current != NULL)
-//     {
-//         if (current->str != NULL)
-//         {
-//             printf("%s\n", current->str);
-//         }
-//         current = current->next;
-//     }
-// }
+	current = cmd;
+	while (current != NULL)
+	{
+		if (current->str != NULL)
+		{
+			printf("%s\n", current->str);
+			printf("%d\n", current->type);
+		}
+		current = current->next;
+	}
+}
 
 static	int	init_parsing(char *str, t_data *data)
 {
 	is_exit(str);
 	split_create_cmd_list(data, str);
-	//print_cmd_list(data->cmd);
+	check_update_type(data);
+	print_cmd_list(data->cmd);
 	if (*str != 0)
 		printf("%s\n", str);
 	return (0);
@@ -98,7 +99,7 @@ void	get_input(t_data *data)
 	{
 		run_signal(1);
 		line = readline("minishell> ");
-		if (line == NULL)
+        if (line == NULL)
 		{
 			perror("read line failed");
 			exit(0);

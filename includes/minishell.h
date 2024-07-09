@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/08 15:44:00 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:47:41 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,19 @@
 # include <readline/history.h>
 # include "libft_xl/libft.h"
 
-//types
-// 1. cmd
-// 2. args
-// 3. str
-// 4. str_null
-// 5. pipe
-// 6. redi
-// 7. extra
+enum e_cmdtype {
+	CMD_NONE,
+	CMD_S_QUOTE,
+	CMD_D_QUOTE,
+	CMD_PIPE,
+	CMD_IN_RED,
+	CMD_OUT_RED,
+	CMD_APP_OUT_RED,
+	CMD_ENV_VAR,
+	CMD_LAST_EXIT,
+	CMD_HEREDOC,
+	CMD_ERROR
+};
 
 
 typedef struct s_cmd	t_cmd;
@@ -43,7 +48,6 @@ struct s_cmd
 {
 	char			*str;
 	int				type;
-	char			**args;
 	t_cmd			*next;
 	t_cmd			*prev;
 };
@@ -70,11 +74,16 @@ int		is_exit(char *str);
 
 //parsing
 void	get_input(t_data *data);
+void	free_cmd(t_cmd *head);
 
 //utils_pars
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
-int		check_str_type(char *str);
+void		check_update_type(t_data *data);
+
+//check_pars
+int		is_valid_type(const char *str);
+int		determine_type(const char *str);
 
 // //Builtins
 // void	ft_env(t_data *data);
@@ -96,6 +105,7 @@ char	**mini_split(char const *s);
 
 //freerers
 void	free_list(char **list);
+void	free_cmd(t_cmd *head);
 
 // //Command
 // void	ft_echo(t_data *data);

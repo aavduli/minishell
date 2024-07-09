@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/08 16:02:40 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:47:28 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,22 @@ char	**ft_cpy_env(char **strs)
 	return (env);
 }
 
-int	check_str_type(char *str)
+void	check_update_type(t_data *data)
 {
-  (void)str;
-  return (-1);
+	t_cmd	*current;
+
+	current = data->cmd;
+	while (current != NULL)
+	{
+		if (!is_valid_type(current->str))
+		{
+			printf("Please enter a valid input!\n \\;&<>() are unvalid\n");
+			free_cmd(data->cmd);
+			data->cmd = NULL;
+			return ;
+		}
+		current->type = determine_type(current->str);
+		current = current->next;
+	}
+	return ;
 }
