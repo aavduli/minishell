@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/08 16:33:52 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/09 14:12:37 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 void	ft_echo(t_data *data)
 {
 	int	i;
+	int	j;
 	int	n_flag;
 
 	i = 1;
+	j = 0;
 	n_flag = 0;
 	if (data->str[1] && ft_strncmp(data->str[1], "-n", 2) == 0)
 	{
 		n_flag = 1;
 		i++;
 	}
-	while (data->str[i])
+	while (data->str[i][j])
 	{
-		ft_putstr_fd(data->str[i], 1);
-		if (data->str[i + 1])
-			ft_putstr_fd(" ", 1);
-		i++;
+		if (data->str[i][j] != 34)
+			ft_putchar_fd(data->str[i][j], 1);
+		j++;
 	}
 	if (!n_flag)
 		ft_putstr_fd("\n", 1);
