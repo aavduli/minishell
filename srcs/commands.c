@@ -6,11 +6,40 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/09 16:14:49 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:25:23 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_read_cmd(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->cmd->str->next)
+	{
+		while (data->cmd->str->type == 1 || data->cmd->str->type == 2)
+		{
+			data->str[i] = ft_strdup(data->cmd->str->str);
+			data->cmd->str = data->cmd->str->next;
+			i++;
+		}
+		if (data->cmd->str->type != 1 || data->cmd->str->type != 2)
+		{
+			data->str[i] = NULL;
+			break ;
+		}
+		i++;
+	}
+	ft_cmd(data);
+	while (data->str[i])
+	{
+		free(data->str[i]);
+		i++;
+	}
+	free(data->str);
+}
 
 void	ft_print_echo(t_data *data, int i, int j)
 {
