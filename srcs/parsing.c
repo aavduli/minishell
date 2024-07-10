@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/10 10:27:45 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:26:26 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static t_cmd	*create_new_node(char *str)
 		exit(EXIT_FAILURE);
 	}
 	nn->str = ft_strdup(str);
-	nn->type = check_str_type(str);
-	nn->args = NULL;
+	nn->type = -1;
 	nn->next = NULL;
 	nn->prev = NULL;
 	return (nn);
@@ -65,26 +64,35 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	free_list(token);
 }
 
-/*void print_cmd_list(t_cmd *cmd)
-{
-    t_cmd *current;
+// static void	print_cmd_list(t_cmd *cmd)
+// {
+// 	t_cmd	*current;
 
-    current = cmd;
-    while (current != NULL)
-    {
-        if (current->str != NULL)
-        {
-            printf("%s\n", current->str);
-        }
-        current = current->next;
-    }
-}*/
+// 	current = cmd;
+// 	while (current != NULL)
+// 	{
+// 		if (current->str != NULL)
+// 		{
+// 			printf("%s\n", current->str);
+// 			printf("%d\n", current->type);
+// 		}
+// 		current = current->next;
+// 	}
+// }
 
 static	int	init_parsing(char *str, t_data *data)
 {
-	is_exit(str);
+	if (is_valid_type(str) == 0)
+	{
+		printf("Please enter a valid input!\n"
+			"\\;&<>() are unvalid in this shell\n"
+			"And quotes must be closed\n");
+		return (0);
+	}
+	is_exit(str, data);
 	split_create_cmd_list(data, str);
-	/*print_cmd_list(data->cmd);
+	check_update_type(data);
+	//print_cmd_list(data->cmd);
 	if (*str != 0)
 		printf("%s\n", str);*/
 	return (0);
@@ -109,6 +117,11 @@ void	get_input(t_data *data)
 		init_parsing(line, data);
 		ft_read_cmd(data);
 		free(line);
+		if (data->cmd != NULL)
+		{
+			free_cmd(data->cmd);
+			data->cmd = NULL;
+		}
 		line = NULL;
 	}
 	return ;
