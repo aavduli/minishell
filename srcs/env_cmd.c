@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/10 15:10:05 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 16:26:16 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_env(t_data *data)
 	}
 }
 
-void	ft_export(t_data *data)
+void	ft_export(char **cmd, t_data *data)
 {
 	int	i;
 	int	found;
@@ -34,11 +34,11 @@ void	ft_export(t_data *data)
 	found = 0;
 	while (data->env[i])
 	{
-		if (ft_strncmp(data->env[i], data->str[1],
-				ft_strlen(data->str[1])) == 0)
+		if (ft_strncmp(data->env[i], cmd[1],
+				ft_strlen(cmd[1])) == 0)
 		{
 			free(data->env[i]);
-			data->env[i] = ft_strdup(data->str[1]);
+			data->env[i] = ft_strdup(cmd[1]);
 			found = 1;
 			break ;
 		}
@@ -46,12 +46,12 @@ void	ft_export(t_data *data)
 	}
 	if (!found)
 	{
-		data->env[i] = ft_strdup(data->str[1]);
+		data->env[i] = ft_strdup(cmd[1]);
 		data->env[i + 1] = NULL;
 	}
 }
 
-void	ft_unset(t_data *data)
+void	ft_unset(char **cmd, t_data *data)
 {
 	int	i;
 	int	j;
@@ -59,8 +59,8 @@ void	ft_unset(t_data *data)
 	i = 0;
 	while (data->env[i])
 	{
-		if (ft_strncmp(data->env[i], data->str[1],
-				ft_strlen(data->str[1])) == 0)
+		if (ft_strncmp(data->env[i], cmd[1],
+				ft_strlen(cmd[1])) == 0)
 		{
 			free(data->env[i]);
 			j = i;

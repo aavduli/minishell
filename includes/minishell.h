@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 15:24:53 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 16:28:46 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	get_input(t_data *data);
 //pars_utils
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
-void	check_update_type(t_data *data);
+//void	check_update_type(t_data *data);
 
 //pars_check
 int		is_valid_type(const char *str);
@@ -100,16 +100,16 @@ char	**mini_split(char const *s);
 
 //Builtins
 void	ft_env(t_data *data);
-void	ft_cd(t_data *data);
-void	ft_pwd(t_data *data);
-void	ft_echo(t_data *data);
-void	ft_cmd(t_data *data);
-void	ft_export(t_data *data);
-void	ft_unset(t_data *data);
+void	ft_cd(char **cmd, t_data *data);
+void	ft_pwd(char **cmd);
+void	ft_echo(char **cmd);
+void	ft_cmd(char **cmd, t_data *data);
+void	ft_export(char **cmd, t_data *data);
+void	ft_unset(char **cmd, t_data *data);
 
 //Exec
 void	ft_read_cmd(t_data *data);
-int		ft_execute(t_data *data);
+int		ft_execute(char **cmd, t_data *data);
 
 //safe_functions
 void	safe_pid(pid_t pid);
@@ -120,6 +120,9 @@ void	free_cmd(t_cmd *head);
 void	free_all(t_data *data);
 
 //lst_utils
-int		*lst_cmd_size(t_data *data);
+int		lst_cmd_size(t_data *data);
+
+//exit
+int		is_exit(char *str, t_data *data);
 
 #endif

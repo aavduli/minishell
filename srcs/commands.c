@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/10 15:11:11 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 17:12:13 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,24 @@ void	ft_read_cmd(t_data *data)
 {
 	int		i;
 	char	**cmd;
+	int		size;
 
+	cmd = NULL;
 	i = 0;
-	cmd = malloc(sizeof(char *) * (lst_cmd_size(data) + 1));
+	size = lst_cmd_size(data);
+	cmd = (char **)malloc(sizeof(char *) * (size + 1));
 	if (cmd == NULL)
-		return ;
-	while (data->cmd->str)
 	{
+		printf("Malloc failed\n");
+		return ;
+	}
+	while (data->cmd)
+	{
+		printf("type: %d\n", data->cmd->type);
 		while (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd[i] = ft_strdup(data->cmd->str);
+			printf("Cmd[%d]: %s\n", i, cmd[i]);
 			i++;
 			data->cmd = data->cmd->next;
 		}
@@ -86,17 +94,17 @@ void	ft_pwd(char **cmd)
 
 void	ft_cmd(char **cmd, t_data *data)
 {
-	if (ft_strncmp(cmd[0], "echo", 4) == 0)
+	if (ft_strncmp(cmd[0], "echo", 5) == 0)
 		ft_echo(cmd);
-	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
+	else if (ft_strncmp(cmd[0], "cd", 6) == 0)
 		ft_cd(cmd, data);
-	else if (ft_strncmp(cmd[0], "pwd", 3) == 0)
+	else if (ft_strncmp(cmd[0], "pwd", 4) == 0)
 		ft_pwd(cmd);
-	else if (ft_strncmp(cmd[0], "export", 6) == 0)
-		ft_export(data);
-	else if (ft_strncmp(cmd[0], "unset", 5) == 0)
-		ft_unset(data);
-	else if (ft_strncmp(cmd[0], "env", 3) == 0)
+	else if (ft_strncmp(cmd[0], "export", 7) == 0)
+		ft_export(cmd, data);
+	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
+		ft_unset(cmd, data);
+	else if (ft_strncmp(cmd[0], "env", 4) == 0)
 		ft_env(data);
 	else if (ft_execute(cmd, data) == 1)
 		return ;
