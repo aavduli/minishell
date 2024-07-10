@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/10 16:40:31 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 18:05:13 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	head = NULL;
 	tail = NULL;
 	token = mini_split(input);
-//	data->str = mini_split(input);
+	data->str = mini_split(input);
 	while (token[i] != NULL)
 	{
 		tail = create_and_link_nodes(tail, token[i]);
@@ -91,7 +91,7 @@ static	int	init_parsing(char *str, t_data *data)
 	}
 	is_exit(str, data);
 	split_create_cmd_list(data, str);
-//	check_update_type(data);
+	check_update_type(data);
 	/*print_cmd_list(data->cmd);
 	if (*str != 0)
 		printf("%s\n", str);*/

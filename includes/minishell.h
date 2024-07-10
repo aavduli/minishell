@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 16:28:46 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 18:04:57 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ struct s_cmd
 typedef struct s_data
 {
 	t_cmd	*cmd;
+	char	**str;
 	char	*nprompt;
 	int		exit_status;
 	char	**env;
@@ -88,7 +89,7 @@ void	get_input(t_data *data);
 //pars_utils
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
-//void	check_update_type(t_data *data);
+void	check_update_type(t_data *data);
 
 //pars_check
 int		is_valid_type(const char *str);
