@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pars.c                                       :+:      :+:    :+:   */
+/*   pars_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:02:39 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/09 16:41:30 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:51:46 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	determine_type(const char *str)
 		return (CMD_OUT_RED);
 	if (ft_strchr(str, '|') != NULL)
 		return (CMD_PIPE);
-	if (ft_strchr(str, '$') != NULL)
-		return (CMD_ENV_VAR);
 	if (ft_strncmp(str, "$?", 2) == 0)
 		return (CMD_LAST_EXIT);
+	if (ft_strchr(str, '$') != NULL)
+		return (CMD_ENV_VAR);
 	return (CMD_NONE);
 }
 

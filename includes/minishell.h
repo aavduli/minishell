@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 15:04:24 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:04:34 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ enum e_cmdtype {
 	CMD_HEREDOC,
 	CMD_ERROR
 };
-
 
 typedef struct s_cmd	t_cmd;
 
@@ -112,6 +111,5 @@ int		is_exit(char *str, t_data *data);
 // void	ft_echo(t_data *data);
 // void	ft_pwd(t_data *data);
 // void	ft_cmd(t_data *data);
-
 
 #endif

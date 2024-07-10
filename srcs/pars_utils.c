@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_pars.c                                       :+:      :+:    :+:   */
+/*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/09 15:42:34 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:42:23 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static void	check_var_str(t_data *data)
+{
+	(void)data;
+	return ;
+}
 
 int	get_nb_strs(char **strs)
 {
@@ -50,6 +56,10 @@ void	check_update_type(t_data *data)
 	while (current != NULL)
 	{
 		current->type = determine_type(current->str);
+		if (current->type == 2)
+		{
+			check_var_str(data);
+		}
 		current = current->next;
 	}
 	return ;

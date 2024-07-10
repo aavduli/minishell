@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:14:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/10 13:45:59 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:52:01 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int	is_exit(char *str, t_data *data)
 		free_all(data);
 		exit(0);
 	}
-		
 	return (0);
 }
