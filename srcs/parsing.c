@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/09 16:36:09 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:04:24 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,21 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	free_list(token);
 }
 
-static void	print_cmd_list(t_cmd *cmd)
-{
-	t_cmd	*current;
+// static void	print_cmd_list(t_cmd *cmd)
+// {
+// 	t_cmd	*current;
 
-	current = cmd;
-	while (current != NULL)
-	{
-		if (current->str != NULL)
-		{
-			printf("%s\n", current->str);
-			printf("%d\n", current->type);
-		}
-		current = current->next;
-	}
-}
+// 	current = cmd;
+// 	while (current != NULL)
+// 	{
+// 		if (current->str != NULL)
+// 		{
+// 			printf("%s\n", current->str);
+// 			printf("%d\n", current->type);
+// 		}
+// 		current = current->next;
+// 	}
+// }
 
 static	int	init_parsing(char *str, t_data *data)
 {
@@ -88,10 +88,10 @@ static	int	init_parsing(char *str, t_data *data)
 			"And quotes must be closed\n");
 		return (0);
 	}
-	is_exit(str);
+	is_exit(str, data);
 	split_create_cmd_list(data, str);
 	check_update_type(data);
-	print_cmd_list(data->cmd);
+	//print_cmd_list(data->cmd);
 	if (*str != 0)
 		printf("%s\n", str);
 	return (0);
@@ -106,7 +106,7 @@ void	get_input(t_data *data)
 	{
 		run_signal(1);
 		line = readline("minishell> ");
-        if (line == NULL)
+		if (line == NULL)
 		{
 			perror("read line failed");
 			exit(0);
@@ -116,6 +116,11 @@ void	get_input(t_data *data)
 		init_parsing(line, data);
 		//ft_cmd(data);
 		free(line);
+		if (data->cmd != NULL)
+		{
+			free_cmd(data->cmd);
+			data->cmd = NULL;
+		}
 		line = NULL;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/09 16:35:06 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:04:24 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,28 @@ typedef struct s_data
 	char	**original;
 }	t_data;
 
-//signal
-void	run_signal(int sig);
-
 //init_structs
 void	init_cmd(t_cmd *c);
 void	init_data(t_data *d);
 
-//exit
-int		is_exit(char *str);
+//signal
+void	run_signal(int sig);
 
 //parsing
 void	get_input(t_data *data);
-void	free_cmd(t_cmd *head);
 
-//utils_pars
+//pars_utils
 int		get_nb_strs(char **strs);
 char	**ft_cpy_env(char **strs);
-void		check_update_type(t_data *data);
+void	check_update_type(t_data *data);
 
-//check_pars
+//pars_check
 int		is_valid_type(const char *str);
 int		determine_type(const char *str);
+
+//pars_split
+char	**mini_split(char const *s);
+//void	print_split(char **split);
 
 // //Builtins
 // void	ft_env(t_data *data);
@@ -100,13 +100,13 @@ void	ft_execute(t_data *data);
 //safe_functions
 void	safe_pid(pid_t pid);
 
-//Mini Split
-char	**mini_split(char const *s);
-//void	print_split(char **split);
-
 //freerers
 void	free_list(char **list);
 void	free_cmd(t_cmd *head);
+void	free_all(t_data *data);
+
+//exit
+int		is_exit(char *str, t_data *data);
 
 // //Command
 // void	ft_echo(t_data *data);

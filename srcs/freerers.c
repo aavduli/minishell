@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/09 14:04:46 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:01:22 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ void	free_cmd(t_cmd *head)
 	{
 		tmp = head;
 		head = head->next;
-		free(tmp->str);
+		if (tmp->str)
+			free(tmp->str);
 		free(tmp);
 	}
+}
+
+void	free_all(t_data *data)
+{
+	if (data->cmd != NULL)
+		free_cmd(data->cmd);
+	free_list(data->original);
+	free_list(data->env);
+	free_list(data->str);
+	return ;
 }
