@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/10 17:12:13 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 18:08:29 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_read_cmd(t_data *data)
 	cmd = NULL;
 	i = 0;
 	size = lst_cmd_size(data);
-	cmd = (char **)malloc(sizeof(char *) * (size + 1));
+	cmd = (char **)malloc(sizeof(char **) * (size + 1));
 	if (cmd == NULL)
 	{
 		printf("Malloc failed\n");
@@ -29,11 +29,9 @@ void	ft_read_cmd(t_data *data)
 	}
 	while (data->cmd)
 	{
-		printf("type: %d\n", data->cmd->type);
 		while (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd[i] = ft_strdup(data->cmd->str);
-			printf("Cmd[%d]: %s\n", i, cmd[i]);
 			i++;
 			data->cmd = data->cmd->next;
 		}

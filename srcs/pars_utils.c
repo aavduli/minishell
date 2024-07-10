@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/10 15:25:50 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 18:06:07 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,15 @@ char	**ft_cpy_env(char **strs)
 	return (env);
 }
 
-int	check_str_type(char *str)
+void	check_update_type(t_data *data)
 {
-  (void)str;
-  return (-1);
+	t_cmd	*current;
+
+	current = data->cmd;
+	while (current != NULL)
+	{
+		current->type = determine_type(current->str);
+		current = current->next;
+	}
+	return ;
 }

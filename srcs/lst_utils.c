@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:49:15 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/10 16:40:55 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 18:07:57 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	lst_cmd_size(t_data *data)
 	size = 0;
 	while (current)
 	{
-		printf("Current: %s\n", current->str);
 		size++;
 		current = current->next;
 	}
