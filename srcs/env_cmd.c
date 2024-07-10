@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/09 15:32:35 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:10:05 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ void	ft_unset(t_data *data)
 	}
 }
 
-void	ft_cd(t_data *data)
+void	ft_cd(char **cmd, t_data *data)
 {
 	char	cwd[1024];
 	int		i;
 
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 	{
-		if (data->str[1] == NULL)
+		if (cmd[1] == NULL)
 			chdir(data->env[1]);
-		else if (chdir(data->str[1]) == -1)
+		else if (chdir(cmd[1]) == -1)
 		{
 			ft_putstr_fd("cd: no such file or directory\n", 1);
 			return ;

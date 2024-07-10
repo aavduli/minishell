@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 10:28:26 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:00:27 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,33 @@
 # include <readline/history.h>
 # include "libft_xl/libft.h"
 
-//types
-// 1. cmd
-// 2. args
-// 3. str
-// 4. str_null
-// 5. pipe
-// 6. redi
-// 7. extra
+/*
+ 1 = CMD
+ 2 = CMD_S_QUOTE
+ 3 = CMD_D_QUOTE
+ 4 = CMD_PIPE
+ 5 = CMD_IN_RED
+ 6 = CMD_OUT_RED
+ 7 = CMD_APP_OUT_RED
+ 8 = CMD_ENV_VAR
+ 9 = CMD_LAST_EXIT
+ 10 = CMD_HEREDOC
+ 11 = CMD_ERROR
+*/
+
+enum e_cmdtype {
+	CMD_NONE,
+	CMD_S_QUOTE,
+	CMD_D_QUOTE,
+	CMD_PIPE,
+	CMD_IN_RED,
+	CMD_OUT_RED,
+	CMD_APP_OUT_RED,
+	CMD_ENV_VAR,
+	CMD_LAST_EXIT,
+	CMD_HEREDOC,
+	CMD_ERROR
+};
 
 
 typedef struct s_cmd	t_cmd;
@@ -43,7 +62,6 @@ struct s_cmd
 {
 	char			*str;
 	int				type;
-	char			**args;
 	t_cmd			*next;
 	t_cmd			*prev;
 };
@@ -51,7 +69,6 @@ struct s_cmd
 typedef struct s_data
 {
 	t_cmd	*cmd;
-	char	**str;
 	char	*nprompt;
 	int		exit_status;
 	char	**env;
@@ -98,10 +115,7 @@ char	**mini_split(char const *s);
 //freerers
 void	free_list(char **list);
 
-// //Command
-// void	ft_echo(t_data *data);
-// void	ft_pwd(t_data *data);
-// void	ft_cmd(t_data *data);
-
+//lst_utils
+int		*lst_cmd_size(t_data *data);
 
 #endif

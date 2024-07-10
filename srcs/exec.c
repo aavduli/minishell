@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/09 14:27:29 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:14:59 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*find_path(char *cmd, char **envp)
 	return (path);
 }
 
-int	ft_execute(t_data *data)
+int	ft_execute(char **cmd, t_data *data)
 {
 	int		i;
 	int		status;
@@ -61,12 +61,12 @@ int	ft_execute(t_data *data)
 	char	*path;
 
 	i = -1;
-	path = find_path(data->str[0], data->env);
+	path = find_path(cmd[0], data->env);
 	if (!path)
 	{
-		while (data->str[i++])
-			free(data->str[i]);
-		free(data->str);
+		while (cmd[i++])
+			free(cmd[i]);
+		free(cmd);
 		printf("prob with cmd");
 		return (0);
 	}
@@ -78,7 +78,7 @@ int	ft_execute(t_data *data)
 	}
 	else if (pid == 0)
 	{
-		if (execve(path, data->str, data->env) == -1)
+		if (execve(path, cmd, data->env) == -1)
 			printf("prob with execve");
 	}
 	else

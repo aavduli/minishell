@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs.c                                     :+:      :+:    :+:   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:06:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/10 15:15:50 by aavduli          ###   ########.fr       */
+/*   Created: 2024/07/10 14:49:15 by aavduli           #+#    #+#             */
+/*   Updated: 2024/07/10 14:58:57 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	init_cmd(t_cmd *c)
+int	*lst_cmd_size(t_data *data)
 {
-	c->str = NULL;
-	c->type = -1;
-	c->next = NULL;
-	c->prev = NULL;
-}
+	int	i;
 
-void	init_data(t_data *d)
-{
-	d->cmd = NULL;
-	d->nprompt = "minishell> ";
-	d->exit_status = 0;
-	d->env = NULL;
-	d->original = NULL;
-	return ;
+	i = 0;
+	while (data->cmd->str)
+	{
+		while (data->cmd->type >= 0 && data->cmd->type <= 2)
+		{
+			i++;
+			data->cmd = data->cmd->next;
+		}
+	}
+	return (i);
 }
-
-// void	init_envp(char **envp)
-// {
-// 	ft_cpy_env(envp);
-// 	return ;
-// }
