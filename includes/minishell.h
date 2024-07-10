@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/09 15:04:57 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:28:26 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_export(t_data *data);
 void	ft_unset(t_data *data);
 
 //Exec
+void	ft_read_cmd(t_data *data);
 int		ft_execute(t_data *data);
 
 //safe_functions
