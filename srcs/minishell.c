@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/10 17:03:28 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:18:14 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+//School : rl_clear_history() Home: clear_history
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
