@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 13:14:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 13:49:31 by aavduli          ###   ########.fr       */
+/*   Created: 2024/07/10 14:49:15 by aavduli           #+#    #+#             */
+/*   Updated: 2024/07/11 23:46:25 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	is_exit(char *str, t_data *data)
+int	lst_cmd_size(t_data *data)
 {
-	if (ft_strncmp(str, "exit", 4) == 0)
+	int		size;
+	t_cmd	*current;
+
+	current = data->cmd;
+	size = 0;
+	while (current)
 	{
-		free_all(data);
-		exit(0);
+		size++;
+		current = current->next;
 	}
-	return (0);
+	return (size);
 }

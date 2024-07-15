@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   safe_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/06/19 14:14:22 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:28:34 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-void	safe_malloc(size_t bytes)
+void	*safe_malloc(size_t bytes)
 {
 	void	*ptr;
 
 	ptr = malloc(bytes);
 	if (!ptr)
-	{
 		printf("Malloc failed\n");
-		exit(1);
-	}
+	return (ptr);
 }
 
 void	error_exit(const char *msg)
@@ -30,10 +28,11 @@ void	error_exit(const char *msg)
 	return ;
 }
 
-void	safe_pid(pid_t pid)
+void	*safe_pid(pid_t pid)
 {
 	if (pid < 0)
-		error_exit("Fork failed");
+		printf("Fork failed\n");
+	return (NULL);
 }
 
 void	safe_pipe(int *pipefd)

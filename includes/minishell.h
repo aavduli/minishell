@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 17:04:34 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:49:10 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft_xl/libft.h"
+
+/*
+ 1 = CMD
+ 2 = CMD_S_QUOTE
+ 3 = CMD_D_QUOTE
+ 4 = CMD_PIPE
+ 5 = CMD_IN_RED
+ 6 = CMD_OUT_RED
+ 7 = CMD_APP_OUT_RED
+ 8 = CMD_ENV_VAR
+ 9 = CMD_LAST_EXIT
+ 10 = CMD_HEREDOC
+ 11 = CMD_ERROR
+*/
 
 enum e_cmdtype {
 	CMD_NONE,
@@ -84,32 +98,34 @@ int		determine_type(const char *str);
 char	**mini_split(char const *s);
 //void	print_split(char **split);
 
-// //Builtins
-// void	ft_env(t_data *data);
-// void	ft_cd(t_data *data);
-// void	ft_pwd(t_data *data);
-// void	ft_echo(t_data *data);
-// void	ft_cmd(t_data *data);
-// void	ft_export(t_data *data);
-// void	ft_unset(t_data *data);
+//Builtins
+void	ft_env(t_data *data);
+void	ft_cd(char **cmd, t_data *data);
+void	ft_pwd(char **cmd);
+void	ft_echo(char **cmd);
+void	ft_cmd(char **cmd, t_data *data);
+void	ft_export(char **cmd, t_data *data);
+void	ft_unset(char **cmd, t_data *data);
+void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
-void	ft_execute(t_data *data);
+void	ft_read_cmd(t_data *data);
+void	ft_execute(char **cmd, t_data *data);
 
 //safe_functions
-void	safe_pid(pid_t pid);
+void	*safe_malloc(size_t bytes);
+void	*safe_pid(pid_t pid);
 
 //freerers
 void	free_list(char **list);
 void	free_cmd(t_cmd *head);
 void	free_all(t_data *data);
+void	free_tab(char **tab);
+
+//lst_utils
+int		lst_cmd_size(t_data *data);
 
 //exit
 int		is_exit(char *str, t_data *data);
-
-// //Command
-// void	ft_echo(t_data *data);
-// void	ft_pwd(t_data *data);
-// void	ft_cmd(t_data *data);
 
 #endif
