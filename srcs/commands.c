@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/10 18:08:29 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/11 23:44:34 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ void	ft_read_cmd(t_data *data)
 	}
 	while (data->cmd)
 	{
-		while (data->cmd->type >= 0 && data->cmd->type <= 2)
+		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd[i] = ft_strdup(data->cmd->str);
 			i++;
-			data->cmd = data->cmd->next;
 		}
-		break ;
+		data->cmd = data->cmd->next;
+		if (data->cmd == NULL || data->cmd->type >= 3)
+			break ;
 	}
 	cmd[i] = NULL;
 	ft_cmd(cmd, data);
@@ -92,7 +93,7 @@ void	ft_pwd(char **cmd)
 
 void	ft_cmd(char **cmd, t_data *data)
 {
-	if (ft_strncmp(cmd[0], "echo", 5) == 0)
+	if (ft_strncmp(cmd[0], "echo", 4) == 0)
 		ft_echo(cmd);
 	else if (ft_strncmp(cmd[0], "cd", 6) == 0)
 		ft_cd(cmd, data);

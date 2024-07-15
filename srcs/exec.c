@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 15:14:59 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/11 23:45:37 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,19 @@ int	ft_execute(char **cmd, t_data *data)
 		while (cmd[i++])
 			free(cmd[i]);
 		free(cmd);
-		printf("prob with cmd");
+		printf("prob with cmd\n");
 		return (0);
 	}
 	pid = fork();
 	if (pid == -1)
 	{
-		printf("prob with fork");
+		printf("prob with fork\n");
 		return (0);
 	}
 	else if (pid == 0)
 	{
 		if (execve(path, cmd, data->env) == -1)
-			printf("prob with execve");
+			printf("prob with execve\n");
 	}
 	else
 		waitpid(pid, &status, 0);
