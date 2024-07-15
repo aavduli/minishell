@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 14:30:53 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:32:18 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ static void	check_var_str(t_data *data, t_cmd *cmd)
 	}
 	free(cmd->str);
 	cmd->str = NULL;
+}
+
+int	get_nb_strs(char **strs)
+{
+	int	nb;
+
+	nb = 0;
+	while (strs[nb])
+		nb++;
+	return (nb);
 }
 
 char	**ft_cpy_env(char **strs)
