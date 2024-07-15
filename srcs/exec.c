@@ -84,7 +84,7 @@ void	ft_execute(char **cmd, t_data *data)
 	char	*path;
 
 	path = find_path(cmd[0], data->env);
-	if (ft_strnstr(path, "/usr", 4) == NULL)
+	if (ft_strnstr(path, "/", 1) == NULL)
 	{
 		printf("minishell: path not found : %s\n", cmd[0]);
 		free_tab(cmd);
