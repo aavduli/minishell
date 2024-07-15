@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/10 16:26:16 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:23:42 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void	ft_unset(char **cmd, t_data *data)
 	int	j;
 
 	i = 0;
+	if (ft_strncmp(cmd[1], "PATH", 4) == 0)
+	{
+		ft_putstr_fd("minishell: PATH can't be unset\n", 1);
+		return ;
+	}
 	while (data->env[i])
 	{
 		if (ft_strncmp(data->env[i], cmd[1],
@@ -70,7 +75,6 @@ void	ft_unset(char **cmd, t_data *data)
 				j++;
 			}
 			data->env[j] = NULL;
-			break ;
 		}
 		i++;
 	}

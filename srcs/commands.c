@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/11 23:44:34 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:49:55 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@ void	ft_read_cmd(t_data *data)
 	cmd = NULL;
 	i = 0;
 	size = lst_cmd_size(data);
-	cmd = (char **)malloc(sizeof(char **) * (size + 1));
-	if (cmd == NULL)
-	{
-		printf("Malloc failed\n");
-		return ;
-	}
+	cmd = safe_malloc(sizeof(char *) * (size + 1));
 	while (data->cmd)
 	{
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
+			if (data->cmd->str == NULL)
+				data->cmd = data->cmd->next;
 			cmd[i] = ft_strdup(data->cmd->str);
 			i++;
 		}
@@ -46,7 +43,7 @@ void	ft_print_echo(char **cmd, int i, int j)
 {
 	while (cmd[i][j])
 	{
-		if (cmd[i][j + 1])
+		if (cmd[i][j] != 34 && cmd[i][j] != 39)
 			ft_putchar_fd(cmd[i][j], 1);
 		j++;
 	}
@@ -69,8 +66,6 @@ void	ft_echo(char **cmd)
 	while (cmd[i])
 	{
 		j = 0;
-		if (cmd[i][0] == 34 || cmd[i][0] == 39)
-			j++;
 		ft_print_echo(cmd, i, j);
 		ft_putchar_fd(' ', 1);
 		i++;
@@ -105,8 +100,8 @@ void	ft_cmd(char **cmd, t_data *data)
 		ft_unset(cmd, data);
 	else if (ft_strncmp(cmd[0], "env", 4) == 0)
 		ft_env(data);
-	else if (ft_execute(cmd, data) == 1)
-		return ;
+	else if (ft_strncmp(cmd[0], "./", 2) == 0)
+		ft_mshell(data, cmd);
 	else
-		ft_putstr_fd("minishell: command not found\n", 1);
+		ft_execute(cmd, data);
 }

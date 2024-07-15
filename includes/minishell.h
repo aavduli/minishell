@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/10 18:04:57 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 11:42:02 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ enum e_cmdtype {
 	CMD_HEREDOC,
 	CMD_ERROR
 };
-
 
 typedef struct s_cmd	t_cmd;
 
@@ -107,18 +106,21 @@ void	ft_echo(char **cmd);
 void	ft_cmd(char **cmd, t_data *data);
 void	ft_export(char **cmd, t_data *data);
 void	ft_unset(char **cmd, t_data *data);
+void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
 void	ft_read_cmd(t_data *data);
-int		ft_execute(char **cmd, t_data *data);
+void	ft_execute(char **cmd, t_data *data);
 
 //safe_functions
-void	safe_pid(pid_t pid);
+void	*safe_malloc(size_t bytes);
+void	*safe_pid(pid_t pid);
 
 //freerers
 void	free_list(char **list);
 void	free_cmd(t_cmd *head);
 void	free_all(t_data *data);
+void	free_tab(char **tab);
 
 //lst_utils
 int		lst_cmd_size(t_data *data);

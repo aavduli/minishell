@@ -6,11 +6,33 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/11 23:45:37 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:41:24 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_mshell(t_data *data, char **cmd)
+{
+	int		status;
+	int		pid;
+
+	if (access(cmd[0], F_OK) == -1)
+	{
+		printf("minishell: commande not found : %s\n", cmd[0]);
+		free_tab(cmd);
+		return ;
+	}
+	pid = fork();
+	safe_pid(pid);
+	if (pid == 0)
+	{
+		if (execve(cmd[0], cmd, data->env) == -1)
+			perror("execve\n");
+	}
+	else
+		waitpid(pid, &status, 0);
+}
 
 char	**found_split(char **envp)
 {
@@ -20,7 +42,7 @@ char	**found_split(char **envp)
 	i = 0;
 	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
 		i++;
-	if (envp[i] == NULL)
+	if (ft_strncmp(envp[i], "PATH=", 5) != 1)
 		return (NULL);
 	paths = ft_split(envp[i] + 5, ':');
 	return (paths);
@@ -34,6 +56,8 @@ char	*find_path(char *cmd, char **envp)
 	char	*part_path;
 
 	paths = found_split(envp);
+	if (!paths)
+		return (NULL);
 	i = 0;
 	while (paths[i])
 	{
@@ -53,36 +77,27 @@ char	*find_path(char *cmd, char **envp)
 	return (path);
 }
 
-int	ft_execute(char **cmd, t_data *data)
+void	ft_execute(char **cmd, t_data *data)
 {
-	int		i;
 	int		status;
 	int		pid;
 	char	*path;
 
-	i = -1;
 	path = find_path(cmd[0], data->env);
 	if (!path)
 	{
-		while (cmd[i++])
-			free(cmd[i]);
-		free(cmd);
-		printf("prob with cmd\n");
-		return (0);
+		printf("minishell: commande not found : %s\n", cmd[0]);
+		free_tab(cmd);
+		return ;
 	}
 	pid = fork();
-	if (pid == -1)
-	{
-		printf("prob with fork\n");
-		return (0);
-	}
-	else if (pid == 0)
+	safe_pid(pid);
+	if (pid == 0)
 	{
 		if (execve(path, cmd, data->env) == -1)
-			printf("prob with execve\n");
+			perror("execve\n");
 	}
 	else
 		waitpid(pid, &status, 0);
 	free(path);
-	return (1);
 }
