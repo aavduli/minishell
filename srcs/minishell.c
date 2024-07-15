@@ -6,12 +6,13 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 14:53:43 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:02:58 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+//School : rl_clear_history() Home: clear_history
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
@@ -25,7 +26,7 @@ int	main(int ac, char **av, char **envp)
 	data.env = ft_cpy_env(envp);
 	data.original = ft_cpy_env(envp);
 	get_input(&data);
-    rl_clear_history();
-    free_all(&data);
+	rl_clear_history();
+	free_all(&data);
 	return (0);
 }

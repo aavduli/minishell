@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 15:00:08 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:03:20 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	split_create_cmd_list(t_data *data, char *input)
 // 		current = current->next;
 // 	}
 // }
+//print_cmd_list(data->cmd);
 
 static	int	init_parsing(char *str, t_data *data)
 {
@@ -92,6 +93,9 @@ static	int	init_parsing(char *str, t_data *data)
 	is_exit(str, data);
 	split_create_cmd_list(data, str);
 	check_update_type(data);
+	/*print_cmd_list(data->cmd);
+	if (*str != 0)
+		printf("%s\n", str);*/
 	return (0);
 }
 
@@ -99,7 +103,6 @@ void	get_input(t_data *data)
 {
 	char	*line;
 
-	(void)data;
 	while (1)
 	{
 		run_signal(1);

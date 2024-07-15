@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 11:04:58 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:51:04 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ void	free_all(t_data *data)
 		free_cmd(data->cmd);
 	free_list(data->original);
 	free_list(data->env);
-//	free_list(data->str);
 	return ;
 }
