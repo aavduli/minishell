@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 13:52:26 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:53:15 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static	int	init_parsing(char *str, t_data *data)
 	split_create_cmd_list(data, str);
 	check_update_type(data);
 	if (*str != 0)
-		printf("%s\n", str);*/
+		printf("%s\n", str);
 	return (0);
 }
 
