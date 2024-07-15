@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/15 13:41:24 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 14:52:35 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**found_split(char **envp)
 	i = 0;
 	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
 		i++;
-	if (ft_strncmp(envp[i], "PATH=", 5) != 1)
+	if (envp[i] == NULL)
 		return (NULL);
 	paths = ft_split(envp[i] + 5, ':');
 	return (paths);
@@ -95,9 +95,11 @@ void	ft_execute(char **cmd, t_data *data)
 	if (pid == 0)
 	{
 		if (execve(path, cmd, data->env) == -1)
-			perror("execve\n");
+		{
+			perror("minishell");
+			return ;
+		}
 	}
 	else
 		waitpid(pid, &status, 0);
-	free(path);
 }
