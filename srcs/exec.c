@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/15 14:52:35 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:03:51 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	ft_execute(char **cmd, t_data *data)
 	char	*path;
 
 	path = find_path(cmd[0], data->env);
-	if (!path)
+	if (ft_strnstr(path, "/usr", 4) == NULL)
 	{
-		printf("minishell: commande not found : %s\n", cmd[0]);
+		printf("minishell: path not found : %s\n", cmd[0]);
 		free_tab(cmd);
 		return ;
 	}
@@ -101,5 +101,7 @@ void	ft_execute(char **cmd, t_data *data)
 		}
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+	}
 }
