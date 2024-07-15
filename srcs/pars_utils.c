@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 14:32:18 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:06:48 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_update_type(t_data *data)
 	while (current != NULL)
 	{
 		current->type = determine_type(current->str);
-		if (current->type == 2)
+		if (current->type == 7)
 		{
 			check_var_str(data, current);
 		}
