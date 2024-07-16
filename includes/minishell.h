@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/16 11:09:13 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/16 13:26:35 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ int		determine_type(const char *str);
 
 //pars_split
 char	**mini_split(char const *s);
+
+//pars_nodes_cre
+void	split_create_cmd_list(t_data *data, char *input);
 //void	print_split(char **split);
 
 //heredoc
