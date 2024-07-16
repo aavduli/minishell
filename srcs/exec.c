@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/16 17:09:20 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:09 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,5 @@ void	ft_execute(char **cmd, t_data *data)
 		}
 	}
 	else
-	{
 		waitpid(pid, &status, 0);
-	}
 }

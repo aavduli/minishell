@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/16 17:38:22 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:30 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,3 @@ void	execute_command_with_heredoc(char *command, char *delimiter)
 	else
 		waitpid(pid, &status, 0);
 }
-
