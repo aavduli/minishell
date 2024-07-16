@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/16 15:42:23 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:38:22 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter)
 {
 	char	*line;
 
-	line = readline("> ");
+	line = readline("heredoc> ");
 	if (!line)
 		return ;
 	if (ft_strncmp(line, delimiter, ft_strlen(line)) == 0)
@@ -72,7 +72,6 @@ void	execute_command_with_heredoc(char *command, char *delimiter)
 	pid_t	pid;
 	int		status;
 
-	printf("HEREDOC!!!!!!! \n");
 	handle_heredoc(delimiter);
 	pid = fork();
 	if (pid == -1)

@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/16 16:26:34 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:09:20 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_execute(char **cmd, t_data *data)
 	char	*path;
 
 	path = find_path(cmd[0], data->env);
-	if (ft_strnstr(path, "/", 1) == NULL)
+	if (path == NULL || ft_strnstr(path, "/", 1) == NULL)
 	{
 		printf("minishell: path not found : %s\n", cmd[0]);
 		free_tab(cmd);
