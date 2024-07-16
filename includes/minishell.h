@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/16 13:26:35 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:36:42 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ void	split_create_cmd_list(t_data *data, char *input);
 //void	print_split(char **split);
 
 //heredoc
-int		handle_heredoc(const char *delim);
+void	execute_command_with_heredoc(char *command, char *delimiter);
+
+//heredoc_utils
+char	*ft_strtok(char *str, const char *delim);
 
 //Builtins
 void	ft_env(t_data *data);

@@ -6,7 +6,7 @@
 #    By: falberti <falberti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/16 13:27:22 by falberti         ###   ########.fr        #
+#    Updated: 2024/07/16 15:37:06 by falberti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/lst_utils\
 		$(SOURCES_DIR)/safe_function\
 		$(SOURCES_DIR)/heredoc\
+		$(SOURCES_DIR)/heredoc_utils\
 		$(SOURCES_DIR)/pars_nodes_cre\
 
 ## Ajout de .c et .o aux fichiers dans FILES
