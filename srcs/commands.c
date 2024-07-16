@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/15 15:07:07 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/16 16:18:50 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ft_read_cmd(t_data *data)
 	i = 0;
 	size = lst_cmd_size(data);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
-	while (data->cmd)
+	printf("Hello 2 --\n");
+	while (data->cmd )
 	{
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
