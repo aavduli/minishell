@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/16 16:18:50 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:26:45 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_read_cmd(t_data *data)
 			if (data->cmd->str == NULL)
 				data->cmd = data->cmd->next;
 			cmd[i] = ft_strdup(data->cmd->str);
-			printf("cmd[%d] = %s\n", i, cmd[i]);
 			i++;
 		}
 		data->cmd = data->cmd->next;
