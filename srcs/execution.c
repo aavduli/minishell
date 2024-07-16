@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 16:34:23 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:24:33 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,14 @@ void	ft_read_lst(t_data *data)
 	cmd = NULL;
 	while (data->cmd)
 	{
-		if (data->cmd->type >= 0 && data->cmd->type <= 2)
+		while (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd = creat_tab(data, cmd);
-			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
-				data->cmd = data->cmd->next;
+			data->cmd = data->cmd->next;
 		}
-		if (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
-		{
-			check_redir(data, cmd);
-			while (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
-				data->cmd = data->cmd->next;
-		}
-		else if (cmd)
-		{
-			printf("second\n");			
-			ft_cmd(cmd, data);
-			ft_reset_std(data);
-			free_tab(cmd);
-			cmd = NULL;
-		}
-		if (data->cmd == NULL)
-		{
-			break ;
-		}
-		if (cmd)
-			free_tab(cmd);
+		if (data->cmd->type == 3)
+			connect_pipe(data);
+		data->cmd = data->cmd->next;
 	}
 }
 
@@ -52,17 +34,22 @@ char	**creat_tab(t_data *data, char **cmd)
 {
 	int		i;
 	int		size;
-	t_cmd	*current;
+	t_data	*current;
 
 	current = data->cmd;
 	size = lst_cmd_size(data);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
 	i = 0;
-	while (current && current->type >= 0 && current->type <= 2)
+	while (current->next)
 	{
-		cmd[i] = ft_strdup(current->str);
-		current = current->next;
-		i++;
+		if (current->type >= 0 && current->type <= 2)
+		{
+			cmd[i] = ft_strdup(current->str);
+			i++;
+		}
+		current->cmd = current->next;
+		if (data->cmd == NULL || data->cmd->type >= 3)
+			break ;
 	}
 	cmd[i] = NULL;
 	return (cmd);

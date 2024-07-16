@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/17 13:23:04 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:25:05 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ pid_t	safe_pid(pid_t pid)
 void	safe_pipe(int pipefd[2])
 {
 	if (pipe(pipefd) == -1)
-		printf("Pipe failed\n");
+		perror("Pipe failed");
 }

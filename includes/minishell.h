@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:11:22 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:24:25 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
  8 = CMD_LAST_EXIT
  9 = CMD_HEREDOC
  10 = CMD_ERROR
- 11 = CMD_FILE
 */
 
 enum e_cmdtype {
@@ -76,12 +75,8 @@ typedef struct s_data
 	int		exit_status;
 	char	**env;
 	char	**original;
-	char	*infile;
-	char	*outfile;
-	int		stdin;
-	int		stdout;
-	int		pipe;
-	int		out;
+	int		infile;
+	int		outfile;
 }	t_data;
 
 //init_structs
@@ -128,12 +123,14 @@ void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
 char	**creat_tab(t_data *data, char **cmd);
+char	**creat_tab(t_data *data, char **cmd);
 void	ft_execute(char **cmd, t_data *data);
+void	check_pipe(t_data *data);
 
 //safe_functions
 void	*safe_malloc(size_t bytes);
-pid_t	safe_pid(pid_t pid);
-void	safe_pipe(int pipefd[2]);
+void	*safe_pid(pid_t pid);
+void	safe_pipe(int *pipefd);
 
 //freerers
 void	free_list(char **list);
@@ -142,6 +139,7 @@ void	free_all(t_data *data);
 void	free_tab(char **tab);
 
 //lst_utils
+void	ft_read_lst(t_data *data);
 void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
 
