@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/16 15:43:22 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:29:38 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 
 static	int	init_parsing(char *str, t_data *data)
 {
-	printf("PARSING!!!!!!! \n");
+	if (str[0] == '\0')
+		return (0);
 	if (is_valid_type(str) == 0)
 	{
 		printf("Please enter a valid input!\n"
@@ -42,6 +43,7 @@ static	int	init_parsing(char *str, t_data *data)
 	is_exit(str, data);
 	split_create_cmd_list(data, str);
 	check_update_type(data);
+	ft_read_cmd(data);
 	return (0);
 }
 
@@ -86,7 +88,7 @@ void	get_input(t_data *data)
 		}
 		if (*line)
 			add_history(line);
-		handle_line(data, line);
+		init_parsing(line, data);
 		free(line);
 		line = NULL;
 	}
