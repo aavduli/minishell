@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/16 16:29:45 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:59:49 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	ft_read_cmd(t_data *data)
 	i = 0;
 	size = lst_cmd_size(data);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
-	printf("Hello 2 --\n");
-	while (data->cmd )
+	while (data->cmd)
 	{
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
