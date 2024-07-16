@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: falberti <falberti@student.42.fr>          +#+  +:+       +#+         #
+#    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/22 11:17:55 by falberti         ###   ########.fr        #
+#    Updated: 2024/07/22 17:09:20 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/heredoc\
 		$(SOURCES_DIR)/heredoc_utils\
 		$(SOURCES_DIR)/pars_nodes_cre\
+		$(SOURCES_DIR)/pipe\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))

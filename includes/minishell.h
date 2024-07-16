@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/17 17:50:18 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:09:25 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@
 # include "libft_xl/libft.h"
 
 /*
- 1 = CMD
- 2 = CMD_S_QUOTE
- 3 = CMD_D_QUOTE
- 4 = CMD_PIPE
- 5 = CMD_IN_RED
- 6 = CMD_OUT_RED
- 7 = CMD_APP_OUT_RED
- 8 = CMD_ENV_VAR
- 9 = CMD_LAST_EXIT
- 10 = CMD_HEREDOC
- 11 = CMD_ERROR
+ 0 = CMD
+ 1 = CMD_S_QUOTE
+ 2 = CMD_D_QUOTE
+ 3 = CMD_PIPE
+ 4 = CMD_IN_RED
+ 5 = CMD_OUT_RED
+ 6 = CMD_APP_OUT_RED
+ 7 = CMD_ENV_VAR
+ 8 = CMD_LAST_EXIT
+ 9 = CMD_HEREDOC
+ 10 = CMD_ERROR
 */
 
 enum e_cmdtype {
@@ -73,6 +73,8 @@ typedef struct s_data
 	int		exit_status;
 	char	**env;
 	char	**original;
+	int		infile;
+	int		outfile;
 }	t_data;
 
 //init_structs
@@ -118,12 +120,14 @@ void	ft_unset(char **cmd, t_data *data);
 void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
-void	ft_read_cmd(t_data *data);
+char	**creat_tab(t_data *data, char **cmd);
 void	ft_execute(char **cmd, t_data *data);
+void	check_pipe(t_data *data);
 
 //safe_functions
 void	*safe_malloc(size_t bytes);
 void	*safe_pid(pid_t pid);
+void	safe_pipe(int *pipefd);
 
 //freerers
 void	free_list(char **list);
@@ -132,6 +136,7 @@ void	free_all(t_data *data);
 void	free_tab(char **tab);
 
 //lst_utils
+void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
 
 //exit
