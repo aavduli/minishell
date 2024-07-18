@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/17 18:10:01 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:20:08 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter)
 	}
 	if (line)
 		free(line);
-	run_signal(1);
 }
 
 static void	handle_heredoc(char *delimiter)
@@ -57,7 +56,7 @@ static void	handle_heredoc(char *delimiter)
 	handle_heredoc_line(tmp_fd, delimiter);
 	close(tmp_fd);
 	if (g_exist_status)
-        write(1, "Heredoc interrupted\n", 20);
+		write(1, "Heredoc interrupted\n", 20);
 }
 
 static void	redirect_heredoc_input(void)
