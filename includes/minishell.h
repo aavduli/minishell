@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/17 17:50:18 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:13:47 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@ void	execute_command_with_heredoc(char *command, char *delimiter);
 
 //heredoc_utils
 char	*ft_strtok(char *str, const char *delim);
+
+//Variables
+char	*replace_env_variables(const char *input, t_data *data);
+
+//Var_utils
+char	*get_env(char *name, t_data *data);
+char	*get_env_value(char *var, t_data *data);
+char	*ft_strndup(const char *s, size_t n);
+char	*ft_strncat(char *dest, const char *src, size_t n);
 
 //Builtins
 void	ft_env(t_data *data);

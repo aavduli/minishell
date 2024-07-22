@@ -6,27 +6,27 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/17 17:51:40 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:28:36 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// static void	print_cmd_list(t_cmd *cmd)
-// {
-// 	t_cmd	*current;
+static void	print_cmd_list(t_cmd *cmd)
+{
+	t_cmd	*current;
 
-// 	current = cmd;
-// 	while (current != NULL)
-// 	{
-// 		if (current->str != NULL)
-// 		{
-// 			printf("%s\n", current->str);
-// 			printf("%d\n", current->type);
-// 		}
-// 		current = current->next;
-// 	}
-// }
+	current = cmd;
+	while (current != NULL)
+	{
+		if (current->str != NULL)
+		{
+			printf("%s\n", current->str);
+			printf("%d\n", current->type);
+		}
+		current = current->next;
+	}
+}
 //print_cmd_list(data->cmd);
 
 static	int	init_parsing(char *str, t_data *data)
@@ -40,6 +40,7 @@ static	int	init_parsing(char *str, t_data *data)
 	}
 	split_create_cmd_list(data, str);
 	check_update_type(data);
+	print_cmd_list(data->cmd);
 	ft_read_cmd(data);
 	return (0);
 }
