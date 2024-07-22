@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 17:25:36 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:26:34 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,26 @@ void	ft_read_lst(t_data *data)
 			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
 				data->cmd = data->cmd->next;
 		}
-		if (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 6))
+		if (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
 		{
 			check_redir(data, cmd);
 			while (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
 				data->cmd = data->cmd->next;
 		}
 		else if (cmd)
-		{			
+		{
+			printf("second\n");			
 			ft_cmd(cmd, data);
 			ft_reset_std(data);
 			free_tab(cmd);
-			cmd = NULL ;
+			cmd = NULL;
 		}
 		if (data->cmd == NULL)
 		{
 			break ;
 		}
+		if (cmd)
+			free_tab(cmd);
 	}
 }
 
