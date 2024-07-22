@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:24:25 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:25:24 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <readline/history.h>
 # include "libft_xl/libft.h"
 # include <stdbool.h>
+# include <stdbool.h>
 
 /*
  0 = CMD
@@ -40,6 +41,7 @@
  8 = CMD_LAST_EXIT
  9 = CMD_HEREDOC
  10 = CMD_ERROR
+ 11 = CMD_FILE
 */
 
 enum e_cmdtype {
@@ -53,6 +55,8 @@ enum e_cmdtype {
 	CMD_ENV_VAR,
 	CMD_LAST_EXIT,
 	CMD_HEREDOC,
+	CMD_ERROR,
+	CMD_FILE
 	CMD_ERROR,
 	CMD_FILE
 };
@@ -75,8 +79,12 @@ typedef struct s_data
 	int		exit_status;
 	char	**env;
 	char	**original;
-	int		infile;
-	int		outfile;
+	char	*infile;
+	char	*outfile;
+	int		stdin;
+	int		stdout;
+	int		pipe;
+	int		out;
 }	t_data;
 
 //init_structs
@@ -125,12 +133,11 @@ void	ft_mshell(t_data *data, char **cmd);
 char	**creat_tab(t_data *data, char **cmd);
 char	**creat_tab(t_data *data, char **cmd);
 void	ft_execute(char **cmd, t_data *data);
-void	check_pipe(t_data *data);
 
 //safe_functions
 void	*safe_malloc(size_t bytes);
-void	*safe_pid(pid_t pid);
-void	safe_pipe(int *pipefd);
+pid_t	safe_pid(pid_t pid);
+void	safe_pipe(int pipefd[2]);
 
 //freerers
 void	free_list(char **list);
@@ -145,7 +152,7 @@ int		lst_cmd_size(t_data *data);
 
 //redirection
 void	execute_pipeline(t_data *data, char **cmd);
-void	execute_redir(t_data *data, char **cmd);
+void	execute_redir(t_data *data);
 void	check_redir(t_data *data, char **cmd);
 void	ft_reset_std(t_data *data);
 

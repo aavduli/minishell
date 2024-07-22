@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/22 17:11:18 by aavduli          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/07/22 17:25:44 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -76,6 +77,18 @@ void	check_update_type(t_data *data)
 	current = data->cmd;
 	while (current != NULL)
 	{
+		if (current->prev && (current->prev->type == 4))
+		{
+			data->infile = ft_strdup(current->str);
+			current->type = 11;
+		}
+		else if (current->prev && (current->prev->type == 5))
+		{
+			data->outfile = ft_strdup(current->str);
+			current->type = 11;
+		}
+		else
+			current->type = determine_type(current->str);
 		if (current->prev && (current->prev->type == 4))
 		{
 			data->infile = ft_strdup(current->str);

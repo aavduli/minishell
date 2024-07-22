@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 17:24:33 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:25:36 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,29 @@ void	ft_read_lst(t_data *data)
 	cmd = NULL;
 	while (data->cmd)
 	{
-		while (data->cmd->type >= 0 && data->cmd->type <= 2)
+		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd = creat_tab(data, cmd);
-			data->cmd = data->cmd->next;
+			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
+				data->cmd = data->cmd->next;
 		}
-		if (data->cmd->type == 3)
-			connect_pipe(data);
-		data->cmd = data->cmd->next;
+		if (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 6))
+		{
+			check_redir(data, cmd);
+			while (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
+				data->cmd = data->cmd->next;
+		}
+		else if (cmd)
+		{			
+			ft_cmd(cmd, data);
+			ft_reset_std(data);
+			free_tab(cmd);
+			cmd = NULL ;
+		}
+		if (data->cmd == NULL)
+		{
+			break ;
+		}
 	}
 }
 
@@ -34,22 +49,17 @@ char	**creat_tab(t_data *data, char **cmd)
 {
 	int		i;
 	int		size;
-	t_data	*current;
+	t_cmd	*current;
 
 	current = data->cmd;
 	size = lst_cmd_size(data);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
 	i = 0;
-	while (current->next)
+	while (current && current->type >= 0 && current->type <= 2)
 	{
-		if (current->type >= 0 && current->type <= 2)
-		{
-			cmd[i] = ft_strdup(current->str);
-			i++;
-		}
-		current->cmd = current->next;
-		if (data->cmd == NULL || data->cmd->type >= 3)
-			break ;
+		cmd[i] = ft_strdup(current->str);
+		current = current->next;
+		i++;
 	}
 	cmd[i] = NULL;
 	return (cmd);
