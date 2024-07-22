@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 14:14:23 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 14:30:44 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int		lst_cmd_size(t_data *data);
 
 //redirection
 void	execute_pipeline(t_data *data, char **cmd);
-void	execute_redir(t_data *data);
+void	execute_redir(t_data *data, char **cmd);
 void	check_redir(t_data *data, char **cmd);
 void	ft_reset_std(t_data *data);
 
