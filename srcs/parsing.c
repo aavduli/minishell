@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 16:41:08 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:25:06 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,22 @@ static void	split_create_cmd_list(t_data *data, char *input)
 	data->cmd = head;
 	free_list(token);
 }
+/*
+static void	print_cmd_list(t_cmd *cmd)
+{
+	t_cmd	*current;
 
-// static void	print_cmd_list(t_cmd *cmd)
-// {
-// 	t_cmd	*current;
-
-// 	current = cmd;
-// 	while (current != NULL)
-// 	{
-// 		if (current->str != NULL)
-// 		{
-// 			printf("%s\n", current->str);
-// 			printf("%d\n", current->type);
-// 		}
-// 		current = current->next;
-// 	}
-// }
+	current = cmd;
+	while (current != NULL)
+	{
+		if (current->str != NULL)
+		{
+			printf("%s\n", current->str);
+			printf("%d\n", current->type);
+		}
+		current = current->next;
+	}
+}*/
 //print_cmd_list(data->cmd);
 
 static	int	init_parsing(char *str, t_data *data)
@@ -112,7 +112,7 @@ void	get_input(t_data *data)
 		if (*line)
 			add_history(line);
 		init_parsing(line, data);
-		ft_read_cmd(data);
+		ft_read_lst(data);
 		free(line);
 		if (data->cmd != NULL)
 		{
