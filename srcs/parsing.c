@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/22 17:10:32 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:16:58 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static	int	init_parsing(char *str, t_data *data)
 	}
 	split_create_cmd_list(data, str);
 	check_update_type(data);
-	ft_read_cmd(data);
+	ft_read_lst(data);
 	return (0);
 }
 
@@ -86,8 +86,7 @@ void	get_input(t_data *data)
 		}
 		if (*line)
 			add_history(line);
-		init_parsing(line, data);
-		ft_read_cmd(data);
+		handle_line(data, line);
 		free(line);
 		line = NULL;
 	}
