@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:26:11 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:34:18 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ void	error_exit(const char *msg)
 }
 
 pid_t	safe_pid(pid_t pid)
-pid_t	safe_pid(pid_t pid)
 {
 	if (pid < 0)
 		printf("Fork failed\n");
 	return (pid);
-	return (pid);
 }
 
-void	safe_pipe(int pipefd[2])
 void	safe_pipe(int pipefd[2])
 {
 	if (pipe(pipefd) == -1)

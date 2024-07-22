@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:26:22 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:33:01 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ enum e_cmdtype {
 	CMD_ENV_VAR,
 	CMD_LAST_EXIT,
 	CMD_HEREDOC,
-	CMD_ERROR,
-	CMD_FILE
 	CMD_ERROR,
 	CMD_FILE
 };

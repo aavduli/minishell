@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 17:26:34 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:37:20 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_read_lst(t_data *data)
 		}
 		else if (cmd)
 		{
-			printf("second\n");			
 			ft_cmd(cmd, data);
 			ft_reset_std(data);
 			free_tab(cmd);

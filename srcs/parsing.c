@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/22 17:25:54 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:33:53 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_cmd	*create_and_link_nodes(t_cmd *tail, char *token)
 	return (new_node);
 }
 
-static void	split_create_cmd_list(t_data *data, char *input)
+void	split_create_cmd_list(t_data *data, char *input)
 {
 	int		i;
 	char	**token;
@@ -140,7 +140,7 @@ void	get_input(t_data *data)
 		if (*line)
 			add_history(line);
 		init_parsing(line, data);
-		ft_read_lst(data);
+		handle_line(data, line);
 		free(line);
 		line = NULL;
 	}

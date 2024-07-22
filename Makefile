@@ -6,7 +6,7 @@
 #    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/22 17:26:18 by aavduli          ###   ########.fr        #
+#    Updated: 2024/07/22 17:35:50 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/safe_function\
 		$(SOURCES_DIR)/redir\
 		$(SOURCES_DIR)/execution\
+		$(SOURCES_DIR)/heredoc\
+		$(SOURCES_DIR)/heredoc_utils\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))
