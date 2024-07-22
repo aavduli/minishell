@@ -6,81 +6,96 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/16 15:43:34 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 14:16:58 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	connect_pipe(infile, outfile)
+void	ft_reset_std(t_data *data)
 {
-	pid_t	pid;
-	int		status;
-
-	pid = fork();
-	safe_pid(pid);
-	if (pid == 0)
-	{
-		if (dup2(infile, STDIN_FILENO) == -1)
-			perror("Dup2 failed");
-		if (dup2(outfile, STDOUT_FILENO) == -1)
-			perror("Dup2 failed");
-		if (infile != STDIN_FILENO)
-			close(infile);
-		if (outfile != STDOUT_FILENO)
-			close(outfile);
-	}
-	else
-		waitpid(pid, &status, 0);
+	dup2(data->stdin, 0);
+	dup2(data->stdout, 1);
 	return ;
 }
 
-void	pipe(t_data data)
+void	ft_stdin(t_data *data)
+{
+	int	fd;
+
+	fd = open(data->infile, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("minishell: %s: %s\n", data->cmd->next->str, strerror(errno));
+		return ;
+	}
+	dup2(fd, 0);
+	close(fd);
+}
+
+void	ft_stdout(t_data *data)
+{
+	int	fd;
+
+	if (data->cmd->type == 5)
+		fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else
+		fd = open(data->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (fd == -1)
+	{
+		printf("minishell: %s: %s\n", data->cmd->next->str, strerror(errno));
+		return ;
+	}
+	dup2(fd, 1);
+	close(fd);
+}
+
+void	execute_pipeline(t_data *data, char **cmd)
 {
 	int	pipefd[2];
-	int	in;
+	int	pid;
 
-	safe_pipe(pipefd);
-	if (data->infile)
-		in = open(data->infile, O_RDONLY);
-	else
-		in = STDIN_FILENO;
-	connect_pipe(in, pipefd[1]);
-	close(pipefd[1]);
-	if (in != STDIN_FILENO)
-		close(in);
-	in = pipefd[0];
-	if (data->outfile)
-		data->outfile = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	else
-		data->outfile = STDOUT_FILENO;
-}
-/*
-void	mutli_pipe(int infile, int outfile, char **av, char **envp)
-{
-	int	i;
-	int	fd[2];
-	int	in;
-
-	i = 2;
-	in = infile;
-	while (av[i + 2] != NULL)
+	pipe(pipefd);
+	pid = fork();
+	if (pid == 0)
 	{
-		if (pipe(fd) == -1)
-			error();
-		connect_pipe(in, fd[1], av[i], envp);
-		close(fd[1]);
-		if (in != infile)
-			close(in);
-		in = fd[0];
-		i++;
+		dup2(pipefd[1], 1);
+		close(pipefd[0]);
+		ft_cmd(cmd, data);
+		exit(0);
 	}
-	if (in != infile)
-		dup2(in, STDIN_FILENO);
-	dup2(outfile, STDOUT_FILENO);
-	if (in != infile)
-		close(in);
-	execute(av[i], envp);
-	close(outfile);
+	else
+	{
+		waitpid(pid, NULL, 0);
+		dup2(pipefd[0], 0);
+		close(pipefd[1]);
+	}
+
 }
-*/
+
+void	execute_redir(t_data *data)
+{
+	t_cmd	*tmp;
+
+	tmp = data->cmd;
+	if (tmp->type == 4)
+		ft_stdin(data);
+	if ((tmp->type == 5 || tmp->type == 6) && tmp->next)
+		ft_stdout(data);
+}
+
+void	check_redir(t_data *data, char **cmd)
+{
+	t_cmd	*tmp;
+
+	tmp = data->cmd;
+	if (tmp)
+	{
+		if (tmp->type == 3)
+		{
+			execute_pipeline(data, cmd);
+		}
+		if (tmp->type == 4 || tmp->type == 5 || tmp->type == 6)
+			execute_redir(data);
+	}
+}
