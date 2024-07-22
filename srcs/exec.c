@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:10:57 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:11:34 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void	ft_execute(char **cmd, t_data *data)
 			return ;
 		}
 	}
-	else
+    else
 		waitpid(pid, &status, 0);
 }
