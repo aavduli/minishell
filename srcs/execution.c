@@ -6,11 +6,25 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/23 11:45:37 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 13:55:18 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_launch(t_data *data, char **cmd)
+{
+	if (!cmd)
+		return ;
+	if (cmd)
+	{
+		ft_cmd(cmd, data);
+		ft_reset_std(data);
+		free_tab(cmd);
+	}
+	else
+		return ;
+}
 
 void	ft_read_lst(t_data *data)
 {
@@ -32,18 +46,9 @@ void	ft_read_lst(t_data *data)
 				data->cmd = data->cmd->next;
 		}
 		else if (cmd)
-		{
-			ft_cmd(cmd, data);
-			ft_reset_std(data);
-			free_tab(cmd);
-			cmd = NULL;
-		}
+			ft_launch(data, cmd);
 		if (data->cmd == NULL)
-		{
-			break ;
-		}
-		if (cmd)
-			free_tab(cmd);
+			return ;
 	}
 }
 
