@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/15 13:23:42 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 13:45:05 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,17 @@ void	ft_env(t_data *data)
 void	ft_export(char **cmd, t_data *data)
 {
 	int	i;
+	int	j;
 	int	found;
 
+	j = 0;
+	while (cmd[1][j] != '=' && cmd[1][j] != '\0')
+		j++;
 	i = 0;
 	found = 0;
 	while (data->env[i])
 	{
-		if (ft_strncmp(data->env[i], cmd[1],
-				ft_strlen(cmd[1])) == 0)
+		if (ft_strncmp(data->env[i], cmd[1], j) == 0)
 		{
 			free(data->env[i]);
 			data->env[i] = ft_strdup(cmd[1]);

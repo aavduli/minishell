@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/23 12:29:13 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/23 12:55:20 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ void	ft_unset(char **cmd, t_data *data);
 void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
-char	**creat_tab(t_data *data, char **cmd);
 char	**creat_tab(t_data *data, char **cmd);
 void	ft_execute(char **cmd, t_data *data);
 
