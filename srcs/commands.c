@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 17:26:26 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:35:54 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_echo(char **cmd)
 	i = 1;
 	j = 0;
 	n_flag = 0;
-	if (cmd[1] && ft_strncmp(cmd[1], "-n", 2) == 0)
+	if (cmd[1] && ft_strncmp(cmd[1], "-n\0", 3) == 0)
 	{
 		n_flag = 1;
 		i++;
