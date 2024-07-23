@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/23 13:54:00 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:32:54 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ char	**creat_tab(t_data *data, char **cmd);
 void	ft_execute(char **cmd, t_data *data);
 
 //safe_functions
+void	ft_reset_std(t_data *data);
 void	*safe_malloc(size_t bytes);
 pid_t	safe_pid(pid_t pid);
 void	safe_pipe(int pipefd[2]);

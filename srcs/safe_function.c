@@ -6,11 +6,18 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:34:18 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:32:38 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_reset_std(t_data *data)
+{
+	dup2(data->stdin, 0);
+	dup2(data->stdout, 1);
+	return ;
+}
 
 void	*safe_malloc(size_t bytes)
 {

@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/23 15:54:19 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:30:13 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_read_lst(t_data *data)
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd = creat_tab(data, cmd);
+			printf("cmd2 = %s\n", cmd[1]);
 			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
 				data->cmd = data->cmd->next;
 		}

@@ -6,18 +6,12 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 16:41:53 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:32:35 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_reset_std(t_data *data)
-{
-	dup2(data->stdin, 0);
-	dup2(data->stdout, 1);
-	return ;
-}
 
 void	execute_pipeline(t_data *data, char **cmd)
 {
