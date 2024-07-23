@@ -6,28 +6,47 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 12:01:17 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/23 12:11:06 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../includes/minishell.h"
 
-// static void	print_cmd_list(t_cmd *cmd)
-// {
-// 	t_cmd	*current;
+static t_cmd	*create_and_link_nodes(t_cmd *tail, char *token)
+{
+	t_cmd	*new_node;
 
-// 	current = cmd;
-// 	while (current != NULL)
-// 	{
-// 		if (current->str != NULL)
-// 		{
-// 			printf("%s\n", current->str);
-// 			printf("%d\n", current->type);
-// 		}
-// 		current = current->next;
-// 	}
-// }
-//print_cmd_list(data->cmd);
+	new_node = create_new_node(token);
+	if (tail == NULL)
+		return (new_node);
+	tail->next = new_node;
+	new_node->prev = tail;
+	return (new_node);
+}
+
+void	split_create_cmd_list(t_data *data, char *input)
+{
+	int		i;
+	char	**token;
+	t_cmd	*head;
+	t_cmd	*tail;
+
+	i = 0;
+	head = NULL;
+	tail = NULL;
+	token = mini_split(input);
+	data->str = mini_split(input);
+	while (token[i] != NULL)
+	{
+		tail = create_and_link_nodes(tail, token[i]);
+		if (head == NULL)
+			head = tail;
+		i++;
+	}
+	data->cmd = head;
+	free_list(token);
+}
 
 static	int	init_parsing(char *str, t_data *data)
 {
@@ -40,7 +59,6 @@ static	int	init_parsing(char *str, t_data *data)
 	}
 	split_create_cmd_list(data, str);
 	check_update_type(data);
-	ft_read_cmd(data);
 	return (0);
 }
 
@@ -63,6 +81,7 @@ static void	handle_line(t_data *data, char *line)
 	else
 	{
 		init_parsing(line, data);
+		ft_read_lst(data);
 	}
 	if (data->cmd != NULL)
 	{

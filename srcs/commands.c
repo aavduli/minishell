@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/16 16:59:49 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:26:26 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	ft_read_cmd(t_data *data)
-{
-	int		i;
-	char	**cmd;
-	int		size;
-
-	cmd = NULL;
-	i = 0;
-	size = lst_cmd_size(data);
-	cmd = safe_malloc(sizeof(char *) * (size + 1));
-	while (data->cmd)
-	{
-		if (data->cmd->type >= 0 && data->cmd->type <= 2)
-		{
-			if (data->cmd->str == NULL)
-				data->cmd = data->cmd->next;
-			cmd[i] = ft_strdup(data->cmd->str);
-			i++;
-		}
-		data->cmd = data->cmd->next;
-		if (data->cmd == NULL || data->cmd->type >= 3)
-			break ;
-	}
-	cmd[i] = NULL;
-	ft_cmd(cmd, data);
-}
 
 void	ft_print_echo(char **cmd, int i, int j)
 {

@@ -6,9 +6,10 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 12:01:40 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/23 12:12:34 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -49,7 +50,30 @@ void	check_update_type(t_data *data)
 	current = data->cmd;
 	while (current != NULL)
 	{
-		current->type = determine_type(current->str);
+		if (current->prev && (current->prev->type == 4))
+		{
+			data->infile = ft_strdup(current->str);
+			current->type = 11;
+		}
+		else if (current->prev && (current->prev->type == 5))
+		{
+			data->outfile = ft_strdup(current->str);
+			current->type = 11;
+		}
+		else
+			current->type = determine_type(current->str);
+		if (current->prev && (current->prev->type == 4))
+		{
+			data->infile = ft_strdup(current->str);
+			current->type = 11;
+		}
+		else if (current->prev && (current->prev->type == 5))
+		{
+			data->outfile = ft_strdup(current->str);
+			current->type = 11;
+		}
+		else
+			current->type = determine_type(current->str);
 		if (current->type == 7)
 			current->str = replace_env_variables(current->str, data);
 		if (current->type == 2)

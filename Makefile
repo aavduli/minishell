@@ -6,7 +6,7 @@
 #    By: albertini <albertini@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/23 11:39:05 by albertini        ###   ########.fr        #
+#    Updated: 2024/07/23 12:10:45 by albertini        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/pars_check\
 		$(SOURCES_DIR)/lst_utils\
 		$(SOURCES_DIR)/safe_function\
+		$(SOURCES_DIR)/redir\
+		$(SOURCES_DIR)/execution\
 		$(SOURCES_DIR)/heredoc\
 		$(SOURCES_DIR)/heredoc_utils\
 		$(SOURCES_DIR)/pars_nodes_cre\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/16 17:41:09 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:42:33 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ft_execute(char **cmd, t_data *data)
 	if (path == NULL || ft_strnstr(path, "/", 1) == NULL)
 	{
 		printf("minishell: path not found : %s\n", cmd[0]);
-		free_tab(cmd);
 		return ;
 	}
 	pid = fork();
