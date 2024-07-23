@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:47:37 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/22 17:13:24 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:01:25 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*get_env(char *name, t_data *data)
 		if (ft_strncmp(data->env[i], name, name_len) == 0
 			&& data->env[i][name_len] == '=')
 		{
-			printf("data->env me= %s\n", data->env[i]);
-			//printf("INSIDE GET_ENV : %s\n", data->env[i] + (name_len + 1));
 			return (data->env[i] + (name_len + 1));
 		}
 		i++;
@@ -44,44 +42,52 @@ char	*get_env_value(char *var, t_data *data)
 		return ("(NULL)");
 }
 
-static size_t	ft_strnlen(const char *s, size_t maxlen)
+int	get_full_size(char *str, t_data *data)
 {
-	const char	*p;
+	int		nb;
+	char	*var_value;
+	char	*var_name;
 
-	p = s;
-	while (maxlen-- && *p)
+	nb = 0;
+	while (*str)
 	{
-		p++;
+		if (*str == '$')
+		{
+			var_name = extract_variable_name(str + 1);
+			var_value = get_env_value(var_name, data);
+			nb += ft_strlen(var_value);
+			str += ft_strlen(var_name) + 1;
+			free(var_name);
+		}
+		else
+		{
+			nb++;
+			str++;
+		}
 	}
-	return (p - s);
+	return (nb);
 }
 
 char	*ft_strndup(const char *s, size_t n)
 {
-	size_t	len;
 	char	*new_str;
 
-	len = ft_strnlen(s, n);
-	new_str = (char *)malloc(len + 1);
+	new_str = (char *)malloc(n + 1);
 	if (!new_str)
 		return (NULL);
-	ft_memcpy(new_str, s, len);
-	new_str[len] = '\0';
+	ft_memcpy(new_str, s, n);
+	new_str[n] = '\0';
 	return (new_str);
 }
 
-char	*ft_strncat(char *dest, const char *src, size_t n)
+char	*extract_variable_name(char *start)
 {
-	size_t	dest_len;
-	size_t	i;
+	char		*var_name;
+	size_t		i;
 
-	dest_len = strlen(dest);
 	i = 0;
-	while (i < n && src[i] != '\0')
-	{
-		dest[dest_len + i] = src[i];
+	while (start[i] && (ft_isalnum(start[i]) || start[i] == '_'))
 		i++;
-	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	var_name = ft_strndup(start, i);
+	return (var_name);
 }

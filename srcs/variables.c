@@ -3,128 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:05:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/22 17:24:44 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:42:10 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static char	*extract_variable_name(char *start, char **end)
+static char	*ext_rev(t_data *data, char *res, char *input)
 {
-	char	*var_end;
-	size_t	var_len;
-	char	*var_name;
-
-	var_end = start;
-	while (*var_end && (ft_isalnum(*var_end) || *var_end == '_'))
-	{
-		var_end++;
-	}
-	var_len = var_end - start;
-	var_name = ft_strndup(start, var_len);
-	*end = var_end;
-	return (var_name);
-}
-
-static void	append_to_res(char **res, size_t *res_len, const char *to_app)
-{
-	size_t	new_len;
-	char	*new_res;
-
-	new_len = ft_strlen(*res) + ft_strlen(to_app);
-	if (new_len >= *res_len)
-	{
-		*res_len = new_len + 1;
-		new_res = realloc(*res, *res_len);
-		if (!new_res)
-		{
-			perror("realloc");
-			exit(EXIT_FAILURE);
-		}
-		*res = new_res;
-	}
-	ft_strncat(*res, to_app, *res_len - ft_strlen(*res) - 1);
-}
-
-static char	*process_variable(char *p, char **res, size_t *res_len, t_data *d)
-{
-	char	*var_start;
-	char	*var_end;
-	char	*var_name;
+	int		pos;
+	int		i;
 	char	*var_value;
+	char	*var_name;
 
-	var_start = p + 1;
-	var_name = extract_variable_name(var_start, &var_end);
-	if (!var_name)
+	pos = 0;
+	while (*input)
 	{
-		free(*res);
-		perror("strndup");
-		exit(EXIT_FAILURE);
-	}
-	var_value = get_env_value(var_name, d);
-	free(var_name);
-	append_to_res(res, res_len, var_value);
-	return (var_end);
-}
-
-static char	*ext_rev(t_data *d, char *r, size_t rl, const char *p)
-{
-	size_t	cl;
-	char	*new_r;
-
-	while (*p)
-	{
-		if (*p == '$')
+		if (*input == '$')
 		{
-			p = process_variable((char *)p, &r, &rl, d);
-			if (!p)
+			i = 0;
+			var_name = extract_variable_name(input + 1);
+			var_value = get_env_value(var_name, data);
+			while (var_value[i])
 			{
-				free(r);
-				return (NULL);
+				res[pos++] = var_value[i++];
 			}
+			input += (ft_strlen(var_name) + 1);
+			free(var_name);
 		}
 		else
-		{
-			cl = ft_strlen(r);
-			if (cl + 1 >= rl)
-			{
-				rl = rl * 2;
-				new_r = realloc(r, rl);
-				if (!new_r)
-				{
-					free(r);
-					return (NULL);
-				}
-				r = new_r;
-			}
-			r[cl] = *p;
-			r[cl + 1] = '\0';
-			p++;
-		}
+			res[pos++] = *input++;
 	}
-	return (r);
+	res[pos] = '\0';
+	return (res);
 }
 
-char	*replace_env_variables(const char *input, t_data *data)
+char	*replace_env_variables(char *input, t_data *data)
 {
-	size_t		len;
+	int			len;
 	char		*result;
-	size_t		result_len;
-	const char	*p;
+	char		*p;
 
-	len = ft_strlen(input);
+	p = input;
+	len = get_full_size(p, data);
 	result = malloc(sizeof(char) * (len + 1));
 	if (!result)
 	{
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
-	result[0] = '\0';
-	result_len = len + 1;
 	p = input;
-	result = ext_rev(data, result, result_len, p);
+	result = ext_rev(data, result, p);
+	free(input);
+	p = NULL;
 	return (result);
 }
