@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 12:12:34 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/23 16:20:36 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	check_update_type(t_data *data)
 		else
 			current->type = determine_type(current->str);
 		if (current->type == 7)
-			current->str = replace_env_variables(current->str, data);
+			current->type = 2;
 		if (current->type == 2)
 			current->str = replace_env_variables(current->str, data);
 		current = current->next;
