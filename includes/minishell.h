@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/23 12:09:44 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/23 12:29:13 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	free_all(t_data *data);
 void	free_tab(char **tab);
 
 //lst_utils
-t_cmd	*create_new_node(char *str);
+//t_cmd	*create_new_node(char *str);
 void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
 
