@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/22 17:33:53 by aavduli          ###   ########.fr       */
+/*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
+/*   Updated: 2024/07/23 11:34:09 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ void	split_create_cmd_list(t_data *data, char *input)
 	data->cmd = head;
 	free_list(token);
 }
-/*
-static void	print_cmd_list(t_cmd *cmd)
-{
-	t_cmd	*current;
 
-	current = cmd;
-	while (current != NULL)
-	{
-		if (current->str != NULL)
-		{
-			printf("%s\n", current->str);
-			printf("%d\n", current->type);
-		}
-		current = current->next;
-	}
-}*/
+// static void	print_cmd_list(t_cmd *cmd)
+// {
+// 	t_cmd	*current;
+
+// 	current = cmd;
+// 	while (current != NULL)
+// 	{
+// 		if (current->str != NULL)
+// 		{
+// 			printf("%s\n", current->str);
+// 			printf("%d\n", current->type);
+// 		}
+// 		current = current->next;
+// 	}
+// }
 //print_cmd_list(data->cmd);
 
 static	int	init_parsing(char *str, t_data *data)

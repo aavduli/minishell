@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/22 17:33:01 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:30:55 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,19 @@
 # include <readline/history.h>
 # include "libft_xl/libft.h"
 # include <stdbool.h>
-# include <stdbool.h>
 
 /*
- 0 = CMD
- 1 = CMD_S_QUOTE
- 2 = CMD_D_QUOTE
- 3 = CMD_PIPE
- 4 = CMD_IN_RED
- 5 = CMD_OUT_RED
- 6 = CMD_APP_OUT_RED
- 7 = CMD_ENV_VAR
- 8 = CMD_LAST_EXIT
- 9 = CMD_HEREDOC
- 10 = CMD_ERROR
- 11 = CMD_FILE
+ 1 = CMD
+ 2 = CMD_S_QUOTE
+ 3 = CMD_D_QUOTE
+ 4 = CMD_PIPE
+ 5 = CMD_IN_RED
+ 6 = CMD_OUT_RED
+ 7 = CMD_APP_OUT_RED
+ 8 = CMD_ENV_VAR
+ 9 = CMD_LAST_EXIT
+ 10 = CMD_HEREDOC
+ 11 = CMD_ERROR
 */
 
 enum e_cmdtype {
@@ -55,8 +53,7 @@ enum e_cmdtype {
 	CMD_ENV_VAR,
 	CMD_LAST_EXIT,
 	CMD_HEREDOC,
-	CMD_ERROR,
-	CMD_FILE
+	CMD_ERROR
 };
 
 typedef struct s_cmd	t_cmd;
@@ -129,7 +126,6 @@ void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
 char	**creat_tab(t_data *data, char **cmd);
-char	**creat_tab(t_data *data, char **cmd);
 void	ft_execute(char **cmd, t_data *data);
 
 //safe_functions
@@ -144,7 +140,6 @@ void	free_all(t_data *data);
 void	free_tab(char **tab);
 
 //lst_utils
-void	ft_read_lst(t_data *data);
 void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
 
