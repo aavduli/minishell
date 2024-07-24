@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/24 16:07:41 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 16:09:01 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ void	ft_mshell(t_data *data, char **cmd)
 	}
 	else
 	{
+	{
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			data->exit_status = WEXITSTATUS(status);
+	}
 		if (WIFEXITED(status))
 			data->exit_status = WEXITSTATUS(status);
 	}
@@ -90,6 +94,15 @@ void	update_exit_status(int pid, t_data *data)
 		data->exit_status = WEXITSTATUS(status);
 }
 
+void	update_exit_status(int pid, t_data *data)
+{
+	int	status;
+
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		data->exit_status = WEXITSTATUS(status);
+}
+
 void	ft_execute(char **cmd, t_data *data)
 {
 	int		pid;
@@ -113,8 +126,5 @@ void	ft_execute(char **cmd, t_data *data)
 		}
 	}
 	else
-	{
-		waitpid(pid, &status, 0);
-		free(path);
-	}
+		update_exit_status(pid, data);
 }
