@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/23 11:42:33 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 15:57:59 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,14 @@ void	ft_execute(char **cmd, t_data *data)
 	{
 		if (execve(path, cmd, data->env) == -1)
 		{
-			perror("minishell");
+			perror("execve\n");
+			free(path);
 			return ;
 		}
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+		free(path);
+	}
 }
