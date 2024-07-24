@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/24 15:46:16 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:40:41 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,14 @@ void	ft_execute(char **cmd, t_data *data)
 	{
 		if (execve(path, cmd, data->env) == -1)
 		{
-			perror("minishell");
+			perror("execve\n");
+			free(path);
 			return ;
 		}
 	}
 	else
-		update_exit_status(pid, data);
+	{
+		waitpid(pid, &status, 0);
+		free(path);
+	}
 }

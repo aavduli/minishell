@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:20:10 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/23 16:32:38 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 15:59:50 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	*safe_malloc(size_t bytes)
 
 	ptr = malloc(bytes);
 	if (!ptr)
+	{
 		printf("Malloc failed\n");
+		free(ptr);
+	}
 	return (ptr);
 }
 
