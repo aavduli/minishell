@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 16:22:08 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 12:18:20 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,18 @@ void	check_update_type(t_data *data)
 		else
 			current->type = determine_type(current->str);
 		if (current->type == 7)
+		{
 			current->type = 2;
-		if (current->type == 2)
+			printf("TEST7 before: %s\n", current->str);
 			current->str = replace_env_variables(current->str, data);
+			printf("TEST7 after: %s\n", current->str);
+		}
+		if (current->type == 2)
+		{
+			printf("TEST2 before: %s\n", current->str);
+			current->str = replace_env_variables(current->str, data);
+			printf("TEST2 after: %s\n", current->str);
+		}
 		current = current->next;
 	}
 	return ;
