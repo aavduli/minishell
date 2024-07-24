@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_nodes_cre.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:25:12 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 12:28:01 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/24 16:02:50 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	split_create_cmd_list(t_data *data, char *input)
 	i = 0;
 	head = NULL;
 	tail = NULL;
+	token = NULL;
 	token = mini_split(input);
 	data->str = mini_split(input);
 	while (token[i] != NULL)
@@ -61,5 +62,6 @@ void	split_create_cmd_list(t_data *data, char *input)
 		i++;
 	}
 	data->cmd = head;
-	free_list(token);
+	if (token != NULL)
+		free_list(token);
 }
