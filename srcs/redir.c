@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/23 16:32:35 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 14:23:54 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 
 void	execute_pipeline(t_data *data, char **cmd)
 {

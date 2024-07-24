@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/24 13:29:15 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:25:20 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # include <stdbool.h>
 # include <stdbool.h>
 
-# define PL fprintf(stderr, "file: %s line: %d pid: %i\n", __FILE__, __LINE__, getpid())
-# define PI(x) fprintf(stderr, "PI: %d\n", (x));
-# define PS(x) fprintf(stderr, "PS: %s\n", (x));
+// # define PL fprintf(stderr, "file: %s line: %d pid: %i\n", __FILE__, __LINE__, getpid())
+// # define PI(x) fprintf(stderr, "PI: %d\n", (x));
+// # define PS(x) fprintf(stderr, "PS: %s\n", (x));
 
 /*
  0 = CMD
