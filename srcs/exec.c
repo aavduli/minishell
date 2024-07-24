@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/24 15:57:59 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 16:07:41 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void	ft_mshell(t_data *data, char **cmd)
 			perror("execve\n");
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			data->exit_status = WEXITSTATUS(status);
+	}
 }
 
 char	**found_split(char **envp)
@@ -77,9 +81,17 @@ char	*find_path(char *cmd, char **envp)
 	return (path);
 }
 
+void	update_exit_status(int pid, t_data *data)
+{
+	int	status;
+
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		data->exit_status = WEXITSTATUS(status);
+}
+
 void	ft_execute(char **cmd, t_data *data)
 {
-	int		status;
 	int		pid;
 	char	*path;
 

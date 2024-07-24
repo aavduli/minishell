@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/24 13:18:59 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:35:56 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,9 @@ void	execute_command_with_heredoc(char *com, char *del, int var, t_data *d)
 		exit(EXIT_FAILURE);
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			d->exit_status = WEXITSTATUS(status);
+	}
 }
