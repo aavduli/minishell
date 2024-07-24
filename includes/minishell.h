@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/24 13:25:52 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:29:15 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ void	init_data(t_data *d);
 
 //signal
 void	run_signal(int sig);
-
-static void handle_line(t_data *data, char *line);
 
 // parsing
 void	get_input(t_data *data);
