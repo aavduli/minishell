@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freerers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/15 13:51:04 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 17:19:21 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (tab == NULL)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);
@@ -60,5 +62,7 @@ void	free_all(t_data *data)
 		free_cmd(data->cmd);
 	free_list(data->original);
 	free_list(data->env);
+	free(data->outfile);
+	free(data->infile);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/22 17:25:39 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/24 17:19:18 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	main(int ac, char **av, char **envp)
 	data.original = ft_cpy_env(envp);
 	get_input(&data);
 	rl_clear_history();
-	free_all(&data);
+	free_cmd(&cmd);
 	return (0);
 }

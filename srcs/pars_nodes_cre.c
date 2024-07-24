@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:25:12 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/24 16:02:50 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:42:13 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	split_create_cmd_list(t_data *data, char *input)
 	tail = NULL;
 	token = NULL;
 	token = mini_split(input);
-	data->str = mini_split(input);
 	while (token[i] != NULL)
 	{
 		tail = create_and_link_nodes(tail, token[i]);
