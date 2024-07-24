@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/24 14:04:12 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:24:11 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ char	**creat_tab(t_data *data, char **cmd)
 	cmd[i] = NULL;
 	return (cmd);
 }
-
