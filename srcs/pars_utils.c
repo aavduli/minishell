@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/24 12:18:20 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:30:28 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	check_update_type(t_data *data)
 			current->type = determine_type(current->str);
 		if (current->type == 7)
 		{
-			current->type = 2;
+			//current->type = 2;
 			printf("TEST7 before: %s\n", current->str);
 			current->str = replace_env_variables(current->str, data);
 			printf("TEST7 after: %s\n", current->str);
