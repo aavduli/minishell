@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/24 14:24:11 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:11:51 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_read_lst(t_data *data)
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
 			cmd = creat_tab(data, cmd);
-			printf("cmd2 = %s\n", cmd[1]);
 			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
 				data->cmd = data->cmd->next;
 		}
