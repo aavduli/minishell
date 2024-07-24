@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 12:27:00 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/24 13:26:15 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,27 @@ static	int	init_parsing(char *str, t_data *data)
 	return (0);
 }
 
-static void	handle_line(t_data *data, char *line)
+static void	heredoc_var(t_data *data, char *line, int var)
 {
 	char	*delimiter;
 	char	*command;
 
+	command = ft_strtok(line, " ");
+	ft_strtok(NULL, " ");
+	delimiter = ft_strtok(NULL, " ");
+	if (command != NULL && delimiter != NULL)
+		execute_command_with_heredoc(command, delimiter, var, data);
+}
+
+static void	handle_line(t_data *data, char *line)
+{
 	if (line[0] == '\0')
 		return ;
 	is_exit(line, data);
-	if (ft_strnstr(line, "<<", ft_strlen(line)) != 0)
-	{
-		command = ft_strtok(line, " ");
-		ft_strtok(NULL, " ");
-		delimiter = ft_strtok(NULL, " ");
-		if (command != NULL && delimiter != NULL)
-			execute_command_with_heredoc(command, delimiter);
-	}
+	if (ft_strnstr(line, "<<-", ft_strlen(line)) != 0)
+		heredoc_var(data, line, 0);
+	else if (ft_strnstr(line, "<<", ft_strlen(line)) != 0)
+		heredoc_var(data, line, 1);
 	else
 	{
 		init_parsing(line, data);

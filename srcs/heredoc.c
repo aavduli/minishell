@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/18 19:20:08 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/24 13:18:59 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern int	g_exist_status;
 
-static void	handle_heredoc_line(int tmp_fd, char *delimiter)
+static void	handle_heredoc_line(int tmp_fd, char *delimiter, int var, t_data *d)
 {
 	char	*line;
 	size_t	delim_len;
@@ -24,6 +24,8 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter)
 	{
 		run_signal(4);
 		line = readline("heredoc> ");
+		if (var == 1)
+			line = replace_env_variables(line, d);
 		if (!line || g_exist_status)
 			break ;
 		if (ft_strncmp(line, delimiter, delim_len) == 0
@@ -40,7 +42,7 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter)
 		free(line);
 }
 
-static void	handle_heredoc(char *delimiter)
+static void	handle_heredoc(char *delimiter, int var, t_data *d)
 {
 	int		tmp_fd;
 	char	*tmp_filename;
@@ -53,7 +55,7 @@ static void	handle_heredoc(char *delimiter)
 		perror("minishell: open");
 		return ;
 	}
-	handle_heredoc_line(tmp_fd, delimiter);
+	handle_heredoc_line(tmp_fd, delimiter, var, d);
 	close(tmp_fd);
 	if (g_exist_status)
 		write(1, "Heredoc interrupted\n", 20);
@@ -80,12 +82,12 @@ static void	redirect_heredoc_input(void)
 	close(tmp_fd);
 }
 
-void	execute_command_with_heredoc(char *command, char *delimiter)
+void	execute_command_with_heredoc(char *com, char *del, int var, t_data *d)
 {
 	pid_t	pid;
 	int		status;
 
-	handle_heredoc(delimiter);
+	handle_heredoc(del, var, d);
 	if (g_exist_status)
 		return ;
 	pid = fork();
@@ -97,7 +99,7 @@ void	execute_command_with_heredoc(char *command, char *delimiter)
 	if (pid == 0)
 	{
 		redirect_heredoc_input();
-		execlp(command, command, NULL);
+		execlp(com, com, NULL);
 		perror("minishell: execlp");
 		exit(EXIT_FAILURE);
 	}
