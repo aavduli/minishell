@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/24 17:19:21 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:31:17 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_list(char **list)
 		free(list[i]);
 		i++;
 	}
-	free (list);
+	free(list);
 }
 
 void	free_cmd(t_cmd *head)

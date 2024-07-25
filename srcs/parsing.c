@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/24 15:31:24 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:41:21 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	handle_line(t_data *data, char *line)
 	{
 		init_parsing(line, data);
 		ft_read_lst(data);
+		free_cmd(data->cmd);
 	}
 	if (data->cmd != NULL)
 	{

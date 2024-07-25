@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/24 16:33:41 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:14:54 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_execute(char **cmd, t_data *data)
 	path = find_path(cmd[0], data->env);
 	if (path == NULL || ft_strnstr(path, "/", 1) == NULL)
 	{
+		free(path);
 		printf("minishell: path not found : %s\n", cmd[0]);
 		return ;
 	}
@@ -110,10 +111,11 @@ void	ft_execute(char **cmd, t_data *data)
 			perror("minishell");
 			return ;
 		}
+		free(path);
 	}
 	else
 	{
-		update_exit_status(pid, data);
 		free(path);
+		update_exit_status(pid, data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/24 17:22:57 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:46:37 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ char	**creat_tab(t_data *data, char **cmd)
 	current = data->cmd;
 	size = lst_cmd_size(data);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
+	// cmd = malloc(sizeof(char*) * (size + 1));
+	// if (cmd == NULL)
+	// 	return NULL;
 	i = 0;
 	while (current && (current->type >= 0 && current->type <= 2))
 	{
