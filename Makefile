@@ -6,7 +6,7 @@
 #    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/25 13:33:00 by aavduli          ###   ########.fr        #
+#    Updated: 2024/07/25 14:31:34 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/pars_nodes_cre\
 		$(SOURCES_DIR)/var_utils\
 		$(SOURCES_DIR)/variables\
+		$(SOURCES_DIR)/export\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))
