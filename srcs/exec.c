@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/25 17:15:32 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:24:13 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ void	ft_execute(char **cmd, t_data *data)
 	{
 		if (execve(path, cmd, data->env) == -1)
 		{
-			perror("minishell");
+			perror("execve\n");
+			free(path);
 			return ;
 		}
 		free(path);
@@ -116,5 +117,4 @@ void	ft_execute(char **cmd, t_data *data)
 	{
 		free(path);
 		update_exit_status(pid, data);
-	}
 }

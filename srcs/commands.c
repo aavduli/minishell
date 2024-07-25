@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/22 17:26:26 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/25 15:11:14 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,12 @@ void	ft_cmd(char **cmd, t_data *data)
 	else if (ft_strncmp(cmd[0], "export", 7) == 0)
 		ft_export(cmd, data);
 	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
-		ft_unset(cmd, data);
+	{
+		if (cmd[1] == NULL)
+			ft_putstr_fd("unset: not enough arguments\n", 1);
+		else
+			ft_unset(cmd, data);
+	}
 	else if (ft_strncmp(cmd[0], "env", 4) == 0)
 		ft_env(data);
 	else if (ft_strncmp(cmd[0], "./", 2) == 0)

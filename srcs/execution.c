@@ -6,11 +6,37 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 17:19:32 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:22:49 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static char	*ft_shelldup(const char *s1)
+{
+	char	*strr;
+	int		size;
+	int		i;
+	int		j;
+
+	size = ft_strlen(s1);
+	strr = malloc((size + 1) * sizeof(char));
+	if (!strr)
+		return (strr);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		if (s1[i] != 34 && s1[i] != 39)
+		{
+			strr[j] = s1[i];
+			j++;
+		}
+		i++;
+	}
+	strr[j] = '\0';
+	return (strr);
+}
 
 void	ft_launch(t_data *data, char **cmd)
 {
@@ -71,7 +97,7 @@ char	**creat_tab(t_data *data, char **cmd)
 	i = 0;
 	while (current && (current->type >= 0 && current->type <= 2))
 	{
-		cmd[i] = ft_strdup(current->str);
+		cmd[i] = ft_shelldup(current->str);
 		current = current->next;
 		i++;
 	}
