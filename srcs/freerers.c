@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/25 15:31:17 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:08:21 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+	tab = NULL;
 }
 
 void	free_list(char **list)
@@ -40,6 +41,7 @@ void	free_list(char **list)
 		i++;
 	}
 	free(list);
+	list = NULL;
 }
 
 void	free_cmd(t_cmd *head)
@@ -54,6 +56,7 @@ void	free_cmd(t_cmd *head)
 			free(tmp->str);
 		free(tmp);
 	}
+	head = NULL;
 }
 
 void	free_all(t_data *data)
@@ -64,5 +67,6 @@ void	free_all(t_data *data)
 	free_list(data->env);
 	free(data->outfile);
 	free(data->infile);
+	data = NULL;
 	return ;
 }

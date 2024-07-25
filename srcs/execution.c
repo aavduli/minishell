@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 14:46:37 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:19:32 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void	ft_launch(t_data *data, char **cmd)
 void	ft_read_lst(t_data *data)
 {
 	char	**cmd;
+	t_cmd	*head;
 
 	cmd = NULL;
+	head = data->cmd;
 	while (data->cmd)
 	{
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
@@ -48,7 +50,10 @@ void	ft_read_lst(t_data *data)
 		else if (cmd)
 			ft_launch(data, cmd);
 		if (data->cmd == NULL)
+		{
+			data->cmd = head;
 			return ;
+		}
 	}
 }
 
@@ -60,10 +65,9 @@ char	**creat_tab(t_data *data, char **cmd)
 
 	current = data->cmd;
 	size = lst_cmd_size(data);
+	if (cmd != NULL)
+		free_list(cmd);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
-	// cmd = malloc(sizeof(char*) * (size + 1));
-	// if (cmd == NULL)
-	// 	return NULL;
 	i = 0;
 	while (current && (current->type >= 0 && current->type <= 2))
 	{

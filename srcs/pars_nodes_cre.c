@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:25:12 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/25 15:33:32 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:34:02 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static t_cmd	*create_new_node(char *str)
 		exit(EXIT_FAILURE);
 	}
 	nn->str = ft_strdup(str);
+	if (nn->str == NULL)
+	{
+		free(nn);
+		perror("Failed to allocate memory for str");
+		exit(EXIT_FAILURE);
+	}
 	nn->type = -1;
 	nn->next = NULL;
 	nn->prev = NULL;
@@ -53,6 +59,11 @@ void	split_create_cmd_list(t_data *data, char *input)
 	tail = NULL;
 	token = NULL;
 	token = mini_split(input);
+	if (token == NULL)
+	{
+		perror("Failed to allocate memory for tokens");
+		exit(EXIT_FAILURE);
+	}
 	while (token[i] != NULL)
 	{
 		tail = create_and_link_nodes(tail, token[i]);
