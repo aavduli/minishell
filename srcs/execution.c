@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 17:22:49 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:39:37 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ void	ft_launch(t_data *data, char **cmd)
 void	ft_read_lst(t_data *data)
 {
 	char	**cmd;
-	t_cmd	*head;
 
 	cmd = NULL;
-	head = data->cmd;
 	while (data->cmd)
 	{
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
@@ -76,10 +74,7 @@ void	ft_read_lst(t_data *data)
 		else if (cmd)
 			ft_launch(data, cmd);
 		if (data->cmd == NULL)
-		{
-			data->cmd = head;
 			return ;
-		}
 	}
 }
 
