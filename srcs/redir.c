@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 17:24:52 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:44:17 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	execute_pipeline(t_data *data, char **cmd)
 		dup2(pipefd[1], 1);
 		close(pipefd[0]);
 		ft_cmd(cmd, data);
-		free_tab(cmd);
-		exit(0);
 	}
 	else
 	{
