@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/25 17:37:15 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 16:26:20 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	split_create_cmd_list(t_data *data, char *input);
 //void	print_split(char **split);
 
 //heredoc
-void	execute_command_with_heredoc(char *com, char *del, int var, t_data *d);
+void	execute_command_with_heredoc(char **com, char *del, int var, t_data *d);
 
 //heredoc_utils
 char	*ft_strtok(char *str, const char *delim);
