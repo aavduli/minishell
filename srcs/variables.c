@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:05:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:07:37 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:07:50 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ static char	*ext_rev(t_data *data, char *res, char *input)
 			copy_exit(res, &pos, data, &input);
 		else if (*input == '$')
 		{
+			// if (*(input + 1) == '?')
+			// {
+			// 	printf("BOU 2\n");
+			// 	res = ft_strdup(ft_itoa(data->exit_status));
+			// 	*input+2;
+			// }
 			i = 0;
 			var_name = extract_variable_name(input + 1);
 			var_value = get_env_value(var_name, data);
