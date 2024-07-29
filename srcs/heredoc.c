@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/24 15:35:56 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:22:43 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	redirect_heredoc_input(void)
 	close(tmp_fd);
 }
 
-void	execute_command_with_heredoc(char *com, char *del, int var, t_data *d)
+void	execute_command_with_heredoc(char **com, char *del, int var, t_data *d)
 {
 	pid_t	pid;
 	int		status;
@@ -99,8 +99,8 @@ void	execute_command_with_heredoc(char *com, char *del, int var, t_data *d)
 	if (pid == 0)
 	{
 		redirect_heredoc_input();
-		execlp(com, com, NULL);
-		perror("minishell: execlp");
+		execvp(com[0], com);
+		perror("minishell: execvp");
 		exit(EXIT_FAILURE);
 	}
 	else
