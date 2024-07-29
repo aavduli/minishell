@@ -6,7 +6,7 @@
 #    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/25 14:31:34 by aavduli          ###   ########.fr        #
+#    Updated: 2024/07/29 13:36:12 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ OFILES = $(addsuffix .o, $(FILES))
 CC = gcc
 CFLAGS = -Werror -Wextra -Wall -I $(HEADER) -I/usr/local/opt/readline/include -g
 LDFLAGS = -L/usr/local/opt/readline/lib -lreadline -lhistory
-NAME = mshell
+NAME = minishell
 
 #####################################################################
 ## Rules

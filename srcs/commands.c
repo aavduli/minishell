@@ -6,11 +6,34 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 15:11:14 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 13:45:55 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	increment_shlvl(t_data *data)
+{
+	int		i;
+	char	*shlvl;
+	int		shlvl_int;
+
+	i = 0;
+	while (data->env[i])
+	{
+		if (ft_strncmp(data->env[i], "SHLVL=", 6) == 0)
+		{
+			shlvl = ft_strdup(data->env[i] + 6);
+			shlvl_int = ft_atoi(shlvl);
+			shlvl_int++;
+			free(data->env[i]);
+			data->env[i] = ft_strjoin("SHLVL=", ft_itoa(shlvl_int));
+			free(shlvl);
+			break ;
+		}
+		i++;
+	}
+}
 
 void	ft_print_echo(char **cmd, int i, int j)
 {
@@ -61,24 +84,24 @@ void	ft_pwd(char **cmd)
 
 void	ft_cmd(char **cmd, t_data *data)
 {
-	if (ft_strncmp(cmd[0], "echo", 4) == 0)
+	if (ft_strncmp(cmd[0], "echo", 5) == 0)
 		ft_echo(cmd);
-	else if (ft_strncmp(cmd[0], "cd", 6) == 0)
+	else if (ft_strncmp(cmd[0], "cd", 7) == 0)
 		ft_cd(cmd, data);
-	else if (ft_strncmp(cmd[0], "pwd", 4) == 0)
+	else if (ft_strncmp(cmd[0], "pwd", 8) == 0)
 		ft_pwd(cmd);
-	else if (ft_strncmp(cmd[0], "export", 7) == 0)
+	else if (ft_strncmp(cmd[0], "export", 9) == 0)
 		ft_export(cmd, data);
-	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
+	else if (ft_strncmp(cmd[0], "unset", 7) == 0)
 	{
 		if (cmd[1] == NULL)
 			ft_putstr_fd("unset: not enough arguments\n", 1);
 		else
 			ft_unset(cmd, data);
 	}
-	else if (ft_strncmp(cmd[0], "env", 4) == 0)
+	else if (ft_strncmp(cmd[0], "env", 5) == 0)
 		ft_env(data);
-	else if (ft_strncmp(cmd[0], "./", 2) == 0)
+	else if (ft_strncmp(cmd[0], "./minishell", 12) == 0)
 		ft_mshell(data, cmd);
 	else
 		ft_execute(cmd, data);

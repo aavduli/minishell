@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/25 20:05:09 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 13:45:31 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_mshell(t_data *data, char **cmd)
 	safe_pid(pid);
 	if (pid == 0)
 	{
+		increment_shlvl(data);
 		if (execve(cmd[0], cmd, data->env) == -1)
 			perror("execve\n");
 	}
