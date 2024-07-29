@@ -6,32 +6,12 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/29 14:03:23 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 16:21:41 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	execute_pipeline(t_data *data, char **cmd)
-{
-	int	pipefd[2];
-	int	pid;
-
-	pipe(pipefd);
-	pid = fork();
-	if (pid == 0)
-	{
-		dup2(pipefd[1], 1);
-		close(pipefd[0]);
-		ft_cmd(cmd, data);
-	}
-	else
-	{
-		waitpid(pid, NULL, 0);
-		dup2(pipefd[0], 0);
-		close(pipefd[1]);
-	}
-}
 
 void	ft_stdin(t_data *data)
 {
@@ -74,20 +54,23 @@ void	ft_stdout(t_data *data)
 	close(fd);
 }
 
-void	execute_redir(t_data *data, char **cmd)
+void	execute_redir(t_data *data, char ***cmd)
 {
+	int	i;
+
+	i = 0;
 	if (data->cmd->type == 4)
 		ft_stdin(data);
 	else
 	{
 		ft_stdout(data);
-		ft_cmd(cmd, data);
-		free_tab(cmd);
+		ft_cmd(cmd[i], data);
+		free_tab(cmd[i]);
 		ft_reset_std(data);
 	}
 }
 
-void	check_redir(t_data *data, char **cmd)
+void	check_redir(t_data *data, char ***cmd)
 {
 	t_cmd	*tmp;
 

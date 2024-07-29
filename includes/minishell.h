@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/29 14:04:53 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 16:35:26 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,9 +137,11 @@ void	ft_unset(char **cmd, t_data *data);
 void	ft_mshell(t_data *data, char **cmd);
 void	increment_shlvl(t_data *data);
 void	update_exit_status(int pid, t_data *data);
+void	ft_cat_pipe(char **cmd);
 
 //Exec
 char	**creat_tab(t_data *data, char **cmd);
+char	*find_path(char *cmd, char **envp);
 void	ft_execute(char **cmd, t_data *data);
 
 //safe_functions
@@ -158,11 +160,12 @@ void	free_tab(char **tab);
 //t_cmd	*create_new_node(char *str);
 void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
+int		count_commands(t_data *data);
 
 //redirection
-void	execute_pipeline(t_data *data, char **cmd);
-void	execute_redir(t_data *data, char **cmd);
-void	check_redir(t_data *data, char **cmd);
+void	execute_pipeline(t_data *data, char ***cmd);
+void	execute_redir(t_data *data, char ***cmd);
+void	check_redir(t_data *data, char ***cmd);
 void	ft_reset_std(t_data *data);
 
 //exit

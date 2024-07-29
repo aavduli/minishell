@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/29 14:01:46 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 17:18:24 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,19 @@ void	ft_launch(t_data *data, char **cmd)
 
 void	ft_read_lst(t_data *data)
 {
-	char	**cmd;
+	char	***cmd;
+	int		i;
 
-	cmd = NULL;
+	i = 0;
+	cmd = safe_malloc(sizeof(char **) * (count_commands(data) + 1));
 	while (data->cmd)
 	{
 		if (data->cmd->type >= 0 && data->cmd->type <= 2)
 		{
-			cmd = creat_tab(data, cmd);
+			cmd[i] = creat_tab(data, cmd[i]);
 			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
 				data->cmd = data->cmd->next;
+			i++;
 		}
 		if (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
 		{
@@ -72,11 +75,12 @@ void	ft_read_lst(t_data *data)
 			while (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
 				data->cmd = data->cmd->next;
 		}
-		else if (cmd)
-			ft_launch(data, cmd);
+		else if (cmd && i > 0)
+			ft_launch(data, cmd[i - 1]);
 		if (data->cmd == NULL)
-			return ;
+			break ;
 	}
+	free(cmd);
 }
 
 char	**creat_tab(t_data *data, char **cmd)
@@ -87,8 +91,6 @@ char	**creat_tab(t_data *data, char **cmd)
 
 	current = data->cmd;
 	size = lst_cmd_size(data);
-	if (cmd != NULL)
-		free_list(cmd);
 	cmd = safe_malloc(sizeof(char *) * (size + 1));
 	i = 0;
 	while (current && (current->type >= 0 && current->type <= 2))
