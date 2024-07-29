@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/05 17:07:05 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:07:22 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	split_create_cmd_list(t_data *data, char *input);
 //void	print_split(char **split);
 
 //heredoc
+void	execute_command_with_heredoc(char **com, char *del, int var, t_data *d);
 void	execute_command_with_heredoc(char **com, char *del, int var, t_data *d);
 
 //heredoc_utils

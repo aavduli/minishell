@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 15:36:55 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:07:33 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,24 @@ static void	heredoc_var(t_data *data, char *line, int var)
 	char	**copy;
 	int		i;
 	int		save;
+	char	**copy;
+	int		i;
+	int		save;
 
+	copy = mini_split(line);
+	i = 0;
+	while ((ft_strnstr(copy[i], "<<-", ft_strlen(copy[i])) == 0
+			&& ft_strnstr(copy[i], "<<", ft_strlen(copy[i])) == 0))
+		i++;
+	save = i;
+	delimiter = ft_strdup(copy[i + 1]);
+	while (copy[i])
+		free(copy[i++]);
+	copy[save] = NULL;
+	if (copy != NULL && delimiter != NULL)
+		execute_command_with_heredoc(copy, delimiter, var, data);
+	free_list(copy);
+	free(delimiter);
 	copy = mini_split(line);
 	i = 0;
 	while ((ft_strnstr(copy[i], "<<-", ft_strlen(copy[i])) == 0
