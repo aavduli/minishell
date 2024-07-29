@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:05:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/29 14:03:04 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:56:33 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ static char	*ext_rev(t_data *data, char *res, char *input)
 	{
 		if (*input == '$')
 		{
+			// if (*(input + 1) == '?')
+			// {
+			// 	printf("BOU 2\n");
+			// 	res = ft_strdup(ft_itoa(data->exit_status));
+			// 	*input+2;
+			// }
 			i = 0;
 			var_name = extract_variable_name(input + 1);
 			var_value = get_env_value(var_name, data);
