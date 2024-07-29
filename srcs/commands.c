@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/29 13:45:55 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 14:04:27 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	ft_echo(char **cmd)
 	}
 	if (!n_flag)
 		ft_putstr_fd("\n", 1);
+	update_exit_status(0, NULL);
 }
 
 void	ft_pwd(char **cmd)
@@ -80,6 +81,7 @@ void	ft_pwd(char **cmd)
 		ft_putstr_fd(pwd, 1);
 		ft_putstr_fd("\n", 1);
 	}
+	update_exit_status(0, NULL);
 }
 
 void	ft_cmd(char **cmd, t_data *data)

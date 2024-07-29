@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 17:46:15 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 15:08:15 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 14:04:04 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void	ft_export(char **cmd, t_data *data)
 			data->env[i + 1] = NULL;
 		}
 	}
+	update_exit_status(0, data);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/29 13:40:21 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/29 14:04:53 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void	ft_export(char **cmd, t_data *data);
 void	ft_unset(char **cmd, t_data *data);
 void	ft_mshell(t_data *data, char **cmd);
 void	increment_shlvl(t_data *data);
+void	update_exit_status(int pid, t_data *data);
 
 //Exec
 char	**creat_tab(t_data *data, char **cmd);
