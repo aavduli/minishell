@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/29 16:26:20 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:35:50 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,14 @@ char	*ft_strtok(char *str, const char *delim);
 
 //Variables
 char	*replace_env_variables(char *input, t_data *data);
+int		get_full_size(char *str, t_data *data);
 
 //Var_utils
 char	*get_env(char *name, t_data *data);
 char	*get_env_value(char *var, t_data *data);
 char	*extract_variable_name(char *start);
 char	*ft_strndup(const char *s, size_t n);
-int		get_full_size(char *str, t_data *data);
+void	count_exit(int *nb, char **str, t_data *data);
 
 //Builtins
 void	ft_env(t_data *data);

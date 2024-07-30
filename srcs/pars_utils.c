@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:22:58 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/29 17:44:47 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:39:34 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ void	check_update_type(t_data *data)
 		}
 		else
 			current->type = determine_type(current->str);
-		if (current->type == 8)
-			current->str = ft_itoa(data->exit_status);
 		if (current->type == 7 || current->type == 2)
 			current->str = replace_env_variables(current->str, data);
-		if (current->type == 7 || current->type == 2 || current->type == 8)
+		if (current->type == 7 || current->type == 2)
 			current->type = 2;
 		current = current->next;
 	}
