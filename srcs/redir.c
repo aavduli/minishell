@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/30 17:03:26 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:15:52 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_stdout(t_data *data)
 
 void	execute_redir(t_data *data, char **cmd)
 {
-	if (data->cmd->type == 4)
+	if (data->infile)
 		ft_stdin(data);
 	else
 	{
@@ -74,16 +74,9 @@ void	check_redir(t_data *data, char ***cmd)
 	tmp = data->cmd;
 	while (cmd[i + 1])
 		i++;
-	while (tmp)
+	if (tmp)
 	{
-		if (data->pipe > 0)
-			execute_pipeline(data, cmd);
-		if (tmp->type >= 4 && tmp->type <= 6)
+		if (data->infile || data->outfile)
 			execute_redir(data, cmd[i]);
-		if (!data->outfile)
-			ft_cmd(cmd[i], data);
-		if (tmp->type == 3)
-			tmp = tmp->next;
-		tmp = tmp->next;
 	}
 }
