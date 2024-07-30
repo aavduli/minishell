@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/05 15:48:03 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:51:40 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	update_exit_status(int pid, t_data *data)
 {
 	int	status;
 
+	run_signal(5);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		data->exit_status = WEXITSTATUS(status);
