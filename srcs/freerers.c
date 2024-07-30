@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   freerers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:14:38 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/25 16:08:21 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:42:24 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_tab(char **tab)
+void	free_tab(char ***tab)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ void	free_tab(char **tab)
 		return ;
 	while (tab[i])
 	{
-		free(tab[i]);
+		free_list(tab[i]);
 		i++;
 	}
 	free(tab);

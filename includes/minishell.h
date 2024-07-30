@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/30 12:48:04 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 16:30:53 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_data
 	int		stdout;
 	int		pipe;
 	int		out;
+	bool	output;
 }	t_data;
 
 //init_structs
@@ -137,8 +138,10 @@ void	ft_unset(char **cmd, t_data *data);
 void	ft_mshell(t_data *data, char **cmd);
 
 //Exec
-char	**creat_tab(t_data *data, char **cmd);
+char	***creat_tab(t_data *data);
 void	ft_execute(char **cmd, t_data *data);
+void	ft_launch(t_data *data, char **cmd);
+char	*find_path(char *cmd, char **envp);
 
 //safe_functions
 void	ft_reset_std(t_data *data);
@@ -150,18 +153,21 @@ void	safe_pipe(int pipefd[2]);
 void	free_list(char **list);
 void	free_cmd(t_cmd *head);
 void	free_all(t_data *data);
-void	free_tab(char **tab);
+void	free_tab(char ***tab);
 
 //lst_utils
 //t_cmd	*create_new_node(char *str);
 void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
+int		count_pipe(t_data *data);
+int		count_cmd(t_cmd *current);
 
 //redirection
-void	execute_pipeline(t_data *data, char **cmd);
-void	execute_redir(t_data *data, char **cmd);
-void	check_redir(t_data *data, char **cmd);
+void	execute_pipeline(t_data *data, char ***cmd);
+void	execute_redir(t_data *data);
 void	ft_reset_std(t_data *data);
+void	ft_stdin(t_data *data);
+void	ft_stdout(t_data *data);
 
 //exit
 int		is_exit(char *str, t_data *data);

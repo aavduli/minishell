@@ -6,7 +6,7 @@
 #    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/25 14:31:34 by aavduli          ###   ########.fr        #
+#    Updated: 2024/07/30 14:23:24 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/var_utils\
 		$(SOURCES_DIR)/variables\
 		$(SOURCES_DIR)/export\
+		$(SOURCES_DIR)/pipe\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))
