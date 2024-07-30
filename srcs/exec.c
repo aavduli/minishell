@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/25 20:05:09 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 14:59:27 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	update_exit_status(int pid, t_data *data)
 {
 	int	status;
 
+	run_signal(5);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		data->exit_status = WEXITSTATUS(status);
