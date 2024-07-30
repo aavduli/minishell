@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/29 16:35:26 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:59:39 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,13 +154,14 @@ void	safe_pipe(int pipefd[2]);
 void	free_list(char **list);
 void	free_cmd(t_cmd *head);
 void	free_all(t_data *data);
-void	free_tab(char **tab);
+void	free_tab(char ***tab);
 
 //lst_utils
 //t_cmd	*create_new_node(char *str);
 void	ft_read_lst(t_data *data);
 int		lst_cmd_size(t_data *data);
 int		count_commands(t_data *data);
+int		count_pipe(t_data *data);
 
 //redirection
 void	execute_pipeline(t_data *data, char ***cmd);

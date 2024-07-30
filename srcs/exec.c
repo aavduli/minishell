@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/29 16:15:41 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:07:17 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_mshell(t_data *data, char **cmd)
 	if (access(cmd[0], F_OK) == -1)
 	{
 		printf("minishell: commande not found : %s\n", cmd[0]);
-		free_tab(cmd);
+		free_list(cmd);
 		return ;
 	}
 	pid = fork();

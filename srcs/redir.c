@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/29 16:21:41 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:14:56 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	execute_redir(t_data *data, char ***cmd)
 	{
 		ft_stdout(data);
 		ft_cmd(cmd[i], data);
-		free_tab(cmd[i]);
 		ft_reset_std(data);
 	}
 }
@@ -78,7 +77,10 @@ void	check_redir(t_data *data, char ***cmd)
 	if (tmp)
 	{
 		if (tmp->type == 3)
+		{
+			data->pipe = count_pipe(data);
 			execute_pipeline(data, cmd);
+		}
 		if (tmp->type >= 4 && tmp->type <= 6)
 		{
 			execute_redir(data, cmd);

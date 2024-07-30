@@ -6,11 +6,27 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:49:15 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/29 16:35:08 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:59:10 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	count_pipe(t_data *data)
+{
+	t_cmd	*current;
+	int		count;
+
+	current = data->cmd;
+	count = 0;
+	while (current)
+	{
+		if (current->type == 3)
+			count++;
+		current = current->next;
+	}
+	return (count);
+}
 
 int	count_commands(t_data *data)
 {
