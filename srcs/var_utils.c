@@ -6,7 +6,7 @@
 /*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:47:37 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/23 12:01:25 by albertini        ###   ########.fr       */
+/*   Updated: 2024/07/30 11:42:13 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,20 @@ int	get_full_size(char *str, t_data *data)
 	int		nb;
 	char	*var_value;
 	char	*var_name;
+	char	*exit_satus;
 
 	nb = 0;
 	while (*str)
 	{
-		if (*str == '$')
+		if (*str == '$' && *(str + 1) == '?')
+		{
+			exit_satus = ft_itoa(data->exit_status);
+			nb += ft_strlen(exit_satus);
+			*str += 2;
+			free(exit_satus);
+			printf("Getfull Siz\n");
+		}
+		else if (*str == '$')
 		{
 			var_name = extract_variable_name(str + 1);
 			var_value = get_env_value(var_name, data);
