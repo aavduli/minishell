@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/30 15:12:27 by falberti         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:06:34 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter, int var, t_data *d)
 	size_t	delim_len;
 
 	delim_len = ft_strlen(delimiter);
-	while (!g_exist_status)
+	while (1)
 	{
 		run_signal(4);
 		line = readline("heredoc> ");
@@ -30,10 +30,7 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter, int var, t_data *d)
 			break ;
 		if (ft_strncmp(line, delimiter, delim_len) == 0
 			&& line[delim_len] == '\0')
-		{
-			free(line);
-			return ;
-		}
+			break ;
 		write(tmp_fd, line, ft_strlen(line));
 		write(tmp_fd, "\n", 1);
 		free(line);
@@ -56,9 +53,9 @@ static void	handle_heredoc(char *delimiter, int var, t_data *d)
 		return ;
 	}
 	handle_heredoc_line(tmp_fd, delimiter, var, d);
-	close(tmp_fd);
 	if (g_exist_status)
 		write(1, "Heredoc interrupted\n", 20);
+	close(tmp_fd);
 }
 
 static void	redirect_heredoc_input(void)
