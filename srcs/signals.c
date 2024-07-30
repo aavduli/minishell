@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:26:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 15:35:58 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:08:51 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ static void	restore_prompt_2(int sig)
 	(void)sig;
 }
 
+	// rl_set_prompt("minishell> ");
+	// rl_redisplay();
 static void	heredoc(int sig)
 {
 	g_exist_status = 1;
+	write(1, "\n", 1);
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -69,6 +72,11 @@ void	run_signal(int sig)
 	if (sig == 4)
 	{
 		signal(SIGINT, heredoc);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	if (sig == 5)
+	{
+		signal(SIGINT, restore_prompt_2);
 		signal(SIGQUIT, SIG_IGN);
 	}
 	if (sig == 5)
