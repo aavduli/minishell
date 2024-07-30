@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/05 15:40:22 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:06:11 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	ft_mshell(t_data *data, char **cmd)
 	if (access(cmd[0], F_OK) == -1)
 	{
 		printf("minishell: commande not found : %s\n", cmd[0]);
-		data->exit_status = 127;
-		free_tab(cmd);
+		free_list(cmd);
 		return ;
 	}
 	pid = fork();
