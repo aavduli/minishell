@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:43:31 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:54:14 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ void	ft_stdout(t_data *data)
 	close(fd);
 }
 
-void	execute_redir(t_data *data, char **cmd)
+void	execute_redir(t_data *data)
 {
 	if (data->infile)
 		ft_stdin(data);
-	else
-	{
+	if (data->cmd->type == 5 || data->cmd->type == 6)
 		ft_stdout(data);
 		ft_launch(data, cmd);
 	}
