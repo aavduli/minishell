@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/08/05 17:08:44 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:09:01 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter, int var, t_data *d)
 
 	delim_len = ft_strlen(delimiter);
 	while (1)
+	while (1)
 	{
 		run_signal(4);
 		line = readline("heredoc> ");
@@ -30,6 +31,7 @@ static void	handle_heredoc_line(int tmp_fd, char *delimiter, int var, t_data *d)
 			break ;
 		if (ft_strncmp(line, delimiter, delim_len) == 0
 			&& line[delim_len] == '\0')
+			break ;
 			break ;
 		write(tmp_fd, line, ft_strlen(line));
 		write(tmp_fd, "\n", 1);
@@ -57,7 +59,6 @@ static void	handle_heredoc(char *delimiter, int var, t_data *d)
 	{
 		d->exit_status = 130;
 		write(1, "Heredoc interrupted\n", 20);
-	}
 	close(tmp_fd);
 }
 

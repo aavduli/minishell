@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:26:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:08:51 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:08:56 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	restore_prompt_2(int sig)
 	(void)sig;
 }
 
-	// rl_set_prompt("minishell> ");
-	// rl_redisplay();
 static void	heredoc(int sig)
 {
 	g_exist_status = 1;
