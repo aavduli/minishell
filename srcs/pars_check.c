@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:02:39 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:07:54 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:08:22 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	determine_type(const char *str)
 		return (CMD_OUT_RED);
 	if (ft_strchr(str, '|') != NULL)
 		return (CMD_PIPE);
-	// if (ft_strncmp(str, "$?", 2) == 0)
-	// 	return (CMD_LAST_EXIT);
 	if (ft_strchr(str, '$') != NULL)
 		return (CMD_ENV_VAR);
 	return (CMD_NONE);
