@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 17:39:37 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 16:31:39 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_launch(t_data *data, char **cmd)
 	{
 		ft_cmd(cmd, data);
 		ft_reset_std(data);
-		free_tab(cmd);
 	}
 	else
 		return ;
@@ -54,48 +53,66 @@ void	ft_launch(t_data *data, char **cmd)
 
 void	ft_read_lst(t_data *data)
 {
-	char	**cmd;
+	char	***cmd_tab;
 
-	cmd = NULL;
+	cmd_tab = creat_tab(data);
+	data->pipe = count_pipe(data);
 	while (data->cmd)
 	{
-		if (data->cmd->type >= 0 && data->cmd->type <= 2)
+		if (data->cmd->type >= 4 && data->cmd->type <= 6)
 		{
-			cmd = creat_tab(data, cmd);
-			while (data->cmd && data->cmd->type >= 0 && data->cmd->type <= 2)
-				data->cmd = data->cmd->next;
+			ft_stdin(data);
+			break ;
 		}
-		if (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
+		if (data->pipe > 0)
 		{
-			check_redir(data, cmd);
-			while (data->cmd && (data->cmd->type >= 3 && data->cmd->type <= 11))
-				data->cmd = data->cmd->next;
+			execute_pipeline(data, cmd_tab);
+			break ;
 		}
-		else if (cmd)
-			ft_launch(data, cmd);
-		if (data->cmd == NULL)
-			return ;
+		else
+		{
+			ft_cmd(cmd_tab[0], data);
+		}
+		data->cmd = data->cmd->next;
 	}
+	ft_reset_std(data);
 }
 
-char	**creat_tab(t_data *data, char **cmd)
+char	***creat_tab(t_data *data)
 {
 	int		i;
+	int		j;
 	int		size;
+	char	***cmd_tab;
 	t_cmd	*current;
 
-	current = data->cmd;
-	size = lst_cmd_size(data);
-	if (cmd != NULL)
-		free_list(cmd);
-	cmd = safe_malloc(sizeof(char *) * (size + 1));
 	i = 0;
-	while (current && (current->type >= 0 && current->type <= 2))
+	j = 0;
+	size = lst_cmd_size(data);
+	cmd_tab = malloc((size + 1) * sizeof(char **));
+	if (!cmd_tab)
+		return (NULL);
+	current = data->cmd;
+	while (current)
 	{
-		cmd[i] = ft_shelldup(current->str);
-		current = current->next;
-		i++;
+		if (current->type >= 0 && current->type <= 2)
+		{
+			cmd_tab[i] = malloc((count_cmd(current) + 1) * sizeof(char *));
+			if (!cmd_tab[i])
+				return (NULL);
+			while (current && current->type >= 0 && current->type <= 2)
+			{
+				cmd_tab[i][j] = ft_shelldup(current->str);
+				current = current->next;
+				j++;
+			}
+			cmd_tab[i][j] = NULL;
+			j = 0;
+			i++;
+		}
+		else
+			current = current->next;
 	}
-	cmd[i] = NULL;
-	return (cmd);
+	cmd_tab[i] = NULL;
+	return (cmd_tab);
 }

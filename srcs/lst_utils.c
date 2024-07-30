@@ -6,11 +6,41 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:49:15 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/30 12:47:58 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 15:48:03 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	count_cmd(t_cmd *current)
+{
+	int	count;
+
+	count = 0;
+	while (current)
+	{
+		if (current->type >= 0 && current->type <= 2)
+			count++;
+		current = current->next;
+	}
+	return (count);
+}
+
+int	count_pipe(t_data *data)
+{
+	int		count;
+	t_cmd	*current;
+
+	current = data->cmd;
+	count = 0;
+	while (current)
+	{
+		if (current->type == 3)
+			count++;
+		current = current->next;
+	}
+	return (count);
+}
 
 int	lst_cmd_size(t_data *data)
 {
@@ -19,9 +49,10 @@ int	lst_cmd_size(t_data *data)
 
 	current = data->cmd;
 	size = 0;
-	while (current && (current->type >= 0 && current->type <= 2))
+	while (current)
 	{
-		size++;
+		if (current->type >= 0 && current->type <= 2)
+			size++;
 		current = current->next;
 	}
 	return (size);
