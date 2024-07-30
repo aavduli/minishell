@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/30 16:29:41 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/07/30 16:59:56 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 		if (i < data->pipe)
 		{
 			if (pipe(pipefd) == -1)
+			{
 				perror("pipe");
+				exit(EXIT_FAILURE);
+			}
 		}
 		else
 		{
