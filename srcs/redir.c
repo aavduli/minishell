@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:54:14 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:54:43 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	execute_redir(t_data *data)
 	if (data->infile)
 		ft_stdin(data);
 	if (data->cmd->type == 5 || data->cmd->type == 6)
+	{
 		ft_stdout(data);
 		ft_launch(data, cmd);
 	}
