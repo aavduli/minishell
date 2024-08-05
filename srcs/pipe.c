@@ -6,12 +6,47 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/30 16:59:56 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:14:40 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+int	ft_stdin_inpipe(t_data *data)
+{
+	int	fd;
+
+	if (data->infile)
+	{
+		fd = open(data->infile, O_RDONLY);
+		if (fd == -1)
+		{
+			perror("open");
+			exit(EXIT_FAILURE);
+		}
+		return (fd);
+	}
+	data->infile = NULL;
+	return (STDIN_FILENO);
+}
+
+int	ft_stdout_inpipe(t_data *data)
+{
+	int	fd;
+
+	if (data->outfile)
+	{
+		fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd == -1)
+		{
+			perror("open");
+			exit(EXIT_FAILURE);
+		}
+		return (fd);
+	}
+	data->outfile = NULL;
+	return (STDOUT_FILENO);
+}
 
 void	exec_inpipe(t_data *data, char **cmd)
 {
@@ -54,6 +89,7 @@ void	ft_cmd_inpipe(t_data *data, char **cmd)
 		ft_mshell(data, cmd);
 	else
 		exec_inpipe(data, cmd);
+	data->cmd->pipe = false;
 }
 
 void	execute_pipe(t_data *data, char **cmd, int in, int out)
@@ -90,9 +126,12 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 	int		i;
 	int		pipefd[2];
 	int		in;
+	int		out;
 
 	i = 0;
-	in = STDIN_FILENO;
+	in = ft_stdin_inpipe(data);
+	out = STDOUT_FILENO;
+
 	while (i < data->pipe + 1)
 	{
 		if (i < data->pipe)
@@ -102,17 +141,20 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 				perror("pipe");
 				exit(EXIT_FAILURE);
 			}
+			out = pipefd[1];
 		}
 		else
 		{
-			pipefd[0] = STDIN_FILENO;
-			pipefd[1] = STDOUT_FILENO;
+			if (data->outfile)
+				out = ft_stdout_inpipe(data);
+			else
+				out = STDOUT_FILENO;
 		}
-		execute_pipe(data, cmd_tab[i], in, pipefd[1]);
+		execute_pipe(data, cmd_tab[i], in, out);
 		if (in != STDIN_FILENO)
 			close(in);
-		if (pipefd[1] != STDOUT_FILENO)
-			close(pipefd[1]);
+		if (out != STDOUT_FILENO)
+			close(out);
 		in = pipefd[0];
 		i++;
 	}
@@ -120,4 +162,5 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 		close(in);
 	while (wait(NULL) > 0)
 		;
+	ft_reset_std(data);
 }
