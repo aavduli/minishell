@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:07:33 by aavduli          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/05 17:09:18 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../includes/minishell.h"
+
+extern int	g_exist_status;
 
 extern int	g_exist_status;
 
@@ -87,6 +90,8 @@ static void	handle_line(t_data *data, char *line)
 
 	if (g_exist_status == 1)
 		data->exit_status = 130;
+	if (g_exist_status == 1)
+		data->exit_status = 130;
 	if (line[0] == '\0')
 		return ;
 	is_exit(line, data);
@@ -114,6 +119,7 @@ void	get_input(t_data *data)
 
 	while (1)
 	{
+		g_exist_status = 0;
 		g_exist_status = 0;
 		run_signal(1);
 		line = readline("minishell> ");

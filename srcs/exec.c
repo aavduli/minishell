@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/05 17:08:40 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:09:14 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_mshell(t_data *data, char **cmd)
 	{
 		if (execve(cmd[0], cmd, data->env) == -1)
 			perror("execve\n");
+		data->exit_status = 126;
 		data->exit_status = 126;
 	}
 	else
@@ -103,6 +104,8 @@ void	ft_execute(char **cmd, t_data *data)
 	{
 		printf("minishell: command not found : %s\n", cmd[0]);
 		data->exit_status = 127;
+		printf("minishell: command not found : %s\n", cmd[0]);
+		data->exit_status = 127;
 		return ;
 	}
 	pid = fork();
@@ -114,9 +117,12 @@ void	ft_execute(char **cmd, t_data *data)
 			perror("execve\n");
 			free(path);
 			data->exit_status = 126;
+			data->exit_status = 126;
 			return ;
 		}
 	}
+	free(path);
+	update_exit_status(pid, data);
 	free(path);
 	update_exit_status(pid, data);
 }
