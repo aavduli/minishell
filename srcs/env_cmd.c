@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/24 17:46:29 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 13:55:00 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_str_exit(char *str, int exit, t_data *data)
+{
+	ft_putstr_fd(str, 1);
+	data->exit_status = exit;
+}
 
 void	ft_env(t_data *data)
 {
@@ -23,6 +29,7 @@ void	ft_env(t_data *data)
 		ft_putstr_fd("\n", 1);
 		i++;
 	}
+	data->exit_status = 0;
 }
 
 void	ft_unset(char **cmd, t_data *data)
@@ -33,13 +40,12 @@ void	ft_unset(char **cmd, t_data *data)
 	i = 0;
 	if (ft_strncmp(cmd[1], "PATH", 4) == 0)
 	{
-		ft_putstr_fd("minishell: PATH can't be unset\n", 1);
+		ft_str_exit("minishell: PATH can't be unset\n", 1, data);
 		return ;
 	}
 	while (data->env[i])
 	{
-		if (ft_strncmp(data->env[i], cmd[1],
-				ft_strlen(cmd[1])) == 0)
+		if (ft_strncmp(data->env[i], cmd[1], ft_strlen(cmd[1])) == 0)
 		{
 			free(data->env[i]);
 			j = i;
@@ -52,6 +58,7 @@ void	ft_unset(char **cmd, t_data *data)
 		}
 		i++;
 	}
+	data->exit_status = 0;
 }
 
 void	ft_cd(char **cmd, t_data *data)
@@ -65,7 +72,7 @@ void	ft_cd(char **cmd, t_data *data)
 			chdir(data->env[1]);
 		else if (chdir(cmd[1]) == -1)
 		{
-			ft_putstr_fd("cd: no such file or directory\n", 1);
+			ft_str_exit("cd: no such file or directory\n", 1, data);
 			return ;
 		}
 		i = 0;
@@ -79,5 +86,6 @@ void	ft_cd(char **cmd, t_data *data)
 			}
 			i++;
 		}
+		data->exit_status = 0;
 	}
 }

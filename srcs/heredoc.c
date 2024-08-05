@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/07/30 16:06:34 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:36:19 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static void	handle_heredoc(char *delimiter, int var, t_data *d)
 	}
 	handle_heredoc_line(tmp_fd, delimiter, var, d);
 	if (g_exist_status)
+	{
+		d->exit_status = 130;
 		write(1, "Heredoc interrupted\n", 20);
+	}
 	close(tmp_fd);
 }
 

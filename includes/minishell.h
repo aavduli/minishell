@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 15:57:39 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/05 16:51:28 by aavduli          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/05 16:51:59 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -130,10 +131,11 @@ char	*ft_strndup(const char *s, size_t n);
 void	count_exit(int *nb, char **str, t_data *data);
 
 //Builtins
+void	ft_str_exit(char *str, int exit, t_data *data);
 void	ft_env(t_data *data);
 void	ft_cd(char **cmd, t_data *data);
-void	ft_pwd(char **cmd);
-void	ft_echo(char **cmd);
+void	ft_pwd(char **cmd, t_data *d);
+void	ft_echo(char **cmd, t_data *d);
 void	ft_cmd(char **cmd, t_data *data);
 void	ft_export(char **cmd, t_data *data);
 void	ft_unset(char **cmd, t_data *data);
