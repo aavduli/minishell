@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:54:43 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:58:21 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_stdout(t_data *data)
 
 	tmp = data->cmd;
 	fd = STDIN_FILENO;
+	printf("outfile: %s\n", data->outfile);
 	while (tmp->type != 5 && tmp->type != 6 && tmp->next)
 		tmp = tmp->next;
 	if (tmp->type == 5)
@@ -56,17 +57,6 @@ void	ft_stdout(t_data *data)
 		return ;
 	}
 	close(fd);
-}
-
-void	execute_redir(t_data *data)
-{
-	if (data->infile)
-		ft_stdin(data);
-	if (data->cmd->type == 5 || data->cmd->type == 6)
-	{
-		ft_stdout(data);
-		ft_launch(data, cmd);
-	}
 }
 
 void	check_redir(t_data *data, char ***cmd_tab)

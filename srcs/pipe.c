@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:36:53 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:03:30 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ int	ft_stdin_inpipe(t_data *data)
 
 int	ft_stdout_inpipe(t_data *data)
 {
-	int	fd;
+	int		fd;
+	t_cmd	*tmp;
 
+	tmp = data->cmd;
+	while (tmp->type != 5 && tmp->type != 6 && tmp->next)
+		tmp = tmp->next;
 	if (data->outfile)
 	{
-		fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (tmp->type == 5)
+			fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (tmp->type == 6)
+			fd = open(data->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (fd == -1)
 		{
 			perror("open");
@@ -67,11 +74,11 @@ void	exec_inpipe(t_data *data, char **cmd)
 void	ft_cmd_inpipe(t_data *data, char **cmd)
 {
 	if (ft_strncmp(cmd[0], "echo", 4) == 0)
-		ft_echo(cmd);
+		ft_echo(cmd, data);
 	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
 		ft_cd(cmd, data);
 	else if (ft_strncmp(cmd[0], "pwd", 3) == 0)
-		ft_pwd(cmd);
+		ft_pwd(cmd, data);
 	else if (ft_strncmp(cmd[0], "export", 6) == 0)
 		ft_export(cmd, data);
 	else if (ft_strncmp(cmd[0], "unset", 5) == 0)
