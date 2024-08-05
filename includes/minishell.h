@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/05 17:46:03 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 18:03:46 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,12 @@ void	check_redir(t_data *data, char ***cmd);
 void	ft_reset_std(t_data *data);
 void	ft_stdin(t_data *data);
 void	ft_stdout(t_data *data);
+
+//pipe utils
+
+void	exec_inpipe(t_data *data, char **cmd);
+int		ft_stdout_inpipe(t_data *data);
+int		ft_stdin_inpipe(t_data *data);
 
 //exit
 int		is_exit(char *str, t_data *data);

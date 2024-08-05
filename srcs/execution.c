@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 17:55:40 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 18:02:01 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,13 @@ char	***creat_tab(t_data *data)
 	i = 0;
 	j = 0;
 	size = lst_cmd_size(data);
-	cmd_tab = malloc((size + 1) * sizeof(char **));
-	if (!cmd_tab)
-		return (NULL);
+	cmd_tab = safe_malloc((size + 1) * sizeof(char **));
 	current = data->cmd;
 	while (current)
 	{
 		if (current->type >= 0 && current->type <= 2)
 		{
-			cmd_tab[i] = malloc((count_cmd(current) + 1) * sizeof(char *));
-			if (!cmd_tab[i])
-				return (NULL);
+			cmd_tab[i] = safe_malloc((count_cmd(current) + 1) * sizeof(char *));
 			while (current && current->type >= 0 && current->type <= 2)
 			{
 				cmd_tab[i][j] = ft_shelldup(current->str);
