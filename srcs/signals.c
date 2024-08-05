@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:26:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:09:22 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:25:44 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	g_exist_status = 0;
 
 static void	restore_prompt(int sig)
 {
-	g_exist_status = 1;
 	g_exist_status = 1;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
@@ -37,7 +36,6 @@ static void	restore_prompt_2(int sig)
 static void	heredoc(int sig)
 {
 	g_exist_status = 1;
-	write(1, "\n", 1);
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -71,11 +69,6 @@ void	run_signal(int sig)
 	if (sig == 4)
 	{
 		signal(SIGINT, heredoc);
-		signal(SIGQUIT, SIG_IGN);
-	}
-	if (sig == 5)
-	{
-		signal(SIGINT, restore_prompt_2);
 		signal(SIGQUIT, SIG_IGN);
 	}
 	if (sig == 5)

@@ -5,15 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/05 17:09:18 by aavduli          ###   ########.fr       */
+/*   Created: 2024/07/24 17:46:15 by aavduli           #+#    #+#             */
+/*   Updated: 2024/08/05 17:27:33 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/minishell.h"
-
-extern int	g_exist_status;
 
 extern int	g_exist_status;
 
@@ -50,24 +47,7 @@ static void	heredoc_var(t_data *data, char *line, int var)
 	char	**copy;
 	int		i;
 	int		save;
-	char	**copy;
-	int		i;
-	int		save;
 
-	copy = mini_split(line);
-	i = 0;
-	while ((ft_strnstr(copy[i], "<<-", ft_strlen(copy[i])) == 0
-			&& ft_strnstr(copy[i], "<<", ft_strlen(copy[i])) == 0))
-		i++;
-	save = i;
-	delimiter = ft_strdup(copy[i + 1]);
-	while (copy[i])
-		free(copy[i++]);
-	copy[save] = NULL;
-	if (copy != NULL && delimiter != NULL)
-		execute_command_with_heredoc(copy, delimiter, var, data);
-	free_list(copy);
-	free(delimiter);
 	copy = mini_split(line);
 	i = 0;
 	while ((ft_strnstr(copy[i], "<<-", ft_strlen(copy[i])) == 0
@@ -88,8 +68,6 @@ static void	handle_line(t_data *data, char *line)
 {
 	t_cmd	*current;
 
-	if (g_exist_status == 1)
-		data->exit_status = 130;
 	if (g_exist_status == 1)
 		data->exit_status = 130;
 	if (line[0] == '\0')
@@ -119,7 +97,6 @@ void	get_input(t_data *data)
 
 	while (1)
 	{
-		g_exist_status = 0;
 		g_exist_status = 0;
 		run_signal(1);
 		line = readline("minishell> ");
