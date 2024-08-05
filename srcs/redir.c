@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:24:34 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:43:31 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ void	ft_stdout(t_data *data)
 	t_cmd	*tmp;
 
 	tmp = data->cmd;
+	fd = STDIN_FILENO;
 	while (tmp->type != 5 && tmp->type != 6 && tmp->next)
 		tmp = tmp->next;
-	if (data->cmd->type == 5)
+	if (tmp->type == 5)
 		fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	else if (data->cmd->type != 0)
+	if (tmp->type == 6)
 		fd = open(data->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
