@@ -6,9 +6,10 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/05 16:53:00 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:32:58 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef MINISHELL_H
@@ -66,6 +67,7 @@ struct s_cmd
 {
 	char			*str;
 	int				type;
+	bool			pipe;
 	bool			pipe;
 	t_cmd			*next;
 	t_cmd			*prev;
@@ -167,6 +169,8 @@ int		count_pipe(t_data *data);
 int		count_cmd(t_cmd *current);
 
 //redirection
+void	execute_pipeline(t_data *data, char ***cmd_tab);
+void	check_redir(t_data *data, char ***cmd);
 void	execute_pipeline(t_data *data, char ***cmd_tab);
 void	check_redir(t_data *data, char ***cmd);
 void	ft_reset_std(t_data *data);

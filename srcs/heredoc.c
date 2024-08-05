@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:07:09 by albertini         #+#    #+#             */
-/*   Updated: 2024/08/05 15:36:19 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:39:42 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	handle_heredoc(char *delimiter, int var, t_data *d)
 	{
 		d->exit_status = 130;
 		write(1, "Heredoc interrupted\n", 20);
+	}
+	close(tmp_fd);
 	}
 	close(tmp_fd);
 }
