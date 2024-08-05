@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 17:40:29 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:55:56 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_stdout(t_data *data)
 
 	tmp = data->cmd;
 	fd = STDIN_FILENO;
-	printf("outfile: %s\n", data->outfile);
 	while (tmp->type != 5 && tmp->type != 6 && tmp->next)
 		tmp = tmp->next;
 	if (tmp->type == 5)
