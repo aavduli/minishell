@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/05 17:42:29 by aavduli          ###   ########.fr       */
+/*   Created: 2024/07/24 17:46:15 by aavduli           #+#    #+#             */
+/*   Updated: 2024/08/05 18:49:48 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
+#    By: albertini <albertini@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/07/30 14:23:24 by aavduli          ###   ########.fr        #
+#    Updated: 2024/08/05 19:30:30 by albertini        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ FILES = $(SOURCES_DIR)/minishell\
 		$(SOURCES_DIR)/variables\
 		$(SOURCES_DIR)/export\
 		$(SOURCES_DIR)/pipe\
+		$(SOURCES_DIR)/pipe_exec\
 
 ## Ajout de .c et .o aux fichiers dans FILES
 CFILES = $(addsuffix .c, $(FILES))

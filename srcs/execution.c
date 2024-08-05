@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 17:55:40 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:20:17 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,23 @@ void	ft_read_lst(t_data *data)
 	free_tab(cmd_tab);
 }
 
+static void	create_tab_help(t_cmd **current, char ***cmd_tab, int *j, int *i)
+{
+	cmd_tab[*i] = malloc((count_cmd((*current)) + 1) * sizeof(char *));
+	if (!cmd_tab[*i])
+		return ;
+	while (*current && (*current)->type >= 0 && (*current)->type <= 2)
+	{
+		cmd_tab[*i][*j] = ft_shelldup((*current)->str);
+		*current = (*current)->next;
+		(*j)++;
+	}
+	cmd_tab[*i][*j] = NULL;
+	*j = 0;
+	(*i)++;
+	return ;
+}
+
 char	***creat_tab(t_data *data)
 {
 	int		i;
@@ -91,20 +108,7 @@ char	***creat_tab(t_data *data)
 	while (current)
 	{
 		if (current->type >= 0 && current->type <= 2)
-		{
-			cmd_tab[i] = malloc((count_cmd(current) + 1) * sizeof(char *));
-			if (!cmd_tab[i])
-				return (NULL);
-			while (current && current->type >= 0 && current->type <= 2)
-			{
-				cmd_tab[i][j] = ft_shelldup(current->str);
-				current = current->next;
-				j++;
-			}
-			cmd_tab[i][j] = NULL;
-			j = 0;
-			i++;
-		}
+			create_tab_help(&current, cmd_tab, &j, &i);
 		else
 			current = current->next;
 	}
