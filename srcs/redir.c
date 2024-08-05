@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 17:55:56 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:21:12 by albertini        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	check_redir(t_data *data, char ***cmd_tab)
 		free(data->infile);
 		data->infile = NULL;
 	}
-
 	if (data->outfile)
 	{
 		ft_stdout(data);
