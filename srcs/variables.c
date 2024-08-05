@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:05:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:48:12 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:55:24 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../includes/minishell.h"
 
