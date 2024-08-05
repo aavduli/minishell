@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/30 17:15:52 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:24:34 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,24 @@ void	ft_stdin(t_data *data)
 
 void	ft_stdout(t_data *data)
 {
-	int	fd;
+	int		fd;
+	t_cmd	*tmp;
 
+	tmp = data->cmd;
+	while (tmp->type != 5 && tmp->type != 6 && tmp->next)
+		tmp = tmp->next;
 	if (data->cmd->type == 5)
 		fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	else
+	else if (data->cmd->type != 0)
 		fd = open(data->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		printf("minishell: %s: %s\n", data->cmd->next->str, strerror(errno));
+		printf("minishell: %s: %s\n", tmp->next->str, strerror(errno));
 		return ;
 	}
 	if (dup2(fd, 1) == -1)
 	{
-		printf("minishell: %s: %s\n", data->cmd->next->str, strerror(errno));
+		printf("minishell: %s: %s\n", tmp->next->str, strerror(errno));
 		return ;
 	}
 	close(fd);
@@ -60,23 +64,29 @@ void	execute_redir(t_data *data, char **cmd)
 	else
 	{
 		ft_stdout(data);
-		ft_cmd(cmd, data);
-		ft_reset_std(data);
+		ft_launch(data, cmd);
 	}
 }
 
-void	check_redir(t_data *data, char ***cmd)
+void	check_redir(t_data *data, char ***cmd_tab)
 {
-	t_cmd	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = data->cmd;
-	while (cmd[i + 1])
+	while (cmd_tab[i + 1])
 		i++;
-	if (tmp)
+	if (data->infile)
 	{
-		if (data->infile || data->outfile)
-			execute_redir(data, cmd[i]);
+		ft_stdin(data);
+		free(data->infile);
+		data->infile = NULL;
 	}
+
+	if (data->outfile)
+	{
+		ft_stdout(data);
+		free(data->outfile);
+		data->outfile = NULL;
+	}
+	ft_launch(data, cmd_tab[i]);
 }

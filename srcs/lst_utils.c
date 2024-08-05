@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:49:15 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/30 15:48:03 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 13:55:48 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	count_pipe(t_data *data)
 			count++;
 		current = current->next;
 	}
+	if (count > 0)
+		data->cmd->pipe = true;
 	return (count);
 }
 
