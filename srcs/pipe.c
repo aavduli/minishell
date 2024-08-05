@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 17:16:01 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:17:15 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	ft_cmd_inpipe(t_data *data, char **cmd)
 		ft_mshell(data, cmd);
 	else
 		exec_inpipe(data, cmd);
+	data->cmd->pipe = false;
 }
 
 void	execute_pipe(t_data *data, char **cmd, int in, int out)
