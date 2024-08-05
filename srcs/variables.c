@@ -6,58 +6,13 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:05:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/08/05 17:30:49 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:48:12 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
 #include "../includes/minishell.h"
-
-static void	copy_exit(char *res, int *pos, t_data *data, char **input)
-{
-	char	*exit;
-	int		i;
-
-	exit = ft_itoa(data->exit_status);
-	i = 0;
-	while (exit[i])
-	{
-		res[*pos] = exit[i++];
-		(*pos)++;
-	}
-	*input += 2;
-	free(exit);
-	return ;
-}
-
-int	get_full_size(char *str, t_data *data)
-{
-	int		nb;
-	char	*var_value;
-	char	*var_name;
-
-	nb = 0;
-	while (*str)
-	{
-		if (*str == '$' && *(str + 1) == '?')
-			count_exit(&nb, &str, data);
-		else if (*str == '$')
-		{
-			var_name = extract_variable_name(str + 1);
-			var_value = get_env_value(var_name, data);
-			nb += ft_strlen(var_value);
-			str += ft_strlen(var_name) + 1;
-			free(var_name);
-		}
-		else
-		{
-			nb++;
-			str++;
-		}
-	}
-	return (nb);
-}
 
 static void	copy_exit(char *res, int *pos, t_data *data, char **input)
 {
@@ -114,9 +69,6 @@ static char	*ext_rev(t_data *data, char *res, char *input)
 	pos = 0;
 	while (*input)
 	{
-		if (*input == '$' && *(input + 1) == '?')
-			copy_exit(res, &pos, data, &input);
-		else if (*input == '$')
 		if (*input == '$' && *(input + 1) == '?')
 			copy_exit(res, &pos, data, &input);
 		else if (*input == '$')

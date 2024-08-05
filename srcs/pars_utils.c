@@ -6,11 +6,9 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/05 17:40:21 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:42:29 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../includes/minishell.h"
 
@@ -56,8 +54,8 @@ void	check_update_type(t_data *data)
 			data->infile = ft_strdup(current->str);
 			current->type = 11;
 		}
-		else if (current->prev && (current->prev->type == 5 || current->prev->type == 6))
-		else if (current->prev && (current->prev->type == 5 || current->prev->type == 6))
+		else if (current->prev && (current->prev->type == 5
+				|| current->prev->type == 6))
 		{
 			data->outfile = ft_strdup(current->str);
 			current->type = 11;
@@ -66,7 +64,6 @@ void	check_update_type(t_data *data)
 			current->type = determine_type(current->str);
 		if (current->type == 7 || current->type == 2)
 			current->str = replace_env_variables(current->str, data);
-		if (current->type == 7 || current->type == 2)
 		if (current->type == 7 || current->type == 2)
 			current->type = 2;
 		current = current->next;

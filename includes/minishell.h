@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/05 17:32:58 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 17:46:03 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ struct s_cmd
 {
 	char			*str;
 	int				type;
-	bool			pipe;
 	bool			pipe;
 	t_cmd			*next;
 	t_cmd			*prev;
