@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:26:02 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/30 16:03:55 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:35:58 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	g_exist_status = 0;
 
 static void	restore_prompt(int sig)
 {
+	g_exist_status = 1;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/07/25 15:11:14 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 14:32:32 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_print_echo(char **cmd, int i, int j)
+static void	ft_print_echo(char **cmd, int i, int j)
 {
 	while (cmd[i][j])
 	{
@@ -22,7 +22,7 @@ void	ft_print_echo(char **cmd, int i, int j)
 	}
 }
 
-void	ft_echo(char **cmd)
+void	ft_echo(char **cmd, t_data *d)
 {
 	int	i;
 	int	j;
@@ -45,9 +45,10 @@ void	ft_echo(char **cmd)
 	}
 	if (!n_flag)
 		ft_putstr_fd("\n", 1);
+	d->exit_status = 0;
 }
 
-void	ft_pwd(char **cmd)
+void	ft_pwd(char **cmd, t_data *d)
 {
 	char	pwd[1024];
 
@@ -56,29 +57,33 @@ void	ft_pwd(char **cmd)
 	{
 		ft_putstr_fd(pwd, 1);
 		ft_putstr_fd("\n", 1);
+		d->exit_status = 0;
 	}
 }
 
 void	ft_cmd(char **cmd, t_data *data)
 {
 	if (ft_strncmp(cmd[0], "echo", 4) == 0)
-		ft_echo(cmd);
+		ft_echo(cmd, data);
 	else if (ft_strncmp(cmd[0], "cd", 6) == 0)
 		ft_cd(cmd, data);
 	else if (ft_strncmp(cmd[0], "pwd", 4) == 0)
-		ft_pwd(cmd);
+		ft_pwd(cmd, data);
 	else if (ft_strncmp(cmd[0], "export", 7) == 0)
 		ft_export(cmd, data);
 	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
 	{
 		if (cmd[1] == NULL)
+		{
 			ft_putstr_fd("unset: not enough arguments\n", 1);
+			data->exit_status = 1;
+		}
 		else
 			ft_unset(cmd, data);
 	}
 	else if (ft_strncmp(cmd[0], "env", 4) == 0)
 		ft_env(data);
-	else if (ft_strncmp(cmd[0], "./", 2) == 0)
+	else if (ft_strncmp(cmd[0], "./mshell", 9) == 0)
 		ft_mshell(data, cmd);
 	else
 		ft_execute(cmd, data);

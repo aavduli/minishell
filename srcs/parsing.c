@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:49:41 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/30 14:07:52 by albertini        ###   ########.fr       */
+/*   Updated: 2024/08/05 15:36:55 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+extern int	g_exist_status;
 
 // void print_cmd_list(t_cmd *head)
 // {
@@ -66,6 +68,8 @@ static void	handle_line(t_data *data, char *line)
 {
 	t_cmd	*current;
 
+	if (g_exist_status == 1)
+		data->exit_status = 130;
 	if (line[0] == '\0')
 		return ;
 	is_exit(line, data);
@@ -93,6 +97,7 @@ void	get_input(t_data *data)
 
 	while (1)
 	{
+		g_exist_status = 0;
 		run_signal(1);
 		line = readline("minishell> ");
 		if (line == NULL)

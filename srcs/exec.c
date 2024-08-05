@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/07/30 14:59:27 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:36:24 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_mshell(t_data *data, char **cmd)
 	if (access(cmd[0], F_OK) == -1)
 	{
 		printf("minishell: commande not found : %s\n", cmd[0]);
+		data->exit_status = 127;
 		free_tab(cmd);
 		return ;
 	}
@@ -29,6 +30,7 @@ void	ft_mshell(t_data *data, char **cmd)
 	{
 		if (execve(cmd[0], cmd, data->env) == -1)
 			perror("execve\n");
+		data->exit_status = 126;
 	}
 	else
 	{
@@ -99,7 +101,8 @@ void	ft_execute(char **cmd, t_data *data)
 	path = find_path(cmd[0], data->env);
 	if (path == NULL || ft_strnstr(path, "/", 1) == NULL)
 	{
-		printf("minishell: path not found : %s\n", cmd[0]);
+		printf("minishell: command not found : %s\n", cmd[0]);
+		data->exit_status = 127;
 		return ;
 	}
 	pid = fork();
@@ -110,12 +113,10 @@ void	ft_execute(char **cmd, t_data *data)
 		{
 			perror("execve\n");
 			free(path);
+			data->exit_status = 126;
 			return ;
 		}
 	}
-	else
-	{
-		free(path);
-		update_exit_status(pid, data);
-	}
+	free(path);
+	update_exit_status(pid, data);
 }
