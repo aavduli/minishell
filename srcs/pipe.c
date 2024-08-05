@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:14:40 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:36:53 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_stdin_inpipe(t_data *data)
 		}
 		return (fd);
 	}
-	data->infile = NULL;
 	return (STDIN_FILENO);
 }
 
@@ -44,7 +43,6 @@ int	ft_stdout_inpipe(t_data *data)
 		}
 		return (fd);
 	}
-	data->outfile = NULL;
 	return (STDOUT_FILENO);
 }
 
@@ -89,7 +87,6 @@ void	ft_cmd_inpipe(t_data *data, char **cmd)
 		ft_mshell(data, cmd);
 	else
 		exec_inpipe(data, cmd);
-	data->cmd->pipe = false;
 }
 
 void	execute_pipe(t_data *data, char **cmd, int in, int out)

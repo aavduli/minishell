@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 16:26:27 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:40:12 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,12 @@ void	ft_read_lst(t_data *data)
 	if (data->pipe > 0 && data->cmd->pipe == true)
 	{
 		execute_pipeline(data, cmd_tab);
-		data->pipe = 0;
 	}
 	else if ((data->infile || data->outfile))
 	{
 		check_redir(data, cmd_tab);
 	}
-	else
+	else if (cmd_tab[1] == NULL && !data->outfile)
 	{
 		ft_launch(data, cmd_tab[0]);
 	}
