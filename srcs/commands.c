@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 14:32:32 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/06 22:34:19 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_pwd(char **cmd, t_data *d)
 
 void	ft_cmd(char **cmd, t_data *data)
 {
+	ft_reset_std(data);
 	if (ft_strncmp(cmd[0], "echo", 4) == 0)
 		ft_echo(cmd, data);
 	else if (ft_strncmp(cmd[0], "cd", 6) == 0)
