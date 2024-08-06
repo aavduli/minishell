@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertini <albertini@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 19:27:51 by albertini        ###   ########.fr       */
+/*   Updated: 2024/08/06 22:36:53 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,24 @@ void	exec_inpipe(t_data *data, char **cmd)
 
 void	ft_cmd_inpipe(t_data *data, char **cmd)
 {
-	if (ft_strncmp(cmd[0], "echo", 4) == 0)
+	if (ft_strncmp(cmd[0], "echo", 5) == 0)
 		ft_echo(cmd, data);
-	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
+	else if (ft_strncmp(cmd[0], "cd", 3) == 0)
 		ft_cd(cmd, data);
-	else if (ft_strncmp(cmd[0], "pwd", 3) == 0)
+	else if (ft_strncmp(cmd[0], "pwd", 4) == 0)
 		ft_pwd(cmd, data);
-	else if (ft_strncmp(cmd[0], "export", 6) == 0)
+	else if (ft_strncmp(cmd[0], "export", 7) == 0)
 		ft_export(cmd, data);
-	else if (ft_strncmp(cmd[0], "unset", 5) == 0)
+	else if (ft_strncmp(cmd[0], "unset", 8) == 0)
 	{
 		if (cmd[1] == NULL)
 			ft_putstr_fd("unset: not enough arguments\n", 1);
 		else
 			ft_unset(cmd, data);
 	}
-	else if (ft_strncmp(cmd[0], "env", 3) == 0)
+	else if (ft_strncmp(cmd[0], "env", 4) == 0)
 		ft_env(data);
-	else if (ft_strncmp(cmd[0], "./", 2) == 0)
+	else if (ft_strncmp(cmd[0], "./minishell", 12) == 0)
 		ft_mshell(data, cmd);
 	else
 		exec_inpipe(data, cmd);
