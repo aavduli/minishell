@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albertini <albertini@student.42.fr>        +#+  +:+       +#+         #
+#    By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 12:52:36 by falberti          #+#    #+#              #
-#    Updated: 2024/08/05 19:30:30 by albertini        ###   ########.fr        #
+#    Updated: 2024/08/06 21:22:03 by aavduli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,9 @@ OFILES = $(addsuffix .o, $(FILES))
 ####################################################################
 ## Varguments
 CC = gcc
-CFLAGS = -Werror -Wextra -Wall -I $(HEADER) -I/usr/local/opt/readline/include -g
-LDFLAGS = -L/usr/local/opt/readline/lib -lreadline -lhistory
-NAME = mshell
+CFLAGS = -Werror -Wextra -Wall -I $(HEADER) -I/opt/homebrew/opt/readline/include -g
+LDFLAGS = -L/opt/homebrew/opt/readline/lib -lreadline -lhistory
+NAME = minishell
 
 #####################################################################
 ## Rules
