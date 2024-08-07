@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/07 12:31:57 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 13:17:07 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ void	ft_pwd(char **cmd, t_data *d)
 
 void	ft_cmd(char **cmd, t_data *data)
 {
-	if (ft_strncmp(cmd[0], "echo", 4) == 0)
+	if (ft_strncmp(cmd[0], "echo", 5) == 0)
 		ft_echo(cmd, data);
-	else if (ft_strncmp(cmd[0], "cd", 6) == 0)
+	else if (ft_strncmp(cmd[0], "cd", 7) == 0)
 		ft_cd(cmd, data);
-	else if (ft_strncmp(cmd[0], "pwd", 4) == 0)
+	else if (ft_strncmp(cmd[0], "pwd", 5) == 0)
 		ft_pwd(cmd, data);
-	else if (ft_strncmp(cmd[0], "export", 7) == 0)
+	else if (ft_strncmp(cmd[0], "export", 8) == 0)
 		ft_export(cmd, data);
-	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
+	else if (ft_strncmp(cmd[0], "unset", 7) == 0)
 	{
 		if (cmd[1] == NULL)
 		{
@@ -83,7 +83,7 @@ void	ft_cmd(char **cmd, t_data *data)
 	}
 	else if (ft_strncmp(cmd[0], "env", 4) == 0)
 		ft_env(data);
-	else if (ft_strncmp(cmd[0], "./mshell", 9) == 0)
+	else if (ft_strncmp(cmd[0], "./minishell", 13) == 0)
 		ft_mshell(data, cmd);
 	else
 		ft_execute(cmd, data);
