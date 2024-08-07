@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:01:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/07 12:34:41 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:38:36 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@ void	check_redir(t_data *data, char ***cmd_tab)
 		i++;
 	if (data->infile)
 	{
-		printf("data->infile: %s\n", data->infile);
 		ft_stdin(data);
 		free(data->infile);
 		data->infile = NULL;
 	}
 	if (data->outfile)
 	{
-		printf("data->outfile: %s\n", data->outfile);
 		ft_stdout(data);
 		free(data->outfile);
 		data->outfile = NULL;
