@@ -1,5 +1,7 @@
 Afficher un prompt :
 
+ls: write error: Bad file descriptor
+
 Afficher un prompt pour attendre une nouvelle commande.
 Exemple attendu : Affichage d'un prompt (minishell$) à chaque nouvelle ligne de commande.
 Recherche et lancement d'exécutables :
