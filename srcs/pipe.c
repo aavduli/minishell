@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:21:55 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 18:03:57 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/05 18:05:24 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 	i = 0;
 	in = ft_stdin_inpipe(data);
 	out = STDOUT_FILENO;
-
 	while (i < data->pipe + 1)
 	{
 		if (i < data->pipe)
