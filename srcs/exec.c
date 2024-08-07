@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/05 17:38:03 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:57:27 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	ft_execute(char **cmd, t_data *data)
 			perror("execve\n");
 			free(path);
 			data->exit_status = 126;
+			exit(EXIT_FAILURE);
 			return ;
 		}
 	}
