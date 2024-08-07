@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:51:57 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/25 16:10:04 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:57:40 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)av;
 	if (ac != 1)
-		return (0);
+		return (1);
 	init_data(&data);
 	init_cmd(&cmd);
 	data.env = ft_cpy_env(envp);

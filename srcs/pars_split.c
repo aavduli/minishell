@@ -6,7 +6,7 @@
 /*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 14:03:33 by falberti          #+#    #+#             */
-/*   Updated: 2024/07/24 16:37:43 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:29:52 by falberti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-static int	ischar(char c)
+int	ischar(char c)
 {
 	if (c == ' ' || c == '\t'
 		|| c == '\n' || c == '\r' || c == '\v' || c == '\f')
