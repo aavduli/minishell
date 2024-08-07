@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:27:13 by albertini         #+#    #+#             */
-/*   Updated: 2024/08/06 22:23:17 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:35:50 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 		init_pipes(data, i, pipefd, &out);
 		execute_single_command(data, cmd_tab[i], in, out);
 		in = pipefd[0];
+		close(pipefd[1]);
 		i++;
 	}
 	if (in != STDIN_FILENO)
@@ -64,6 +65,7 @@ void	execute_pipeline(t_data *data, char ***cmd_tab)
 		close(out);
 	while (wait(NULL) > 0)
 		;
+	close(pipefd[0]);
+	close(pipefd[1]);
 	ft_reset_std(data);
-	printf("we had reset the std\n");
 }
