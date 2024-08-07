@@ -6,7 +6,7 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:33:20 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/07 12:37:52 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:38:40 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void	ft_read_lst(t_data *data)
 
 	cmd_tab = creat_tab(data);
 	data->pipe = count_pipe(data);
-	printf("STDIN_FILENO: %d\n", STDIN_FILENO);
-	printf("STDOUT_FILENO: %d\n", STDOUT_FILENO);
 	if (data->pipe > 0 && data->cmd->pipe == true)
 	{
 		execute_pipeline(data, cmd_tab);
