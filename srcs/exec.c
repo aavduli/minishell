@@ -6,64 +6,18 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:04:08 by avdylavduli       #+#    #+#             */
-/*   Updated: 2024/08/07 13:15:51 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 13:52:27 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_mshell(t_data *data, char **cmd)
+char	*part_pathing(char **paths, char *cmd)
 {
-	int		status;
-	int		pid;
-
-	if (access(cmd[0], F_OK) == -1)
-	{
-		printf("minishell: commande not found : %s\n", cmd[0]);
-		free_list(cmd);
-		free_list(cmd);
-		return ;
-	}
-	pid = fork();
-	safe_pid(pid);
-	if (pid == 0)
-	{
-		if (execve(cmd[0], cmd, data->env) == -1)
-			perror("execve\n");
-		data->exit_status = 126;
-	}
-	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			data->exit_status = WEXITSTATUS(status);
-	}
-}
-
-char	**found_split(char **envp)
-{
-	char	**paths;
 	int		i;
-
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
-		i++;
-	if (envp[i] == NULL)
-		return (NULL);
-	paths = ft_split(envp[i] + 5, ':');
-	return (paths);
-}
-
-char	*find_path(char *cmd, char **envp)
-{
-	char	**paths;
 	char	*path;
-	int		i;
 	char	*part_path;
 
-	paths = found_split(envp);
-	if (!paths)
-		return (NULL);
 	i = 0;
 	while (paths[i])
 	{
@@ -76,6 +30,41 @@ char	*find_path(char *cmd, char **envp)
 		path = NULL;
 		i++;
 	}
+	return (path);
+}
+
+char	**found_split(char **envp)
+{
+	char	**paths;
+	int		i;
+
+	i = 0;
+	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == NULL)
+		i++;
+	if (envp[i] == NULL)
+		return (NULL);
+	paths = ft_split(envp[i] + 5, ':');
+	return (paths);
+}
+
+char	*find_path(char *cmd, char **envp)
+{
+	char	**paths;
+	char	*path;
+	int		i;
+
+	if (cmd[0] == '/' || cmd[0] == '.')
+	{
+		if (access(cmd, F_OK) == 0)
+			return (strdup(cmd));
+		else
+			return (NULL);
+	}
+	paths = found_split(envp);
+	i = 0;
+	if (!paths)
+		return (NULL);
+	path = part_pathing(paths, cmd);
 	i = -1;
 	while (paths[++i])
 		free(paths[i]);
@@ -99,7 +88,7 @@ void	ft_execute(char **cmd, t_data *data)
 	char	*path;
 
 	path = find_path(cmd[0], data->env);
-	if (path == NULL || ft_strnstr(path, "/", 1) == NULL)
+	if (path == NULL)
 	{
 		printf("minishell: command not found : %s\n", cmd[0]);
 		data->exit_status = 127;

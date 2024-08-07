@@ -6,11 +6,39 @@
 /*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:25:05 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/07 13:17:07 by aavduli          ###   ########.fr       */
+/*   Updated: 2024/08/07 13:46:49 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_mshell(t_data *data, char **cmd)
+{
+	int		status;
+	int		pid;
+
+	if (access(cmd[0], F_OK) == -1)
+	{
+		printf("minishell: commande not found : %s\n", cmd[0]);
+		free_list(cmd);
+		free_list(cmd);
+		return ;
+	}
+	pid = fork();
+	safe_pid(pid);
+	if (pid == 0)
+	{
+		if (execve(cmd[0], cmd, data->env) == -1)
+			perror("execve\n");
+		data->exit_status = 126;
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			data->exit_status = WEXITSTATUS(status);
+	}
+}
 
 static void	ft_print_echo(char **cmd, int i, int j)
 {

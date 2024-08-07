@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falberti <falberti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aavduli <aavduli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:50:31 by aavduli           #+#    #+#             */
-/*   Updated: 2024/08/05 13:55:00 by falberti         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:28:41 by aavduli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ void	ft_unset(char **cmd, t_data *data)
 	int	j;
 
 	i = 0;
-	if (ft_strncmp(cmd[1], "PATH", 4) == 0)
-	{
-		ft_str_exit("minishell: PATH can't be unset\n", 1, data);
-		return ;
-	}
 	while (data->env[i])
 	{
 		if (ft_strncmp(data->env[i], cmd[1], ft_strlen(cmd[1])) == 0)
